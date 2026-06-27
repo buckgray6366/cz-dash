@@ -27,7 +27,11 @@ CC = {
 }
 
 def auth():
-    c = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+    info = os.environ.get("GSC_SA_JSON")  # CI: key from encrypted secret; local: key file
+    if info:
+        c = service_account.Credentials.from_service_account_info(json.loads(info), scopes=SCOPES)
+    else:
+        c = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
     c.refresh(gr.Request())
     return c.token
 
