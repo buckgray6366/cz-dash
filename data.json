@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-06-27 17:03 UTC",
+ "generatedAt": "2026-06-27 17:24 UTC",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 11725,
@@ -2361,7 +2361,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-26T18:19:57Z",
    "googleCanonical": "https://trycoolizi.com/fr/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/it/",
@@ -2383,9 +2385,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-26T18:23:03Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -2409,9 +2409,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-26T18:23:03Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -2442,7 +2440,7 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 9,
+  "clicks": 20,
   "conversions": 0,
   "revenue": 0.0,
   "epc": 0.0,
@@ -2451,10 +2449,32 @@
   "goal": 50,
   "by_geo": [
    {
-    "sub": "try-es",
+    "sub": "FR/BE",
+    "name": "FR/BE",
+    "flag": "🇫🇷",
+    "geo": "fr",
+    "clicks": 3,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "ES",
     "name": "Spain",
     "flag": "🇪🇸",
     "geo": "es",
+    "clicks": 3,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "DE/AT/CH",
+    "name": "DE/AT/CH",
+    "flag": "🇩🇪",
+    "geo": "de",
     "clicks": 2,
     "conversions": 0,
     "revenue": 0.0,
@@ -2462,95 +2482,73 @@
     "cr": 0.0
    },
    {
-    "sub": "try-be",
-    "name": "Belgium",
-    "flag": "🇧🇪",
-    "geo": "fr",
-    "clicks": 1,
-    "conversions": 0,
-    "revenue": 0.0,
-    "epc": 0.0,
-    "cr": 0.0
-   },
-   {
-    "sub": "try-fr",
-    "name": "FR/BE",
-    "flag": "🇫🇷",
-    "geo": "fr",
-    "clicks": 1,
-    "conversions": 0,
-    "revenue": 0.0,
-    "epc": 0.0,
-    "cr": 0.0
-   },
-   {
-    "sub": "try-gr",
-    "name": "Greece",
-    "flag": "🇬🇷",
-    "geo": "el",
-    "clicks": 1,
-    "conversions": 0,
-    "revenue": 0.0,
-    "epc": 0.0,
-    "cr": 0.0
-   },
-   {
-    "sub": "try-it",
-    "name": "Italy",
-    "flag": "🇮🇹",
-    "geo": "it",
-    "clicks": 1,
-    "conversions": 0,
-    "revenue": 0.0,
-    "epc": 0.0,
-    "cr": 0.0
-   },
-   {
-    "sub": "try-nl",
-    "name": "NL",
-    "flag": "🇳🇱",
-    "geo": "nl",
-    "clicks": 1,
-    "conversions": 0,
-    "revenue": 0.0,
-    "epc": 0.0,
-    "cr": 0.0
-   },
-   {
-    "sub": "try-pt",
-    "name": "Portugal",
-    "flag": "🇵🇹",
-    "geo": "pt",
-    "clicks": 1,
-    "conversions": 0,
-    "revenue": 0.0,
-    "epc": 0.0,
-    "cr": 0.0
-   },
-   {
-    "sub": "try-uk",
+    "sub": "UK",
     "name": "UK",
     "flag": "🇬🇧",
     "geo": "en",
-    "clicks": 1,
+    "clicks": 2,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,
     "cr": 0.0
    },
    {
-    "sub": "try-de",
-    "name": "DE/AT/CH",
-    "flag": "🇩🇪",
-    "geo": "de",
-    "clicks": 0,
+    "sub": "GR",
+    "name": "Greece",
+    "flag": "🇬🇷",
+    "geo": "el",
+    "clicks": 2,
     "conversions": 0,
     "revenue": 0.0,
-    "epc": 0,
-    "cr": 0
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "IT",
+    "name": "Italy",
+    "flag": "🇮🇹",
+    "geo": "it",
+    "clicks": 2,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "NL",
+    "name": "NL",
+    "flag": "🇳🇱",
+    "geo": "nl",
+    "clicks": 2,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "PT",
+    "name": "Portugal",
+    "flag": "🇵🇹",
+    "geo": "pt",
+    "clicks": 2,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "BE",
+    "name": "Belgium",
+    "flag": "🇧🇪",
+    "geo": "fr",
+    "clicks": 2,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
    }
   ],
   "recent": [],
-  "days": 28
+  "days": 60
  }
 }

@@ -43,20 +43,25 @@ async function inspect(tok, url){
 }
 const wpos = rows => { const i=rows.reduce((a,r)=>a+r.impressions,0); return i?Math.round(rows.reduce((a,r)=>a+r.position*r.impressions,0)/i*10)/10:0; };
 
-const BLITZ_GEO={"try-uk":["UK","🇬🇧","en"],"try-de":["DE/AT/CH","🇩🇪","de"],"try-fr":["FR/BE","🇫🇷","fr"],"try-it":["Italy","🇮🇹","it"],"try-es":["Spain","🇪🇸","es"],"try-nl":["NL","🇳🇱","nl"],"try-pt":["Portugal","🇵🇹","pt"],"try-gr":["Greece","🇬🇷","el"],"try-be":["Belgium","🇧🇪","fr"]};
+const OFFER_GEO={"UK":["UK","🇬🇧","en"],"DE/AT/CH":["DE/AT/CH","🇩🇪","de"],"FR/BE":["FR/BE","🇫🇷","fr"],"IT":["Italy","🇮🇹","it"],"ES":["Spain","🇪🇸","es"],"NL":["NL","🇳🇱","nl"],"PT":["Portugal","🇵🇹","pt"],"GR":["Greece","🇬🇷","el"],"BE":["Belgium","🇧🇪","fr"]};
 async function blitzPull(env){
   try{
     const key=env.BLITZ_KEY, aid=env.BLITZ_AID; if(!key) return {connected:false,error:"no key"};
     const base="https://affiliates.blitzadsgroup.com/affiliates/api";
-    const end=new Date(), start=new Date(end.getTime()-28*86400000);
+    const end=new Date(), start=new Date(end.getTime()-60*86400000);
     const sd=start.toISOString().slice(0,10), ed=end.toISOString().slice(0,10);
     async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
-    const sub=(await get("Reports/SubAffiliateSummary")).filter(r=>String(r.sub_id||"").toLowerCase().startsWith("try-"));
-    const by_geo=sub.map(r=>{const sid=r.sub_id.toLowerCase();const g=BLITZ_GEO[sid]||[sid,"🏳️",""];const clk=Math.round(r.clicks||0),cv=Math.round(r.conversions||0);return {sub:sid,name:g[0],flag:g[1],geo:g[2],clicks:clk,conversions:cv,revenue:Math.round((r.revenue||0)*100)/100,epc:clk?Math.round((r.revenue||0)/clk*1000)/1000:0,cr:clk?Math.round(cv/clk*10000)/100:0};}).sort((a,b)=>b.revenue-a.revenue||b.clicks-a.clicks);
+    const oname=r=>((r.offer||{}).offer_name||"");
+    const geokey=n=>n.includes(" - ")?n.split(" - ").pop().trim():n;
+    const cool=(await get("Reports/Clicks","&row_limit=10000")).filter(r=>oname(r).toLowerCase().includes("coolizi"));
+    const coolconv=(await get("Reports/Conversions","&row_limit=500")).filter(c=>oname(c).toLowerCase().includes("coolizi"));
+    const agg={};
+    cool.forEach(r=>{const k=geokey(oname(r));(agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0}).clicks++;});
+    coolconv.forEach(c=>{const k=geokey(oname(c));const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
+    const by_geo=Object.entries(agg).map(([k,v])=>{const g=OFFER_GEO[k]||[k,"🏳️",""];const clk=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;return {sub:k,name:g[0],flag:g[1],geo:g[2],clicks:clk,conversions:cv,revenue:rev,epc:clk?Math.round(rev/clk*1000)/1000:0,cr:clk?Math.round(cv/clk*10000)/100:0};}).sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
     const tclk=by_geo.reduce((a,x)=>a+x.clicks,0),tcv=by_geo.reduce((a,x)=>a+x.conversions,0),trev=by_geo.reduce((a,x)=>a+x.revenue,0);
-    const conv=(await get("Reports/Conversions","&row_limit=50")).filter(c=>String(c.sub_id||"").toLowerCase().startsWith("try-"));
-    const recent=conv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:c.sub_id||"",offer:(c.offer||{}).offer_name||"",revenue:Math.round((c.price||c.revenue||0)*100)/100}));
-    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_geo,recent,days:28};
+    const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geokey(oname(c)),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
+    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_geo,recent,days:60};
   }catch(e){return {connected:false,error:String(e).slice(0,120)};}
 }
 async function buildData(sa, days, env){
