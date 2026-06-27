@@ -293,7 +293,7 @@ function donut(segs, w=180){
     <text x="90" y="104" fill="#8595ad" font-size="10" text-anchor="middle">impressions</text></svg>`;
 }
 
-const CONFIG={worker:''};  // set to a Cloudflare Worker URL for true live-on-refresh (see worker.js)
+const CONFIG={worker:'https://coolizi-gsc.trycoolizi.workers.dev'};  // live Cloudflare Worker — true live-on-refresh
 let CUR_DAYS=7, DATA=null;
 function srcUrl(){ var q=(CONFIG.worker?('?days='+CUR_DAYS+'&t='):'?t=')+Date.now(); return (CONFIG.worker||'data.json')+q; }
 function load(){
