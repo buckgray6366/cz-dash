@@ -104,6 +104,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .pbi.now .st{background:rgba(255,93,108,.18);color:#ff8a96} .pbi.now span{color:#e6ecf6;font-weight:600}
 .pbi.next .st{background:var(--card2);color:var(--dim);border:1px solid var(--line)} .pbi.next span{color:var(--mut)}
 #refreshBtn{background:var(--card2);border:1px solid var(--line);color:var(--acc);border-radius:7px;cursor:pointer;font-size:13px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+#rangeSel{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:7px;padding:3px 7px;font:inherit;font-size:12.5px;cursor:pointer;vertical-align:middle}
 #refreshBtn:hover{border-color:var(--acc)}
 #refreshBtn.spin{animation:spin360 .8s linear infinite;display:inline-block}
 @keyframes spin360{to{transform:rotate(360deg)}}
@@ -127,7 +128,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="meta">
       <div><span class="idx-badge" id="idxBadge">— / —  INDEXED</span></div>
-      <div style="margin-top:7px"><span class="live"><span class="dot"></span>LIVE</span> · updated <span id="gen">—</span> <button id="refreshBtn" title="Pull the latest data">🔄</button></div>
+      <div style="margin-top:7px"><select id="rangeSel" title="Date range"><option value="1">24h</option><option value="7" selected>7 days</option><option value="28">28 days</option><option value="90">3 months</option></select> <span class="live"><span class="dot"></span>LIVE</span> · <span id="gen">—</span> <button id="refreshBtn" title="Pull the latest data">🔄</button></div>
     </div>
   </div>
 
@@ -286,12 +287,18 @@ function donut(segs, w=180){
 }
 
 const CONFIG={worker:''};  // set to a Cloudflare Worker URL for true live-on-refresh (see worker.js)
+let CUR_DAYS=7, DATA=null;
+function srcUrl(){ var q=(CONFIG.worker?('?days='+CUR_DAYS+'&t='):'?t=')+Date.now(); return (CONFIG.worker||'data.json')+q; }
 function load(){
-  const btn=document.getElementById('refreshBtn'); if(btn) btn.classList.add('spin');
-  const src=CONFIG.worker?(CONFIG.worker+'?t='+Date.now()):('data.json?t='+Date.now());
-  fetch(src).then(r=>r.json()).then(d=>{
+  var btn=document.getElementById('refreshBtn'); if(btn) btn.classList.add('spin');
+  fetch(srcUrl()).then(r=>r.json()).then(function(d){ DATA=d; render(d); if(btn)btn.classList.remove('spin'); })
+    .catch(function(e){ el('note').textContent='Could not load data — '+e; if(btn)btn.classList.remove('spin'); });
+}
+function render(d){
   el('gen').textContent=d.generatedAt; el('prop').textContent=d.property+' · live Google data';
-  const m=d.milestones, s=d.summary, fn=d.funnel;
+  const m=d.milestones, fn=d.funnel;
+  const s=(d.summaries&&d.summaries[String(CUR_DAYS)])?Object.assign({},d.summaries[String(CUR_DAYS)],{queries:d.summary.queries,pages_seen:d.summary.pages_seen}):d.summary;
+  const RL={1:'last 24h',7:'last 7 days',28:'last 28 days',90:'last 3 months'}[CUR_DAYS]||('last '+CUR_DAYS+'d');
   el('idxBadge').textContent=`${m.indexed_pages} / ${d.indexation.length}  INDEXED`;
 
   // KPIs
@@ -305,7 +312,7 @@ function load(){
   ];
   el('kpis').innerHTML=kpis.map((k,i)=>`<div class="kpi ${k.cls}"><div class="lab">${k.lab}</div>
     <div class="val" id="k${i}">${k.raw||(k.pre||'')+'0'+(k.suf||'')}</div>
-    <div class="sub">${k.lab.includes('Position')?'lower is better':k.lab.includes('Indexed')?'all pages live':'last 7 days'}</div></div>`).join('');
+    <div class="sub">${k.lab.includes('Position')?'lower is better':k.lab.includes('Indexed')?'all pages live':RL}</div></div>`).join('');
   kpis.forEach((k,i)=>{ if(!k.raw) countUp(el('k'+i),k.v,k.suf||''); else if(k.pre){el('k'+i).textContent=k.pre+k.v;} });
 
   // Milestones
@@ -336,10 +343,10 @@ function load(){
   const PB=[
    {ph:'Phase 1 — Capture · Days 1–14 (the critical window)',items:[
      {s:'done',t:'Indexed all 9 pages · internal links · own EEAT/policy pages · schema · IndexNow'},
-     {s:'now',t:'Rewrite title tags for CTR — you rank but clicks are low (biggest quick win)'},
-     {s:'now',t:'Land 2–5 real backlinks, some pointed straight at your best geo pages'},
-     {s:'now',t:'Add Bing Webmaster Tools (import from GSC)'},
-     {s:'next',t:'Add content for striking-distance queries (price, "is it legit/scam", comparisons)'},
+     {s:'done',t:'Rewrote title tags for higher CTR (all 8 geos)'},
+     {s:'done',t:'Added "is it legit/scam?" content targeting striking-distance queries (all 8 geos)'},
+     {s:'done',t:'Connected Bing Webmaster Tools'},
+     {s:'now',t:'Backlinks — content + steps ready, team now publishing (2–5 quality links)'},
    ]},
    {ph:'Phase 2 — Consolidate · Weeks 2–6',items:[
      {s:'next',t:'Supporting content: buyer’s guide / "Coolizi vs …" / "how to use" → link to geo pages'},
@@ -395,12 +402,11 @@ function load(){
     <div class="q" style="max-width:none;color:#e6ecf6;font-weight:600;white-space:normal">${c.q}</div>
     <div style="margin-top:5px;display:flex;gap:8px;flex-wrap:wrap">${c.pages.map(p=>`<span class="pg" style="background:var(--card2);padding:3px 8px;border-radius:6px;border:1px solid var(--line)">${p.page.replace('https://trycoolizi.com','')||'/'} · ${F(p.impressions)} impr · ${posBadge(p.position)}</span>`).join('')}</div></div>`).join(''):'<div class="empty">✓ No cannibalization — each query maps cleanly to one page.</div>';
 
-  el('note').innerHTML=`Live Google Search Console data via read-only API · auto-refreshes hourly + on-demand 🔄 · GSC data lags ~2–3 days (hourly view is fresher) · confidential, noindex`;
-  if(btn) btn.classList.remove('spin');
-}).catch(e=>{ el('note').textContent='Could not load data — '+e; var bb=document.getElementById('refreshBtn'); if(bb) bb.classList.remove('spin'); });
+  el('note').innerHTML=`Live Google Search Console data via read-only API · auto-refreshes hourly + on-demand 🔄 · pick a date range ▲ · confidential, noindex`;
 }
 load();
 document.getElementById('refreshBtn').addEventListener('click', load);
+document.getElementById('rangeSel').addEventListener('change', function(){ CUR_DAYS=parseInt(this.value)||7; if(CONFIG.worker){ load(); } else if(DATA){ render(DATA); } });
 
 // activity log — static record of work shipped
 const LOG=[

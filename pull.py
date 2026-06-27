@@ -103,13 +103,17 @@ def main():
     by_page = [rowfmt(r) for r in sa_query(token, ["page"], days=7)]
     by_qp = [rowfmt(r) for r in sa_query(token, ["query", "page"], days=7)]
 
-    # totals (7d, fresh)
-    timp = sum(r["impressions"] for r in by_page) or sum(r["impressions"] for r in by_device)
-    tclk = sum(r["clicks"] for r in by_page) or sum(r["clicks"] for r in by_device)
-    summary = {"impressions": timp, "clicks": tclk,
-               "ctr": round(tclk / timp * 100, 2) if timp else 0,
-               "position": wavg_pos(by_device or by_page),
-               "queries": len(by_query), "pages_seen": len([p for p in by_page if p["impressions"] > 0])}
+    # authoritative totals via no-dimension query (matches GSC exactly), per range
+    def totals(days):
+        rows = sa_query(token, [], days=days)
+        if not rows: return {"impressions": 0, "clicks": 0, "ctr": 0, "position": 0}
+        r = rows[0]
+        return {"impressions": int(r.get("impressions", 0)), "clicks": int(r.get("clicks", 0)),
+                "ctr": round(r.get("ctr", 0) * 100, 2), "position": round(r.get("position", 0), 1)}
+    summaries = {str(dd): totals(dd) for dd in (1, 7, 28, 90)}
+    base = summaries["7"]
+    timp, tclk = base["impressions"], base["clicks"]
+    summary = {**base, "queries": len(by_query), "pages_seen": len([p for p in by_page if p["impressions"] > 0])}
 
     # geo board (join country -> our page)
     geo = []
@@ -173,7 +177,7 @@ def main():
 
     data = {
         "generatedAt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
-        "property": PROP, "summary": summary, "daily": daily, "hourly": hourly,
+        "property": PROP, "summary": summary, "summaries": summaries, "daily": daily, "hourly": hourly,
         "geo": geo, "device": by_device, "topQueries": by_query[:40], "topPages": by_page,
         "brand": brand, "opportunities": opp[:25], "cannibal": cannibal[:12],
         "indexation": index, "funnel": funnel, "milestones": milestones,

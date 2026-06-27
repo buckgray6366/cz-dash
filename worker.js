@@ -43,18 +43,21 @@ async function inspect(tok, url){
 }
 const wpos = rows => { const i=rows.reduce((a,r)=>a+r.impressions,0); return i?Math.round(rows.reduce((a,r)=>a+r.position*r.impressions,0)/i*10)/10:0; };
 
-async function buildData(sa){
+async function buildData(sa, days){
+  days = days || 7;
   const tok = await getToken(sa);
+  async function totals(d){ const r=await saQ(tok,[],{days:d}); if(!r.length) return {impressions:0,clicks:0,ctr:0,position:0}; const x=r[0]; return {impressions:Math.round(x.impressions||0),clicks:Math.round(x.clicks||0),ctr:Math.round((x.ctr||0)*10000)/100,position:Math.round((x.position||0)*10)/10}; }
   const dailyR = await saQ(tok,["date"],{days:28});
   const daily = dailyR.map(rf).map(d=>({date:d.keys[0],impressions:d.impressions,clicks:d.clicks,ctr:d.ctr,position:d.position}));
   const hourlyR = await saQ(tok,["HOUR"],{state:"HOURLY_ALL",days:1});
   const hourly = hourlyR.map(r=>({hour:r.keys[0],impressions:Math.round(r.impressions||0),clicks:Math.round(r.clicks||0)}));
-  const byCountry=(await saQ(tok,["country"],{days:7})).map(rf), byDevice=(await saQ(tok,["device"],{days:7})).map(rf);
-  const byQuery=(await saQ(tok,["query"],{days:7})).map(rf), byPage=(await saQ(tok,["page"],{days:7})).map(rf);
-  const byQP=(await saQ(tok,["query","page"],{days:7})).map(rf);
-  const timp = byPage.reduce((a,r)=>a+r.impressions,0)||byDevice.reduce((a,r)=>a+r.impressions,0);
-  const tclk = byPage.reduce((a,r)=>a+r.clicks,0)||byDevice.reduce((a,r)=>a+r.clicks,0);
-  const summary = {impressions:timp,clicks:tclk,ctr:timp?Math.round(tclk/timp*10000)/100:0,position:wpos(byDevice.length?byDevice:byPage),queries:byQuery.length,pages_seen:byPage.filter(p=>p.impressions>0).length};
+  const byCountry=(await saQ(tok,["country"],{days})).map(rf), byDevice=(await saQ(tok,["device"],{days})).map(rf);
+  const byQuery=(await saQ(tok,["query"],{days})).map(rf), byPage=(await saQ(tok,["page"],{days})).map(rf);
+  const byQP=(await saQ(tok,["query","page"],{days})).map(rf);
+  const summaries={}; for(const dd of [1,7,28,90]) summaries[String(dd)]=await totals(dd);
+  const base = await totals(days);
+  const timp = base.impressions, tclk = base.clicks;
+  const summary = {...base, queries:byQuery.length, pages_seen:byPage.filter(p=>p.impressions>0).length};
   const geo = byCountry.map(r=>{const cc=r.keys[0];const[n,f,g]=CC[cc]||[cc.toUpperCase(),"🏳️",""];return {cc,name:n,flag:f,geo:g,impressions:r.impressions,clicks:r.clicks,ctr:r.ctr,position:r.position};}).sort((a,b)=>b.impressions-a.impressions);
   const brand = byQuery.filter(r=>r.keys[0].toLowerCase().includes("coolizi")).map(r=>({q:r.keys[0],impressions:r.impressions,clicks:r.clicks,ctr:r.ctr,position:r.position})).sort((a,b)=>b.impressions-a.impressions);
   const opp = byQuery.filter(r=>r.position>=3.5&&r.position<=20.5&&r.impressions>=3).map(r=>({q:r.keys[0],impressions:r.impressions,clicks:r.clicks,position:r.position,ctr:r.ctr,potential:Math.round(r.impressions*(Math.max(0,20-r.position)/20)*10)/10,hint:r.position<=10?"Improve title/meta CTR":"Push onto page 1"})).sort((a,b)=>b.potential-a.potential).slice(0,25);
@@ -66,7 +69,7 @@ async function buildData(sa){
   const positions = byQuery.filter(r=>r.position>0).map(r=>r.position); const best = positions.length?Math.min(...positions):99;
   const milestones = {first_impression:timp>0,first_click:tclk>0,top10:best<=10,top3:best<=3,number1:best<=1.5,best_position:best,indexed_pages:funnel.indexed};
   const now = new Date();
-  return {generatedAt:now.toISOString().slice(0,16).replace("T"," ")+" UTC (live)",property:PROP,summary,daily,hourly,geo,device:byDevice,topQueries:byQuery.slice(0,40),topPages:byPage,brand,opportunities:opp,cannibal,indexation:index,funnel,milestones};
+  return {generatedAt:now.toISOString().slice(0,16).replace("T"," ")+" UTC (live)",property:PROP,days,summary,summaries,daily,hourly,geo,device:byDevice,topQueries:byQuery.slice(0,40),topPages:byPage,brand,opportunities:opp,cannibal,indexation:index,funnel,milestones};
 }
 
 export default {
@@ -75,7 +78,9 @@ export default {
     if(request.method==="OPTIONS") return new Response(null,{headers:cors});
     try{
       const sa = JSON.parse(env.GSC_SA_JSON);
-      const data = await buildData(sa);
+      let days = parseInt(new URL(request.url).searchParams.get("days")) || 7;
+      days = Math.max(1, Math.min(180, days));
+      const data = await buildData(sa, days);
       return new Response(JSON.stringify(data),{headers:cors});
     }catch(e){
       return new Response(JSON.stringify({error:String(e)}),{status:500,headers:cors});
