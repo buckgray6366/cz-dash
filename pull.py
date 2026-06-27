@@ -87,6 +87,43 @@ def wavg_pos(rows):
     if not imp: return 0
     return round(sum(r["position"] * r["impressions"] for r in rows) / imp, 1)
 
+BLITZ_GEO = {"try-uk":("UK","🇬🇧","en"),"try-de":("DE/AT/CH","🇩🇪","de"),"try-fr":("FR/BE","🇫🇷","fr"),
+             "try-it":("Italy","🇮🇹","it"),"try-es":("Spain","🇪🇸","es"),"try-nl":("NL","🇳🇱","nl"),
+             "try-pt":("Portugal","🇵🇹","pt"),"try-gr":("Greece","🇬🇷","el"),"try-be":("Belgium","🇧🇪","fr")}
+
+def blitz_pull(days=28):
+    try:
+        key = os.environ.get("BLITZ_KEY"); aid = os.environ.get("BLITZ_AID")
+        if not key:
+            c = json.load(open("/root/.config/blitz/creds.json")); key = c["api_key"]; aid = c["affiliate_id"]
+        base = "https://affiliates.blitzadsgroup.com/affiliates/api"
+        end = datetime.date.today(); start = end - datetime.timedelta(days=days)
+        def get(ep, **p):
+            p.update(api_key=key, affiliate_id=aid, start_date=str(start), end_date=str(end))
+            r = requests.get(f"{base}/{ep}", params=p, headers={"Accept": "application/json"}, timeout=30)
+            return r.json().get("data", []) if r.ok else []
+        sub = get("Reports/SubAffiliateSummary")
+        rows = [r for r in sub if str(r.get("sub_id", "")).lower().startswith("try-")]
+        by_geo = []
+        for r in rows:
+            sid = r["sub_id"].lower(); name, flag, geo = BLITZ_GEO.get(sid, (sid, "🏳️", ""))
+            clk = int(r.get("clicks", 0)); cv = int(round(r.get("conversions", 0)))
+            by_geo.append({"sub": sid, "name": name, "flag": flag, "geo": geo, "clicks": clk,
+                           "conversions": cv, "revenue": round(r.get("revenue", 0), 2),
+                           "epc": round(r.get("revenue", 0) / clk, 3) if clk else 0,
+                           "cr": round(cv / clk * 100, 2) if clk else 0})
+        by_geo.sort(key=lambda x: (-x["revenue"], -x["clicks"]))
+        tclk = sum(x["clicks"] for x in by_geo); tcv = sum(x["conversions"] for x in by_geo); trev = sum(x["revenue"] for x in by_geo)
+        conv = get("Reports/Conversions", row_limit=50)
+        recent = [{"date": c.get("conversion_date", ""), "sub": c.get("sub_id", ""),
+                   "offer": (c.get("offer") or {}).get("offer_name", ""), "revenue": round(c.get("price", c.get("revenue", 0)) or 0, 2)}
+                  for c in conv if str(c.get("sub_id", "")).lower().startswith("try-")][:15]
+        return {"connected": True, "clicks": tclk, "conversions": tcv, "revenue": round(trev, 2),
+                "epc": round(trev / tclk, 3) if tclk else 0, "cr": round(tcv / tclk * 100, 2) if tclk else 0,
+                "currency": "$", "goal": 50, "by_geo": by_geo, "recent": recent, "days": days}
+    except Exception as e:
+        return {"connected": False, "error": str(e)[:120]}
+
 def main():
     token = auth()
     today = datetime.date.today()
@@ -181,6 +218,7 @@ def main():
         "geo": geo, "device": by_device, "topQueries": by_query[:40], "topPages": by_page,
         "brand": brand, "opportunities": opp[:25], "cannibal": cannibal[:12],
         "indexation": index, "funnel": funnel, "milestones": milestones,
+        "affiliate": blitz_pull(),
     }
     with open(os.path.join(HERE, "data.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)

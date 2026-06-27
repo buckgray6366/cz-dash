@@ -43,8 +43,25 @@ async function inspect(tok, url){
 }
 const wpos = rows => { const i=rows.reduce((a,r)=>a+r.impressions,0); return i?Math.round(rows.reduce((a,r)=>a+r.position*r.impressions,0)/i*10)/10:0; };
 
-async function buildData(sa, days){
+const BLITZ_GEO={"try-uk":["UK","🇬🇧","en"],"try-de":["DE/AT/CH","🇩🇪","de"],"try-fr":["FR/BE","🇫🇷","fr"],"try-it":["Italy","🇮🇹","it"],"try-es":["Spain","🇪🇸","es"],"try-nl":["NL","🇳🇱","nl"],"try-pt":["Portugal","🇵🇹","pt"],"try-gr":["Greece","🇬🇷","el"],"try-be":["Belgium","🇧🇪","fr"]};
+async function blitzPull(env){
+  try{
+    const key=env.BLITZ_KEY, aid=env.BLITZ_AID; if(!key) return {connected:false,error:"no key"};
+    const base="https://affiliates.blitzadsgroup.com/affiliates/api";
+    const end=new Date(), start=new Date(end.getTime()-28*86400000);
+    const sd=start.toISOString().slice(0,10), ed=end.toISOString().slice(0,10);
+    async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
+    const sub=(await get("Reports/SubAffiliateSummary")).filter(r=>String(r.sub_id||"").toLowerCase().startsWith("try-"));
+    const by_geo=sub.map(r=>{const sid=r.sub_id.toLowerCase();const g=BLITZ_GEO[sid]||[sid,"🏳️",""];const clk=Math.round(r.clicks||0),cv=Math.round(r.conversions||0);return {sub:sid,name:g[0],flag:g[1],geo:g[2],clicks:clk,conversions:cv,revenue:Math.round((r.revenue||0)*100)/100,epc:clk?Math.round((r.revenue||0)/clk*1000)/1000:0,cr:clk?Math.round(cv/clk*10000)/100:0};}).sort((a,b)=>b.revenue-a.revenue||b.clicks-a.clicks);
+    const tclk=by_geo.reduce((a,x)=>a+x.clicks,0),tcv=by_geo.reduce((a,x)=>a+x.conversions,0),trev=by_geo.reduce((a,x)=>a+x.revenue,0);
+    const conv=(await get("Reports/Conversions","&row_limit=50")).filter(c=>String(c.sub_id||"").toLowerCase().startsWith("try-"));
+    const recent=conv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:c.sub_id||"",offer:(c.offer||{}).offer_name||"",revenue:Math.round((c.price||c.revenue||0)*100)/100}));
+    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_geo,recent,days:28};
+  }catch(e){return {connected:false,error:String(e).slice(0,120)};}
+}
+async function buildData(sa, days, env){
   days = days || 7;
+  const affiliate = await blitzPull(env||{});
   const tok = await getToken(sa);
   async function totals(d){ const r=await saQ(tok,[],{days:d}); if(!r.length) return {impressions:0,clicks:0,ctr:0,position:0}; const x=r[0]; return {impressions:Math.round(x.impressions||0),clicks:Math.round(x.clicks||0),ctr:Math.round((x.ctr||0)*10000)/100,position:Math.round((x.position||0)*10)/10}; }
   const dailyR = await saQ(tok,["date"],{days:28});
@@ -69,7 +86,7 @@ async function buildData(sa, days){
   const positions = byQuery.filter(r=>r.position>0).map(r=>r.position); const best = positions.length?Math.min(...positions):99;
   const milestones = {first_impression:timp>0,first_click:tclk>0,top10:best<=10,top3:best<=3,number1:best<=1.5,best_position:best,indexed_pages:funnel.indexed};
   const now = new Date();
-  return {generatedAt:now.toISOString().slice(0,16).replace("T"," ")+" UTC (live)",property:PROP,days,summary,summaries,daily,hourly,geo,device:byDevice,topQueries:byQuery.slice(0,40),topPages:byPage,brand,opportunities:opp,cannibal,indexation:index,funnel,milestones};
+  return {generatedAt:now.toISOString().slice(0,16).replace("T"," ")+" UTC (live)",property:PROP,days,summary,summaries,daily,hourly,geo,device:byDevice,topQueries:byQuery.slice(0,40),topPages:byPage,brand,opportunities:opp,cannibal,indexation:index,funnel,milestones,affiliate};
 }
 
 export default {
@@ -80,7 +97,7 @@ export default {
       const sa = JSON.parse(env.GSC_SA_JSON);
       let days = parseInt(new URL(request.url).searchParams.get("days")) || 7;
       days = Math.max(1, Math.min(180, days));
-      const data = await buildData(sa, days);
+      const data = await buildData(sa, days, env);
       return new Response(JSON.stringify(data),{headers:cors});
     }catch(e){
       return new Response(JSON.stringify({error:String(e)}),{status:500,headers:cors});
