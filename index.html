@@ -88,6 +88,21 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .barrow .vv b{color:var(--txt)}
 
 .note{color:var(--dim);font-size:12px;text-align:center;padding:22px 0 0}
+.move{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}
+.move:last-child{border-bottom:0}
+.move .mi{font-size:18px;flex:0 0 auto;line-height:1.2}
+.move .mt{font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.move .md{color:var(--mut);font-size:12.5px;margin-top:3px}
+.pri{font-size:9.5px;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:5px}
+.pri.NOW{background:rgba(255,93,108,.16);color:#ff8a96;border:1px solid rgba(255,93,108,.3)}
+.pri.WEEK{background:rgba(255,176,32,.14);color:var(--warn);border:1px solid rgba(255,176,32,.3)}
+.pbphase{font-weight:800;font-size:12px;color:#cdd9ec;margin:15px 0 7px;letter-spacing:.01em}
+.pbphase:first-child{margin-top:0}
+.pbi{display:flex;align-items:flex-start;gap:9px;padding:5px 0;font-size:13px}
+.pbi .st{flex:0 0 auto;width:18px;height:18px;border-radius:5px;display:grid;place-content:center;font-size:11px;font-weight:800;margin-top:1px}
+.pbi.done .st{background:rgba(52,211,153,.18);color:var(--good)} .pbi.done span{color:var(--mut);text-decoration:line-through}
+.pbi.now .st{background:rgba(255,93,108,.18);color:#ff8a96} .pbi.now span{color:#e6ecf6;font-weight:600}
+.pbi.next .st{background:var(--card2);color:var(--dim);border:1px solid var(--line)} .pbi.next span{color:var(--mut)}
 .empty{color:var(--dim);font-size:13px;padding:14px;text-align:center}
 @media(max-width:1080px){.kpis{grid-template-columns:repeat(3,1fr)}.r2,.r2b,.r3{grid-template-columns:1fr}}
 @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.barrow .nm{width:96px}}
@@ -115,6 +130,20 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     <p class="sub2">Your launch journey, milestone by milestone.</p>
     <div class="steps" id="steps"></div>
   </section>
+
+  <!-- Growth -->
+  <div class="row r2">
+    <section>
+      <h2>🧭 Your next moves <span class="tag">from live data</span></h2>
+      <p class="sub2">Auto-computed from your current rankings — the highest-leverage actions right now.</p>
+      <div id="nextmoves"></div>
+    </section>
+    <section>
+      <h2>📈 Rank growth playbook</h2>
+      <p class="sub2">Capture rankings now (the critical window), then consolidate &amp; defend.</p>
+      <div id="playbook"></div>
+    </section>
+  </div>
 
   <div class="row r2">
     <section>
@@ -270,6 +299,41 @@ fetch('data.json?t='+Date.now()).then(r=>r.json()).then(d=>{
   el('steps').innerHTML=ms.map((x,i)=>`<div class="step ${m[x.k]?'done':''}">
     <div class="dot">${m[x.k]?'✓':i+1}</div><div class="lab"><b>${x.b}</b><span>${x.s}</span></div>
     ${i<ms.length-1?'<div class="bar"></div>':''}</div>`).join('');
+
+  // Next moves (data-driven)
+  function expCTR(p){if(p<=1)return 28;if(p<=2)return 16;if(p<=3)return 11;if(p<=5)return 7;if(p<=8)return 3.5;if(p<=10)return 2.2;if(p<=15)return 1.2;if(p<=20)return .8;return .4;}
+  const moves=[]; const exp=expCTR(s.position);
+  if(s.ctr>0 && exp/s.ctr>=1.4) moves.push({i:'🖱',t:'Win the clicks you already earned',pri:'NOW',d:`You rank around #${s.position} but your CTR is ${s.ctr}% vs ~${exp}% typical for that spot. Punchier title tags (benefit + » / ✓ + "review/avis/test") could lift clicks ~${(exp/s.ctr).toFixed(1)}× at the SAME ranking — your single fastest win.`});
+  const top=(d.opportunities||[]).slice(0,3);
+  if(top.length) moves.push({i:'🚀',t:'Push these onto page 1',pri:'NOW',d:top.map(o=>`"${o.q}" (#${o.position.toFixed(1)}, ${F(o.impressions)} impr)`).join(' · ')+' — add a focused paragraph/FAQ answering each on its page.'});
+  const weak=(d.geo||[]).filter(g=>g.impressions>=30&&g.position>8&&g.geo).sort((a,b)=>b.impressions-a.impressions)[0];
+  if(weak) moves.push({i:'🌍',t:`Strengthen ${weak.flag} ${weak.name}`,pri:'NOW',d:`${F(weak.impressions)} impressions but avg position ${weak.position} — real demand, needs a push: deeper local content + a backlink to /${weak.geo}/.`});
+  moves.push({i:'🔗',t:'Earn 2–5 real backlinks',pri:'NOW',d:'The #1 authority lever for a young domain — a couple aimed at your best geo pages flips Google’s trust + crawl. Relevance beats volume.'});
+  moves.push({i:'🔎',t:'Add Bing Webmaster Tools',pri:'WEEK 1',d:'One-click "Import from Google Search Console". Bing indexes new sites in days — free early visibility.'});
+  el('nextmoves').innerHTML=moves.map(m=>`<div class="move"><div class="mi">${m.i}</div><div><div class="mt">${m.t} <span class="pri ${m.pri==='NOW'?'NOW':'WEEK'}">${m.pri}</span></div><div class="md">${m.d}</div></div></div>`).join('');
+
+  // Growth playbook
+  const PB=[
+   {ph:'Phase 1 — Capture · Days 1–14 (the critical window)',items:[
+     {s:'done',t:'Indexed all 9 pages · internal links · own EEAT/policy pages · schema · IndexNow'},
+     {s:'now',t:'Rewrite title tags for CTR — you rank but clicks are low (biggest quick win)'},
+     {s:'now',t:'Land 2–5 real backlinks, some pointed straight at your best geo pages'},
+     {s:'now',t:'Add Bing Webmaster Tools (import from GSC)'},
+     {s:'next',t:'Add content for striking-distance queries (price, "is it legit/scam", comparisons)'},
+   ]},
+   {ph:'Phase 2 — Consolidate · Weeks 2–6',items:[
+     {s:'next',t:'Supporting content: buyer’s guide / "Coolizi vs …" / "how to use" → link to geo pages'},
+     {s:'next',t:'Steady backlink drip (5–10 quality, relevant links)'},
+     {s:'next',t:'Deepen per-geo differentiation (local angles, more local reviews)'},
+     {s:'next',t:'Keep "updated" dates fresh; refresh thin sections'},
+   ]},
+   {ph:'Phase 3 — Defend & expand · ongoing',items:[
+     {s:'next',t:'Watch this dashboard — double down on winning geos & terms'},
+     {s:'next',t:'Expand long-tail query variations into the content'},
+     {s:'next',t:'Maintain EEAT (author, real reviews); watch competitors'},
+   ]},
+  ];
+  el('playbook').innerHTML=PB.map(ph=>`<div class="pbphase">${ph.ph}</div>`+ph.items.map(it=>`<div class="pbi ${it.s}"><span class="st">${it.s==='done'?'✓':it.s==='now'?'!':'•'}</span><span>${it.t}</span></div>`).join('')).join('');
 
   // Hourly + daily
   el('hourly').innerHTML=areaChart(d.hourly);
