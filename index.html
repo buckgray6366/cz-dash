@@ -128,7 +128,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     </div>
     <div class="meta">
       <div><span class="idx-badge" id="idxBadge">— / —  INDEXED</span></div>
-      <div style="margin-top:7px"><select id="rangeSel" title="Date range"><option value="1">24h</option><option value="7" selected>7 days</option><option value="28">28 days</option><option value="90">3 months</option></select> <span class="live"><span class="dot"></span>LIVE</span> · <span id="gen">—</span> <button id="refreshBtn" title="Pull the latest data">🔄</button></div>
+      <div style="margin-top:7px"><select id="rangeSel" title="Date range"><option value="today">Today</option><option value="yesterday">Yesterday</option><option value="last7" selected>Last 7 days</option><option value="last28">Last 28 days</option><option value="thismonth">This month</option><option value="lastmonth">Last month</option><option value="last3mo">Last 3 months</option></select> <span class="live"><span class="dot"></span>LIVE</span> · <span id="gen">—</span> <button id="refreshBtn" title="Pull the latest data">🔄</button></div>
     </div>
   </div>
 
@@ -294,18 +294,44 @@ function donut(segs, w=180){
 }
 
 const CONFIG={worker:'https://coolizi-gsc.trycoolizi.workers.dev'};  // live Cloudflare Worker — true live-on-refresh
-let CUR_DAYS=7, DATA=null;
-function srcUrl(){ var q=(CONFIG.worker?('?days='+CUR_DAYS+'&t='):'?t=')+Date.now(); return (CONFIG.worker||'data.json')+q; }
+function _ymd(d){ return d.toISOString().slice(0,10); }
+function _utc(y,m,d){ return new Date(Date.UTC(y,m,d)); }
+var PRESETS={
+  today:    {label:'Today',         range:function(){var n=new Date(),t=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate());return {start:_ymd(t),end:_ymd(t)};}},
+  yesterday:{label:'Yesterday',     range:function(){var n=new Date(),t=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-1);return {start:_ymd(t),end:_ymd(t)};}},
+  last7:    {label:'Last 7 days',   range:function(){var n=new Date(),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-6);return {start:_ymd(s),end:_ymd(e)};}},
+  last28:   {label:'Last 28 days',  range:function(){var n=new Date(),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-27);return {start:_ymd(s),end:_ymd(e)};}},
+  thismonth:{label:'This month',    range:function(){var n=new Date(),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),1),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate());return {start:_ymd(s),end:_ymd(e)};}},
+  lastmonth:{label:'Last month',    range:function(){var n=new Date(),s=_utc(n.getUTCFullYear(),n.getUTCMonth()-1,1),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),0);return {start:_ymd(s),end:_ymd(e)};}},
+  last3mo:  {label:'Last 3 months', range:function(){var n=new Date(),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-89);return {start:_ymd(s),end:_ymd(e)};}}
+};
+var CUR_PRESET='last7', DATA=null;
+function staticUrl(){ return 'data.json?t='+Date.now(); }
+function liveUrl(){ var r=PRESETS[CUR_PRESET].range(); return CONFIG.worker+'?start='+r.start+'&end='+r.end+'&t='+Date.now(); }
+function paint(d){ DATA=d; render(d); }
 function load(){
   var btn=document.getElementById('refreshBtn'); if(btn) btn.classList.add('spin');
-  fetch(srcUrl()).then(r=>r.json()).then(function(d){ DATA=d; render(d); if(btn)btn.classList.remove('spin'); })
-    .catch(function(e){ el('note').textContent='Could not load data — '+e; if(btn)btn.classList.remove('spin'); });
+  function done(){ if(btn) btn.classList.remove('spin'); }
+  // 1) Instant: show the cached snapshot so the page is NEVER stuck loading.
+  if(!DATA){ fetch(staticUrl()).then(function(r){return r.json();}).then(function(d){ if(!DATA||!DATA._live) paint(d); }).catch(function(){}); }
+  // 2) Live upgrade from the Worker, with a hard timeout + graceful fallback.
+  if(!CONFIG.worker){ fetch(staticUrl()).then(function(r){return r.json();}).then(function(d){ paint(d); done(); }).catch(function(e){ el('note').textContent='Could not load data — '+e; done(); }); return; }
+  var ctl=new AbortController(); var to=setTimeout(function(){ ctl.abort(); }, 28000);
+  fetch(liveUrl(),{signal:ctl.signal}).then(function(r){return r.json();}).then(function(d){
+    clearTimeout(to); done();
+    if(d && !d.error){ d._live=true; paint(d); }
+    else if(!DATA){ fetch(staticUrl()).then(function(r){return r.json();}).then(paint); }
+  }).catch(function(){
+    clearTimeout(to); done();
+    if(!DATA){ fetch(staticUrl()).then(function(r){return r.json();}).then(function(d){ paint(d); }).catch(function(e){ el('note').textContent='Could not load data — '+e; }); }
+    el('note').innerHTML='⚠ Live pull was slow — showing the latest cached snapshot. Hit 🔄 to retry live.';
+  });
 }
 function render(d){
   el('gen').textContent=d.generatedAt; el('prop').textContent=d.property+' · live Google data';
   const m=d.milestones, fn=d.funnel;
-  const s=(d.summaries&&d.summaries[String(CUR_DAYS)])?Object.assign({},d.summaries[String(CUR_DAYS)],{queries:d.summary.queries,pages_seen:d.summary.pages_seen}):d.summary;
-  const RL={1:'last 24h',7:'last 7 days',28:'last 28 days',90:'last 3 months'}[CUR_DAYS]||('last '+CUR_DAYS+'d');
+  const s=d.summary||{impressions:0,clicks:0,ctr:0,position:0,queries:0,pages_seen:0};
+  const RL=(PRESETS[CUR_PRESET]?PRESETS[CUR_PRESET].label:'selected range')+(d.range?' · '+d.range.start+(d.range.start!==d.range.end?' → '+d.range.end:''):'');
   el('idxBadge').textContent=`${m.indexed_pages} / ${d.indexation.length}  INDEXED`;
 
   // KPIs
@@ -335,7 +361,7 @@ function render(d){
     ];
     var gscC = (d.summary&&d.summary.clicks)||0;
     el('aff').innerHTML=
-      '<div style="font-size:12.5px;color:var(--mut);margin-bottom:12px">Funnel (last 28d): <b style="color:#3b9dff">'+F(d.summary?d.summary.impressions:0)+'</b> impressions → <b style="color:#3b9dff">'+F(gscC)+'</b> site clicks → <b style="color:#22d3a8">'+F(a.clicks)+'</b> offer clicks → <b style="color:#ffd24a">'+F(a.conversions)+'</b> conversions → <b style="color:#34d399">'+a.currency+F(a.revenue)+'</b></div>'+
+      '<div style="font-size:12.5px;color:var(--mut);margin-bottom:12px">Funnel ('+RL+'): <b style="color:#3b9dff">'+F(s.impressions||0)+'</b> impressions → <b style="color:#3b9dff">'+F(gscC)+'</b> site clicks → <b style="color:#22d3a8">'+F(a.clicks)+'</b> offer clicks → <b style="color:#ffd24a">'+F(a.conversions)+'</b> conversions → <b style="color:#34d399">'+a.currency+F(a.revenue)+'</b></div>'+
       '<div class="kpis" style="margin:0 0 14px">'+cards.map(c=>'<div class="kpi"><div class="lab">'+c.l+'</div><div class="val" style="font-size:24px">'+c.v+'</div><div class="sub">'+c.s+'</div></div>').join('')+'</div>'+
       '<table><thead><tr><th>Geo</th><th>Offer</th><th class="num">Offer clicks</th><th class="num">Conversions</th><th class="num">Revenue</th><th class="num">EPC</th></tr></thead><tbody>'+
       a.by_geo.map(g=>'<tr><td>'+g.flag+' '+g.name+'</td><td class="pg">'+g.sub+'</td><td class="num">'+F(g.clicks)+'</td><td class="num"><b style="color:'+(g.conversions>0?'#ffd24a':'inherit')+'">'+F(g.conversions)+'</b></td><td class="num">'+a.currency+F(g.revenue)+'</td><td class="num">'+a.currency+g.epc+'</td></tr>').join('')+'</tbody></table>'+
@@ -433,7 +459,7 @@ function render(d){
 }
 load();
 document.getElementById('refreshBtn').addEventListener('click', load);
-document.getElementById('rangeSel').addEventListener('change', function(){ CUR_DAYS=parseInt(this.value)||7; if(CONFIG.worker){ load(); } else if(DATA){ render(DATA); } });
+document.getElementById('rangeSel').addEventListener('change', function(){ CUR_PRESET=this.value; if(CONFIG.worker){ load(); } else if(DATA){ render(DATA); } });
 
 // activity log — static record of work shipped
 const LOG=[

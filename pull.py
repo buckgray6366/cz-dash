@@ -98,8 +98,9 @@ def blitz_pull(days=60):
             c = json.load(open("/root/.config/blitz/creds.json")); key = c["api_key"]; aid = c["affiliate_id"]
         base = "https://affiliates.blitzadsgroup.com/affiliates/api"
         end = datetime.date.today(); start = end - datetime.timedelta(days=days)
+        end_excl = end + datetime.timedelta(days=1)  # Blitz end_date is EXCLUSIVE — +1 to include today's clicks
         def get(ep, **p):
-            p.update(api_key=key, affiliate_id=aid, start_date=str(start), end_date=str(end))
+            p.update(api_key=key, affiliate_id=aid, start_date=str(start), end_date=str(end_excl))
             r = requests.get(f"{base}/{ep}", params=p, headers={"Accept": "application/json"}, timeout=40)
             return r.json().get("data", []) if r.ok else []
         oname = lambda r: ((r.get("offer") or {}).get("offer_name") or "")
