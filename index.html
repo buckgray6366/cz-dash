@@ -137,7 +137,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 
   <!-- Affiliate conversions/revenue -->
   <section id="affSec">
-    <h2>💰 Conversions &amp; Revenue <span class="tag">affiliate · Blitz</span></h2>
+    <h2>💰 AiraBreeze · Conversions &amp; Revenue <span class="tag">live offer · Blitz</span></h2>
     <p class="sub2">The money funnel — Google → your site → the offer → conversions. Live from your affiliate network.</p>
     <div id="aff"></div>
   </section>
@@ -150,23 +150,10 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   </section>
 
   <!-- Growth -->
-  <div class="row r2">
-    <section>
-      <h2>🧭 Your next moves <span class="tag">from live data</span></h2>
-      <p class="sub2">Auto-computed from your current rankings — the highest-leverage actions right now.</p>
-      <div id="nextmoves"></div>
-    </section>
-    <section>
-      <h2>📈 Rank growth playbook</h2>
-      <p class="sub2">Capture rankings now (the critical window), then consolidate &amp; defend.</p>
-      <div id="playbook"></div>
-    </section>
-  </div>
-
   <section>
-    <h2>✅ Work completed <span class="tag">what we've done</span></h2>
-    <p class="sub2">Every optimization shipped on your site so far.</p>
-    <div class="log" id="log"></div>
+    <h2>🧭 Your next moves <span class="tag">from live data</span></h2>
+    <p class="sub2">Auto-computed from your current rankings — the highest-leverage actions right now.</p>
+    <div id="nextmoves"></div>
   </section>
 
   <div class="row r2">
@@ -364,7 +351,7 @@ function render(d){
       '<div style="font-size:12.5px;color:var(--mut);margin-bottom:12px">Funnel ('+RL+'): <b style="color:#3b9dff">'+F(s.impressions||0)+'</b> impressions → <b style="color:#3b9dff">'+F(gscC)+'</b> site clicks → <b style="color:#22d3a8">'+F(a.clicks)+'</b> offer clicks → <b style="color:#ffd24a">'+F(a.conversions)+'</b> conversions → <b style="color:#34d399">'+a.currency+F(a.revenue)+'</b></div>'+
       '<div class="kpis" style="margin:0 0 14px">'+cards.map(c=>'<div class="kpi"><div class="lab">'+c.l+'</div><div class="val" style="font-size:24px">'+c.v+'</div><div class="sub">'+c.s+'</div></div>').join('')+'</div>'+
       '<table><thead><tr><th>Geo</th><th>Offer</th><th class="num">Offer clicks</th><th class="num">Conversions</th><th class="num">Revenue</th><th class="num">EPC</th></tr></thead><tbody>'+
-      a.by_geo.map(g=>'<tr><td>'+g.flag+' '+g.name+'</td><td class="pg">'+g.sub+'</td><td class="num">'+F(g.clicks)+'</td><td class="num"><b style="color:'+(g.conversions>0?'#ffd24a':'inherit')+'">'+F(g.conversions)+'</b></td><td class="num">'+a.currency+F(g.revenue)+'</td><td class="num">'+a.currency+g.epc+'</td></tr>').join('')+'</tbody></table>'+
+      a.by_geo.map(g=>'<tr><td>'+g.flag+' '+g.name+'</td><td class="pg">'+(g.offer||g.sub)+'</td><td class="num">'+F(g.clicks)+'</td><td class="num"><b style="color:'+(g.conversions>0?'#ffd24a':'inherit')+'">'+F(g.conversions)+'</b></td><td class="num">'+a.currency+F(g.revenue)+'</td><td class="num">'+a.currency+g.epc+'</td></tr>').join('')+'</tbody></table>'+
       (a.recent&&a.recent.length?'<div style="margin-top:10px;font-size:12.5px;color:var(--mut)">🎉 Recent conversions: '+a.recent.map(r=>r.sub+' '+a.currency+r.revenue).join(' · ')+'</div>':'<div class="empty" style="padding:10px">No conversions yet — '+F(a.clicks)+' offer clicks so far. Sales will appear here the moment they land. 🤞</div>');
   } else { el('aff').innerHTML='<div class="empty">Affiliate API not connected'+(a.error?': '+a.error:'')+'.</div>'; }
 
@@ -391,29 +378,6 @@ function render(d){
   moves.push({i:'🔗',t:'Earn 2–5 real backlinks',pri:'NOW',d:'The #1 authority lever for a young domain — a couple aimed at your best geo pages flips Google’s trust + crawl. Relevance beats volume.'});
   moves.push({i:'🔎',t:'Add Bing Webmaster Tools',pri:'WEEK 1',d:'One-click "Import from Google Search Console". Bing indexes new sites in days — free early visibility.'});
   el('nextmoves').innerHTML=moves.map(m=>`<div class="move"><div class="mi">${m.i}</div><div><div class="mt">${m.t} <span class="pri ${m.pri==='NOW'?'NOW':'WEEK'}">${m.pri}</span></div><div class="md">${m.d}</div></div></div>`).join('');
-
-  // Growth playbook
-  const PB=[
-   {ph:'Phase 1 — Capture · Days 1–14 (the critical window)',items:[
-     {s:'done',t:'Indexed all 9 pages · internal links · own EEAT/policy pages · schema · IndexNow'},
-     {s:'done',t:'Rewrote title tags for higher CTR (all 8 geos)'},
-     {s:'done',t:'Added "is it legit/scam?" content targeting striking-distance queries (all 8 geos)'},
-     {s:'done',t:'Connected Bing Webmaster Tools'},
-     {s:'now',t:'Backlinks — content + steps ready, team now publishing (2–5 quality links)'},
-   ]},
-   {ph:'Phase 2 — Consolidate · Weeks 2–6',items:[
-     {s:'next',t:'Supporting content: buyer’s guide / "Coolizi vs …" / "how to use" → link to geo pages'},
-     {s:'next',t:'Steady backlink drip (5–10 quality, relevant links)'},
-     {s:'next',t:'Deepen per-geo differentiation (local angles, more local reviews)'},
-     {s:'next',t:'Keep "updated" dates fresh; refresh thin sections'},
-   ]},
-   {ph:'Phase 3 — Defend & expand · ongoing',items:[
-     {s:'next',t:'Watch this dashboard — double down on winning geos & terms'},
-     {s:'next',t:'Expand long-tail query variations into the content'},
-     {s:'next',t:'Maintain EEAT (author, real reviews); watch competitors'},
-   ]},
-  ];
-  el('playbook').innerHTML=PB.map(ph=>`<div class="pbphase">${ph.ph}</div>`+ph.items.map(it=>`<div class="pbi ${it.s}"><span class="st">${it.s==='done'?'✓':it.s==='now'?'!':'•'}</span><span>${it.t}</span></div>`).join('')).join('');
 
   // Hourly + daily
   el('hourly').innerHTML=areaChart(d.hourly);
@@ -461,20 +425,6 @@ load();
 document.getElementById('refreshBtn').addEventListener('click', load);
 document.getElementById('rangeSel').addEventListener('change', function(){ CUR_PRESET=this.value; if(CONFIG.worker){ load(); } else if(DATA){ render(DATA); } });
 
-// activity log — static record of work shipped
-const LOG=[
- {d:'Jun 26', t:'Launched 8 localized geo pages (UK · DE · FR · IT · ES · NL · PT · GR) + AEO pack', s:'done'},
- {d:'Jun 26', t:'All 9 URLs crawled &amp; indexed by Google', s:'done'},
- {d:'Jun 26', t:'Internal links · own EEAT/policy pages · Product/Review/FAQ schema · IndexNow', s:'done'},
- {d:'Jun 27', t:'Rewrote title tags for higher CTR (all 8 geos)', s:'done'},
- {d:'Jun 27', t:'Added bold "scam or legit?" objection-handler section (all 8 geos)', s:'done'},
- {d:'Jun 27', t:'Connected Bing Webmaster Tools', s:'done'},
- {d:'Jun 27', t:'Re-submitted all 8 pages to GSC for indexing', s:'done'},
- {d:'Jun 27', t:'Built this live SEO command-center · hourly auto-refresh', s:'done'},
- {d:'Now', t:'Backlink campaign — ready-to-post content + signup steps prepared', s:'run'},
-];
-var logEl=document.getElementById('log');
-if(logEl) logEl.innerHTML=LOG.map(function(x){return '<div class="li"><div class="dt">'+x.d+'</div><div class="ck '+(x.s==='run'?'run':'')+'">'+(x.s==='run'?'•':'✓')+'</div><div class="tx">'+x.t+'</div></div>';}).join('');
 </script>
 </body>
 </html>

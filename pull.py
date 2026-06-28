@@ -89,7 +89,8 @@ def wavg_pos(rows):
 
 GEO_BY_CC = {"de":("DE/AT/CH","🇩🇪","de"),"uk":("UK","🇬🇧","en"),"fr":("FR/BE","🇫🇷","fr"),
              "it":("Italy","🇮🇹","it"),"es":("Spain","🇪🇸","es"),"nl":("NL","🇳🇱","nl"),
-             "pt":("Portugal","🇵🇹","pt"),"gr":("Greece","🇬🇷","el"),"be":("Belgium","🇧🇪","fr")}
+             "pt":("Portugal","🇵🇹","pt"),"gr":("Greece","🇬🇷","el"),"be":("Belgium","🇧🇪","fr"),
+             "intl":("International","🌍","")}
 SUF_CC = {"UK":"uk","DE/AT/CH":"de","FR/BE":"fr","IT":"it","ES":"es","NL":"nl","PT":"pt","GR":"gr","BE":"be"}
 
 def blitz_pull(days=60):
@@ -113,19 +114,24 @@ def blitz_pull(days=60):
             s = s1of(r)
             for pre in ("intl-", "try-"):
                 if s.startswith(pre): return s[len(pre):]
-            return SUF_CC.get(oname(r).split(" - ")[-1].strip(), "??")
+            return SUF_CC.get(oname(r).split(" - ")[-1].strip(), "intl")
+        def brand(r):
+            o = oname(r).lower(); return "AiraBreeze" if "airabreeze" in o else ("Coolizi" if "coolizi" in o else "—")
         cool = [r for r in get("Reports/Clicks", row_limit=10000) if is_ours(r)]
         coolconv = [c for c in get("Reports/Conversions", row_limit=500) if is_ours(c)]
         agg = {}
         for r in cool:
-            agg.setdefault(geocc(r), {"clicks": 0, "conversions": 0, "revenue": 0.0})["clicks"] += 1
+            a = agg.setdefault(geocc(r), {"clicks": 0, "conversions": 0, "revenue": 0.0, "offers": {}})
+            a["clicks"] += 1; b = brand(r); a["offers"][b] = a["offers"].get(b, 0) + 1
         for c in coolconv:
-            a = agg.setdefault(geocc(c), {"clicks": 0, "conversions": 0, "revenue": 0.0})
+            a = agg.setdefault(geocc(c), {"clicks": 0, "conversions": 0, "revenue": 0.0, "offers": {}})
             a["conversions"] += 1; a["revenue"] += float(c.get("price") or c.get("revenue") or 0)
+            b = brand(c); a["offers"][b] = a["offers"].get(b, 0) + 1
         by_geo = []
         for cc, v in agg.items():
             name, flag, geo = GEO_BY_CC.get(cc, (cc.upper(), "🏳️", "")); clk = v["clicks"]; cv = v["conversions"]; rev = round(v["revenue"], 2)
-            by_geo.append({"sub": cc, "name": name, "flag": flag, "geo": geo, "clicks": clk, "conversions": cv,
+            off = max(v["offers"], key=v["offers"].get) if v["offers"] else "—"
+            by_geo.append({"sub": cc, "name": name, "flag": flag, "geo": geo, "offer": off, "clicks": clk, "conversions": cv,
                            "revenue": rev, "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0})
         by_geo.sort(key=lambda x: (-x["clicks"], -x["revenue"]))
         tclk = sum(x["clicks"] for x in by_geo); tcv = sum(x["conversions"] for x in by_geo); trev = sum(x["revenue"] for x in by_geo)

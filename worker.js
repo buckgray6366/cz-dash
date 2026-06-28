@@ -54,7 +54,7 @@ async function getIndex(tok){
 }
 
 // ---- Affiliate (Blitz / CAKE). Coolizi isolated BY OFFER NAME; end_date is EXCLUSIVE so we add +1 day. ----
-const GEO_BY_CC={"de":["DE/AT/CH","🇩🇪","de"],"uk":["UK","🇬🇧","en"],"fr":["FR/BE","🇫🇷","fr"],"it":["Italy","🇮🇹","it"],"es":["Spain","🇪🇸","es"],"nl":["NL","🇳🇱","nl"],"pt":["Portugal","🇵🇹","pt"],"gr":["Greece","🇬🇷","el"],"be":["Belgium","🇧🇪","fr"]};
+const GEO_BY_CC={"de":["DE/AT/CH","🇩🇪","de"],"uk":["UK","🇬🇧","en"],"fr":["FR/BE","🇫🇷","fr"],"it":["Italy","🇮🇹","it"],"es":["Spain","🇪🇸","es"],"nl":["NL","🇳🇱","nl"],"pt":["Portugal","🇵🇹","pt"],"gr":["Greece","🇬🇷","el"],"be":["Belgium","🇧🇪","fr"],"intl":["International","🌍",""]};
 const SUF_CC={"UK":"uk","DE/AT/CH":"de","FR/BE":"fr","IT":"it","ES":"es","NL":"nl","PT":"pt","GR":"gr","BE":"be"};
 async function blitzPull(env, start, end){
   try{
@@ -65,14 +65,15 @@ async function blitzPull(env, start, end){
     const oname=r=>(r.offer_name||(r.offer||{}).offer_name||""); // conversions: top-level; clicks: nested
     const s1of=r=>String(r.subid_1||"").toLowerCase();
     const isOurs=r=>{const s=s1of(r);const o=oname(r).toLowerCase();return s.startsWith("intl-")||s.startsWith("try-")||o.includes("coolizi")||o.includes("airabreeze");};
-    const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"??";};
+    const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"intl";};
+    const brand=r=>{const o=oname(r).toLowerCase();return o.includes("airabreeze")?"AiraBreeze":(o.includes("coolizi")?"Coolizi":"—");};
     const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
     const cool=clk.filter(isOurs);
     const coolconv=cnv.filter(isOurs);
     const agg={};
-    cool.forEach(r=>{const k=geocc(r);(agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0}).clicks++;});
-    coolconv.forEach(c=>{const k=geocc(c);const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
-    const by_geo=Object.entries(agg).map(([k,v])=>{const g=GEO_BY_CC[k]||[k.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;return {sub:k,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0};}).sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
+    cool.forEach(r=>{const k=geocc(r);const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0,offers:{}};a.clicks++;const b=brand(r);a.offers[b]=(a.offers[b]||0)+1;});
+    coolconv.forEach(c=>{const k=geocc(c);const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0,offers:{}};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);const b=brand(c);a.offers[b]=(a.offers[b]||0)+1;});
+    const by_geo=Object.entries(agg).map(([k,v])=>{const g=GEO_BY_CC[k]||[k.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;const off=Object.keys(v.offers).sort((a,b)=>v.offers[b]-v.offers[a])[0]||"—";return {sub:k,name:g[0],flag:g[1],geo:g[2],offer:off,clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0};}).sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
     const tclk=by_geo.reduce((a,x)=>a+x.clicks,0),tcv=by_geo.reduce((a,x)=>a+x.conversions,0),trev=by_geo.reduce((a,x)=>a+x.revenue,0);
     const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geocc(c),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
     return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_geo,recent};
