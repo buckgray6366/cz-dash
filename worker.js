@@ -142,7 +142,7 @@ code{background:#0c1118;border:1px solid #243042;padding:2px 7px;border-radius:6
       const u = new URL(request.url);
       let start = u.searchParams.get("start"), end = u.searchParams.get("end");
       const re = /^\d{4}-\d{2}-\d{2}$/;
-      if(!re.test(start||"") || !re.test(end||"")){ const t=new Date(); end=t.toISOString().slice(0,10); start=new Date(t.getTime()-6*86400000).toISOString().slice(0,10); }
+      if(!re.test(start||"") || !re.test(end||"")){ const ny=new Intl.DateTimeFormat("en-CA",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()); const d=new Date(ny+"T00:00:00Z"); end=ny; d.setUTCDate(d.getUTCDate()-6); start=d.toISOString().slice(0,10); }
       const data = await buildData(sa, {start, end}, env);
       return new Response(JSON.stringify(data),{headers:cors});
     }catch(e){

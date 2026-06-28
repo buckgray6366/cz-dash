@@ -285,18 +285,22 @@ function donut(segs, w=180){
 }
 
 const CONFIG={worker:'https://coolizi-gsc.trycoolizi.workers.dev'};  // live Cloudflare Worker — true live-on-refresh
+// All windows computed in the AFFILIATE NETWORK timezone (Blitz/CAKE = America/New_York), so dashboard days match Blitz exactly.
+function _nyToday(){ return new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }
+function _d(s){ return new Date(s+'T00:00:00Z'); }
 function _ymd(d){ return d.toISOString().slice(0,10); }
-function _utc(y,m,d){ return new Date(Date.UTC(y,m,d)); }
+function _shift(s,days){ var d=_d(s); d.setUTCDate(d.getUTCDate()+days); return _ymd(d); }
+function _mfirst(s){ return s.slice(0,8)+'01'; }
 var PRESETS={
-  today:    {label:'Today',         range:function(){var n=new Date(),t=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate());return {start:_ymd(t),end:_ymd(t)};}},
-  yesterday:{label:'Yesterday',     range:function(){var n=new Date(),t=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-1);return {start:_ymd(t),end:_ymd(t)};}},
-  last7:    {label:'Last 7 days',   range:function(){var n=new Date(),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-6);return {start:_ymd(s),end:_ymd(e)};}},
-  last28:   {label:'Last 28 days',  range:function(){var n=new Date(),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-27);return {start:_ymd(s),end:_ymd(e)};}},
-  thismonth:{label:'This month',    range:function(){var n=new Date(),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),1),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate());return {start:_ymd(s),end:_ymd(e)};}},
-  lastmonth:{label:'Last month',    range:function(){var n=new Date(),s=_utc(n.getUTCFullYear(),n.getUTCMonth()-1,1),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),0);return {start:_ymd(s),end:_ymd(e)};}},
-  last3mo:  {label:'Last 3 months', range:function(){var n=new Date(),e=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()),s=_utc(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()-89);return {start:_ymd(s),end:_ymd(e)};}}
+  today:    {label:'Today',         range:function(){var t=_nyToday();return {start:t,end:t};}},
+  yesterday:{label:'Yesterday',     range:function(){var t=_shift(_nyToday(),-1);return {start:t,end:t};}},
+  last7:    {label:'Last 7 days',   range:function(){var t=_nyToday();return {start:_shift(t,-6),end:t};}},
+  last28:   {label:'Last 28 days',  range:function(){var t=_nyToday();return {start:_shift(t,-27),end:t};}},
+  thismonth:{label:'This month',    range:function(){var t=_nyToday();return {start:_mfirst(t),end:t};}},
+  lastmonth:{label:'Last month',    range:function(){var t=_nyToday();var le=_shift(_mfirst(t),-1);return {start:_mfirst(le),end:le};}},
+  last3mo:  {label:'Last 3 months', range:function(){var t=_nyToday();return {start:_shift(t,-89),end:t};}}
 };
-var CUR_PRESET='last7', DATA=null;
+var CUR_PRESET=(function(){try{return localStorage.getItem('cz_preset')||'last7';}catch(e){return 'last7';}})(), DATA=null;
 function staticUrl(){ return 'data.json?t='+Date.now(); }
 function liveUrl(){ var r=PRESETS[CUR_PRESET].range(); return CONFIG.worker+'?start='+r.start+'&end='+r.end+'&t='+Date.now(); }
 function paint(d){ DATA=d; render(d); }
@@ -428,9 +432,10 @@ function render(d){
 
   el('note').innerHTML=`Live Google Search Console data via read-only API · auto-refreshes hourly + on-demand 🔄 · pick a date range ▲ · confidential, noindex`;
 }
+try{ document.getElementById('rangeSel').value=CUR_PRESET; }catch(e){}
 load();
 document.getElementById('refreshBtn').addEventListener('click', load);
-document.getElementById('rangeSel').addEventListener('change', function(){ CUR_PRESET=this.value; if(CONFIG.worker){ load(); } else if(DATA){ render(DATA); } });
+document.getElementById('rangeSel').addEventListener('change', function(){ CUR_PRESET=this.value; try{localStorage.setItem('cz_preset',CUR_PRESET);}catch(e){} if(CONFIG.worker){ load(); } else if(DATA){ render(DATA); } });
 
 </script>
 </body>

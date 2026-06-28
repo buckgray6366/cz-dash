@@ -6,6 +6,9 @@ import json, datetime, os, time
 from google.oauth2 import service_account
 import google.auth.transport.requests as gr
 import requests
+from zoneinfo import ZoneInfo
+NY = ZoneInfo("America/New_York")  # affiliate network (Blitz/CAKE) timezone — align all date windows to it
+def ny_today(): return datetime.datetime.now(NY).date()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 KEY = "/root/.config/gsc/sa.json"
@@ -36,7 +39,7 @@ def auth():
     return c.token
 
 def sa_query(token, dims, state="all", rl=2000, days=7, extra=None, end=None):
-    end = end or datetime.date.today()
+    end = end or ny_today()
     start = end - datetime.timedelta(days=days)
     body = {"startDate": str(start), "endDate": str(end), "dimensions": dims,
             "rowLimit": rl, "dataState": state}
@@ -99,7 +102,7 @@ def blitz_pull(days=60):
         if not key:
             c = json.load(open("/root/.config/blitz/creds.json")); key = c["api_key"]; aid = c["affiliate_id"]
         base = "https://affiliates.blitzadsgroup.com/affiliates/api"
-        end = datetime.date.today(); start = end - datetime.timedelta(days=days)
+        end = ny_today(); start = end - datetime.timedelta(days=days)
         end_excl = end + datetime.timedelta(days=1)  # Blitz end_date is EXCLUSIVE — +1 to include today's clicks
         def get(ep, **p):
             p.update(api_key=key, affiliate_id=aid, start_date=str(start), end_date=str(end_excl))
@@ -149,7 +152,7 @@ def blitz_pull(days=60):
 
 def main():
     token = auth()
-    today = datetime.date.today()
+    today = ny_today()
 
     daily = [rowfmt(r) for r in sa_query(token, ["date"], days=28)]
     daily = [{"date": d["keys"][0], **{k: d[k] for k in ("impressions", "clicks", "ctr", "position")}} for d in daily]
