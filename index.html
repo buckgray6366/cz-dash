@@ -35,6 +35,10 @@ a{color:var(--acc2);text-decoration:none}
 .head .meta .live .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
 .idx-badge{background:linear-gradient(135deg,rgba(52,211,153,.18),rgba(34,211,168,.06));border:1px solid rgba(52,211,153,.35);color:var(--good);font-weight:800;padding:7px 14px;border-radius:10px;font-size:13px}
+.menu{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 2px}
+.menu a{font-size:13px;font-weight:600;color:var(--mut);padding:8px 15px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.menu a:hover{color:var(--txt);border-color:var(--line2)}
+.menu a.active{color:var(--acc);border-color:rgba(34,211,168,.4);background:rgba(34,211,168,.08)}
 
 .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:13px;margin:18px 0}
 .kpi{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:15px;padding:15px 16px;position:relative;overflow:hidden}
@@ -138,6 +142,11 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
       <div style="margin-top:7px"><select id="rangeSel" title="Date range"><option value="today">Today</option><option value="yesterday">Yesterday</option><option value="last7" selected>Last 7 days</option><option value="last28">Last 28 days</option><option value="thismonth">This month</option><option value="lastmonth">Last month</option><option value="last3mo">Last 3 months</option></select> <span class="live"><span class="dot"></span>LIVE</span> · <span id="gen">—</span> <button id="refreshBtn" title="Pull the latest data">🔄</button></div>
     </div>
   </div>
+
+  <nav class="menu">
+    <a href="./" class="active">📊 Dashboard</a>
+    <a href="offer-links.html">🔗 Change offer links</a>
+  </nav>
 
   <!-- KPIs -->
   <div class="kpis" id="kpis"></div>
@@ -433,7 +442,7 @@ function render(d){
     <div class="q" style="max-width:none;color:#e6ecf6;font-weight:600;white-space:normal">${c.q}</div>
     <div style="margin-top:5px;display:flex;gap:8px;flex-wrap:wrap">${c.pages.map(p=>`<span class="pg" style="background:var(--card2);padding:3px 8px;border-radius:6px;border:1px solid var(--line)">${p.page.replace('https://trycoolizi.com','')||'/'} · ${F(p.impressions)} impr · ${posBadge(p.position)}</span>`).join('')}</div></div>`).join(''):'<div class="empty">✓ No cannibalization — each query maps cleanly to one page.</div>';
 
-  el('note').innerHTML=`Live data · auto-refreshes hourly + on-demand 🔄 · times in ET · <a href="offer-links.html" style="color:var(--acc2);font-weight:700">🔗 How to change offer links</a> · confidential, noindex`;
+  el('note').innerHTML=`Live data · auto-refreshes hourly + on-demand 🔄 · times in ET · confidential, noindex`;
 }
 try{ document.getElementById('rangeSel').value=CUR_PRESET; }catch(e){}
 load();
