@@ -430,7 +430,7 @@ function render(d){
     <div class="q" style="max-width:none;color:#e6ecf6;font-weight:600;white-space:normal">${c.q}</div>
     <div style="margin-top:5px;display:flex;gap:8px;flex-wrap:wrap">${c.pages.map(p=>`<span class="pg" style="background:var(--card2);padding:3px 8px;border-radius:6px;border:1px solid var(--line)">${p.page.replace('https://trycoolizi.com','')||'/'} · ${F(p.impressions)} impr · ${posBadge(p.position)}</span>`).join('')}</div></div>`).join(''):'<div class="empty">✓ No cannibalization — each query maps cleanly to one page.</div>';
 
-  el('note').innerHTML=`Live Google Search Console data via read-only API · auto-refreshes hourly + on-demand 🔄 · pick a date range ▲ · confidential, noindex`;
+  el('note').innerHTML=`Live data · auto-refreshes hourly + on-demand 🔄 · times in ET · <a href="offer-links.html" style="color:var(--acc2);font-weight:700">🔗 How to change offer links</a> · confidential, noindex`;
 }
 try{ document.getElementById('rangeSel').value=CUR_PRESET; }catch(e){}
 load();
