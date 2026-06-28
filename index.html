@@ -47,6 +47,10 @@ section{background:var(--card);border:1px solid var(--line);border-radius:16px;p
 h2{font-size:15.5px;margin:0 0 3px;display:flex;align-items:center;gap:9px}
 h2 .tag{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:rgba(139,124,240,.16);color:#b9aefb;border:1px solid rgba(139,124,240,.3)}
 .sub2{color:var(--mut);font-size:12.5px;margin:0 0 14px}
+.offerhdr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;margin:18px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.offerhdr .on{font-size:15.5px;font-weight:800;color:#eaf1fb}
+.offerhdr .ostat{font-size:12.5px;color:var(--mut)}.offerhdr .ostat b{color:#cdd8e6}
+.offerhdr:first-child{margin-top:4px}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line)}
 th{color:var(--mut);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700}
@@ -350,8 +354,11 @@ function render(d){
     el('aff').innerHTML=
       '<div style="font-size:12.5px;color:var(--mut);margin-bottom:12px">Funnel ('+RL+'): <b style="color:#3b9dff">'+F(s.impressions||0)+'</b> impressions → <b style="color:#3b9dff">'+F(gscC)+'</b> site clicks → <b style="color:#22d3a8">'+F(a.clicks)+'</b> offer clicks → <b style="color:#ffd24a">'+F(a.conversions)+'</b> conversions → <b style="color:#34d399">'+a.currency+F(a.revenue)+'</b></div>'+
       '<div class="kpis" style="margin:0 0 14px">'+cards.map(c=>'<div class="kpi"><div class="lab">'+c.l+'</div><div class="val" style="font-size:24px">'+c.v+'</div><div class="sub">'+c.s+'</div></div>').join('')+'</div>'+
-      '<table><thead><tr><th>Geo</th><th>Offer</th><th class="num">Offer clicks</th><th class="num">Conversions</th><th class="num">Revenue</th><th class="num">EPC</th></tr></thead><tbody>'+
-      a.by_geo.map(g=>'<tr><td>'+g.flag+' '+g.name+'</td><td class="pg">'+(g.offer||g.sub)+'</td><td class="num">'+F(g.clicks)+'</td><td class="num"><b style="color:'+(g.conversions>0?'#ffd24a':'inherit')+'">'+F(g.conversions)+'</b></td><td class="num">'+a.currency+F(g.revenue)+'</td><td class="num">'+a.currency+g.epc+'</td></tr>').join('')+'</tbody></table>'+
+      (a.by_offer||[]).map(o=>
+        '<div class="offerhdr"><span class="on">'+(o.offer==='AiraBreeze'?'🟢 ':o.offer==='Coolizi'?'🔵 ':'⚪ ')+o.offer+'</span><span class="ostat"><b>'+F(o.clicks)+'</b> clicks · <b>'+F(o.conversions)+'</b> conv · '+a.currency+F(o.revenue)+' · EPC '+a.currency+o.epc+'</span></div>'+
+        '<table><thead><tr><th>Geo</th><th class="num">Offer clicks</th><th class="num">Conversions</th><th class="num">Revenue</th><th class="num">EPC</th></tr></thead><tbody>'+
+        o.by_geo.map(g=>'<tr><td>'+g.flag+' '+g.name+'</td><td class="num">'+F(g.clicks)+'</td><td class="num"><b style="color:'+(g.conversions>0?'#ffd24a':'inherit')+'">'+F(g.conversions)+'</b></td><td class="num">'+a.currency+F(g.revenue)+'</td><td class="num">'+a.currency+g.epc+'</td></tr>').join('')+'</tbody></table>'
+      ).join('')+
       (a.recent&&a.recent.length?'<div style="margin-top:10px;font-size:12.5px;color:var(--mut)">🎉 Recent conversions: '+a.recent.map(r=>r.sub+' '+a.currency+r.revenue).join(' · ')+'</div>':'<div class="empty" style="padding:10px">No conversions yet — '+F(a.clicks)+' offer clicks so far. Sales will appear here the moment they land. 🤞</div>');
   } else { el('aff').innerHTML='<div class="empty">Affiliate API not connected'+(a.error?': '+a.error:'')+'.</div>'; }
 

@@ -66,17 +66,20 @@ async function blitzPull(env, start, end){
     const s1of=r=>String(r.subid_1||"").toLowerCase();
     const isOurs=r=>{const s=s1of(r);const o=oname(r).toLowerCase();return s.startsWith("intl-")||s.startsWith("try-")||o.includes("coolizi")||o.includes("airabreeze");};
     const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"intl";};
-    const brand=r=>{const o=oname(r).toLowerCase();return o.includes("airabreeze")?"AiraBreeze":(o.includes("coolizi")?"Coolizi":"—");};
+    const brand=r=>{const o=oname(r).toLowerCase();return o.includes("airabreeze")?"AiraBreeze":(o.includes("coolizi")?"Coolizi":"Other");};
     const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
     const cool=clk.filter(isOurs);
     const coolconv=cnv.filter(isOurs);
-    const agg={};
-    cool.forEach(r=>{const k=geocc(r);const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0,offers:{}};a.clicks++;const b=brand(r);a.offers[b]=(a.offers[b]||0)+1;});
-    coolconv.forEach(c=>{const k=geocc(c);const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0,offers:{}};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);const b=brand(c);a.offers[b]=(a.offers[b]||0)+1;});
-    const by_geo=Object.entries(agg).map(([k,v])=>{const g=GEO_BY_CC[k]||[k.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;const off=Object.keys(v.offers).sort((a,b)=>v.offers[b]-v.offers[a])[0]||"—";return {sub:k,name:g[0],flag:g[1],geo:g[2],offer:off,clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0};}).sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
-    const tclk=by_geo.reduce((a,x)=>a+x.clicks,0),tcv=by_geo.reduce((a,x)=>a+x.conversions,0),trev=by_geo.reduce((a,x)=>a+x.revenue,0);
+    const agg={}; const key=(b,cc)=>b+"||"+cc; // offer × geo
+    cool.forEach(r=>{const a=agg[key(brand(r),geocc(r))]=agg[key(brand(r),geocc(r))]||{clicks:0,conversions:0,revenue:0};a.clicks++;});
+    coolconv.forEach(c=>{const a=agg[key(brand(c),geocc(c))]=agg[key(brand(c),geocc(c))]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
+    const offers={};
+    Object.entries(agg).forEach(([k,v])=>{const i=k.indexOf("||"),b=k.slice(0,i),cc=k.slice(i+2);const o=offers[b]=offers[b]||{clicks:0,conversions:0,revenue:0,geos:[]};const g=GEO_BY_CC[cc]||[cc.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;o.geos.push({sub:cc,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0});o.clicks+=c2;o.conversions+=cv;o.revenue+=rev;});
+    const by_offer=[];
+    ["AiraBreeze","Coolizi","Other"].forEach(bn=>{if(offers[bn]){const o=offers[bn];o.geos.sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);const c2=o.clicks,cv=o.conversions,rev=Math.round(o.revenue*100)/100;by_offer.push({offer:bn,clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0,by_geo:o.geos});}});
+    const tclk=by_offer.reduce((a,x)=>a+x.clicks,0),tcv=by_offer.reduce((a,x)=>a+x.conversions,0),trev=by_offer.reduce((a,x)=>a+x.revenue,0);
     const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geocc(c),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
-    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_geo,recent};
+    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_offer,recent};
   }catch(e){return {connected:false,error:String(e).slice(0,120)};}
 }
 

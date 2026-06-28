@@ -116,30 +116,34 @@ def blitz_pull(days=60):
                 if s.startswith(pre): return s[len(pre):]
             return SUF_CC.get(oname(r).split(" - ")[-1].strip(), "intl")
         def brand(r):
-            o = oname(r).lower(); return "AiraBreeze" if "airabreeze" in o else ("Coolizi" if "coolizi" in o else "—")
+            o = oname(r).lower(); return "AiraBreeze" if "airabreeze" in o else ("Coolizi" if "coolizi" in o else "Other")
         cool = [r for r in get("Reports/Clicks", row_limit=10000) if is_ours(r)]
         coolconv = [c for c in get("Reports/Conversions", row_limit=500) if is_ours(c)]
-        agg = {}
+        agg = {}  # (offer-brand, geo-cc) -> tallies
         for r in cool:
-            a = agg.setdefault(geocc(r), {"clicks": 0, "conversions": 0, "revenue": 0.0, "offers": {}})
-            a["clicks"] += 1; b = brand(r); a["offers"][b] = a["offers"].get(b, 0) + 1
+            k = (brand(r), geocc(r)); a = agg.setdefault(k, {"clicks": 0, "conversions": 0, "revenue": 0.0}); a["clicks"] += 1
         for c in coolconv:
-            a = agg.setdefault(geocc(c), {"clicks": 0, "conversions": 0, "revenue": 0.0, "offers": {}})
+            k = (brand(c), geocc(c)); a = agg.setdefault(k, {"clicks": 0, "conversions": 0, "revenue": 0.0})
             a["conversions"] += 1; a["revenue"] += float(c.get("price") or c.get("revenue") or 0)
-            b = brand(c); a["offers"][b] = a["offers"].get(b, 0) + 1
-        by_geo = []
-        for cc, v in agg.items():
+        offers = {}
+        for (b, cc), v in agg.items():
+            o = offers.setdefault(b, {"clicks": 0, "conversions": 0, "revenue": 0.0, "geos": []})
             name, flag, geo = GEO_BY_CC.get(cc, (cc.upper(), "🏳️", "")); clk = v["clicks"]; cv = v["conversions"]; rev = round(v["revenue"], 2)
-            off = max(v["offers"], key=v["offers"].get) if v["offers"] else "—"
-            by_geo.append({"sub": cc, "name": name, "flag": flag, "geo": geo, "offer": off, "clicks": clk, "conversions": cv,
-                           "revenue": rev, "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0})
-        by_geo.sort(key=lambda x: (-x["clicks"], -x["revenue"]))
-        tclk = sum(x["clicks"] for x in by_geo); tcv = sum(x["conversions"] for x in by_geo); trev = sum(x["revenue"] for x in by_geo)
+            o["geos"].append({"sub": cc, "name": name, "flag": flag, "geo": geo, "clicks": clk, "conversions": cv,
+                              "revenue": rev, "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0})
+            o["clicks"] += clk; o["conversions"] += cv; o["revenue"] += rev
+        by_offer = []
+        for bname in ["AiraBreeze", "Coolizi", "Other"]:
+            if bname in offers:
+                o = offers[bname]; o["geos"].sort(key=lambda x: (-x["clicks"], -x["revenue"])); clk = o["clicks"]; cv = o["conversions"]; rev = round(o["revenue"], 2)
+                by_offer.append({"offer": bname, "clicks": clk, "conversions": cv, "revenue": rev,
+                                 "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0, "by_geo": o["geos"]})
+        tclk = sum(x["clicks"] for x in by_offer); tcv = sum(x["conversions"] for x in by_offer); trev = round(sum(x["revenue"] for x in by_offer), 2)
         recent = [{"date": c.get("conversion_date", ""), "sub": geocc(c), "offer": oname(c),
                    "revenue": round(float(c.get("price") or c.get("revenue") or 0), 2)} for c in coolconv][:15]
         return {"connected": True, "clicks": tclk, "conversions": tcv, "revenue": round(trev, 2),
                 "epc": round(trev / tclk, 3) if tclk else 0, "cr": round(tcv / tclk * 100, 2) if tclk else 0,
-                "currency": "$", "goal": 50, "by_geo": by_geo, "recent": recent, "days": days}
+                "currency": "$", "goal": 50, "by_offer": by_offer, "recent": recent, "days": days}
     except Exception as e:
         return {"connected": False, "error": str(e)[:120]}
 
