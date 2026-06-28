@@ -54,7 +54,8 @@ async function getIndex(tok){
 }
 
 // ---- Affiliate (Blitz / CAKE). Coolizi isolated BY OFFER NAME; end_date is EXCLUSIVE so we add +1 day. ----
-const OFFER_GEO={"UK":["UK","🇬🇧","en"],"DE/AT/CH":["DE/AT/CH","🇩🇪","de"],"FR/BE":["FR/BE","🇫🇷","fr"],"IT":["Italy","🇮🇹","it"],"ES":["Spain","🇪🇸","es"],"NL":["NL","🇳🇱","nl"],"PT":["Portugal","🇵🇹","pt"],"GR":["Greece","🇬🇷","el"],"BE":["Belgium","🇧🇪","fr"]};
+const GEO_BY_CC={"de":["DE/AT/CH","🇩🇪","de"],"uk":["UK","🇬🇧","en"],"fr":["FR/BE","🇫🇷","fr"],"it":["Italy","🇮🇹","it"],"es":["Spain","🇪🇸","es"],"nl":["NL","🇳🇱","nl"],"pt":["Portugal","🇵🇹","pt"],"gr":["Greece","🇬🇷","el"],"be":["Belgium","🇧🇪","fr"]};
+const SUF_CC={"UK":"uk","DE/AT/CH":"de","FR/BE":"fr","IT":"it","ES":"es","NL":"nl","PT":"pt","GR":"gr","BE":"be"};
 async function blitzPull(env, start, end){
   try{
     const key=env.BLITZ_KEY, aid=env.BLITZ_AID; if(!key) return {connected:false,error:"no key"};
@@ -62,16 +63,18 @@ async function blitzPull(env, start, end){
     const sd=ymd(start), ed=addDays(end,1); // +1: Blitz end_date is exclusive
     async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
     const oname=r=>(r.offer_name||(r.offer||{}).offer_name||""); // conversions: top-level; clicks: nested
-    const geokey=n=>n.includes(" - ")?n.split(" - ").pop().trim():n;
+    const s1of=r=>String(r.subid_1||"").toLowerCase();
+    const isOurs=r=>{const s=s1of(r);return s.startsWith("intl-")||s.startsWith("try-")||oname(r).toLowerCase().includes("coolizi");};
+    const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"??";};
     const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
-    const cool=clk.filter(r=>oname(r).toLowerCase().includes("coolizi"));
-    const coolconv=cnv.filter(c=>oname(c).toLowerCase().includes("coolizi"));
+    const cool=clk.filter(isOurs);
+    const coolconv=cnv.filter(isOurs);
     const agg={};
-    cool.forEach(r=>{const k=geokey(oname(r));(agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0}).clicks++;});
-    coolconv.forEach(c=>{const k=geokey(oname(c));const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
-    const by_geo=Object.entries(agg).map(([k,v])=>{const g=OFFER_GEO[k]||[k,"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;return {sub:k,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0};}).sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
+    cool.forEach(r=>{const k=geocc(r);(agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0}).clicks++;});
+    coolconv.forEach(c=>{const k=geocc(c);const a=agg[k]=agg[k]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
+    const by_geo=Object.entries(agg).map(([k,v])=>{const g=GEO_BY_CC[k]||[k.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;return {sub:k,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0};}).sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
     const tclk=by_geo.reduce((a,x)=>a+x.clicks,0),tcv=by_geo.reduce((a,x)=>a+x.conversions,0),trev=by_geo.reduce((a,x)=>a+x.revenue,0);
-    const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geokey(oname(c)),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
+    const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geocc(c),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
     return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_geo,recent};
   }catch(e){return {connected:false,error:String(e).slice(0,120)};}
 }

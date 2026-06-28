@@ -87,9 +87,10 @@ def wavg_pos(rows):
     if not imp: return 0
     return round(sum(r["position"] * r["impressions"] for r in rows) / imp, 1)
 
-OFFER_GEO = {"UK":("UK","🇬🇧","en"),"DE/AT/CH":("DE/AT/CH","🇩🇪","de"),"FR/BE":("FR/BE","🇫🇷","fr"),
-             "IT":("Italy","🇮🇹","it"),"ES":("Spain","🇪🇸","es"),"NL":("NL","🇳🇱","nl"),
-             "PT":("Portugal","🇵🇹","pt"),"GR":("Greece","🇬🇷","el"),"BE":("Belgium","🇧🇪","fr")}
+GEO_BY_CC = {"de":("DE/AT/CH","🇩🇪","de"),"uk":("UK","🇬🇧","en"),"fr":("FR/BE","🇫🇷","fr"),
+             "it":("Italy","🇮🇹","it"),"es":("Spain","🇪🇸","es"),"nl":("NL","🇳🇱","nl"),
+             "pt":("Portugal","🇵🇹","pt"),"gr":("Greece","🇬🇷","el"),"be":("Belgium","🇧🇪","fr")}
+SUF_CC = {"UK":"uk","DE/AT/CH":"de","FR/BE":"fr","IT":"it","ES":"es","NL":"nl","PT":"pt","GR":"gr","BE":"be"}
 
 def blitz_pull(days=60):
     try:
@@ -104,23 +105,30 @@ def blitz_pull(days=60):
             r = requests.get(f"{base}/{ep}", params=p, headers={"Accept": "application/json"}, timeout=40)
             return r.json().get("data", []) if r.ok else []
         oname = lambda r: (r.get("offer_name") or (r.get("offer") or {}).get("offer_name") or "")  # conversions: top-level; clicks: nested
-        geokey = lambda n: n.split(" - ")[-1].strip() if " - " in n else n
-        cool = [r for r in get("Reports/Clicks", row_limit=10000) if "coolizi" in oname(r).lower()]
-        coolconv = [c for c in get("Reports/Conversions", row_limit=500) if "coolizi" in oname(c).lower()]
+        s1of = lambda r: str(r.get("subid_1") or "").lower()  # our s1 (try-de / intl-fr) lands here
+        def is_ours(r):
+            s = s1of(r); return s.startswith("intl-") or s.startswith("try-") or "coolizi" in oname(r).lower()
+        def geocc(r):
+            s = s1of(r)
+            for pre in ("intl-", "try-"):
+                if s.startswith(pre): return s[len(pre):]
+            return SUF_CC.get(oname(r).split(" - ")[-1].strip(), "??")
+        cool = [r for r in get("Reports/Clicks", row_limit=10000) if is_ours(r)]
+        coolconv = [c for c in get("Reports/Conversions", row_limit=500) if is_ours(c)]
         agg = {}
         for r in cool:
-            k = geokey(oname(r)); agg.setdefault(k, {"clicks": 0, "conversions": 0, "revenue": 0.0})["clicks"] += 1
+            agg.setdefault(geocc(r), {"clicks": 0, "conversions": 0, "revenue": 0.0})["clicks"] += 1
         for c in coolconv:
-            k = geokey(oname(c)); a = agg.setdefault(k, {"clicks": 0, "conversions": 0, "revenue": 0.0})
+            a = agg.setdefault(geocc(c), {"clicks": 0, "conversions": 0, "revenue": 0.0})
             a["conversions"] += 1; a["revenue"] += float(c.get("price") or c.get("revenue") or 0)
         by_geo = []
-        for k, v in agg.items():
-            name, flag, geo = OFFER_GEO.get(k, (k, "🏳️", "")); clk = v["clicks"]; cv = v["conversions"]; rev = round(v["revenue"], 2)
-            by_geo.append({"sub": k, "name": name, "flag": flag, "geo": geo, "clicks": clk, "conversions": cv,
+        for cc, v in agg.items():
+            name, flag, geo = GEO_BY_CC.get(cc, (cc.upper(), "🏳️", "")); clk = v["clicks"]; cv = v["conversions"]; rev = round(v["revenue"], 2)
+            by_geo.append({"sub": cc, "name": name, "flag": flag, "geo": geo, "clicks": clk, "conversions": cv,
                            "revenue": rev, "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0})
         by_geo.sort(key=lambda x: (-x["clicks"], -x["revenue"]))
         tclk = sum(x["clicks"] for x in by_geo); tcv = sum(x["conversions"] for x in by_geo); trev = sum(x["revenue"] for x in by_geo)
-        recent = [{"date": c.get("conversion_date", ""), "sub": geokey(oname(c)), "offer": oname(c),
+        recent = [{"date": c.get("conversion_date", ""), "sub": geocc(c), "offer": oname(c),
                    "revenue": round(float(c.get("price") or c.get("revenue") or 0), 2)} for c in coolconv][:15]
         return {"connected": True, "clicks": tclk, "conversions": tcv, "revenue": round(trev, 2),
                 "epc": round(trev / tclk, 3) if tclk else 0, "cr": round(tcv / tclk * 100, 2) if tclk else 0,
