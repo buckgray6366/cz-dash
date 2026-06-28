@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a91d8'/%3E%3Cpath d='M12 40l12-14 10 9 18-21' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -308,17 +311,17 @@ function load(){
   var btn=document.getElementById('refreshBtn'); if(btn) btn.classList.add('spin');
   function done(){ if(btn) btn.classList.remove('spin'); }
   // 1) Instant: show the cached snapshot so the page is NEVER stuck loading.
-  if(!DATA){ fetch(staticUrl()).then(function(r){return r.json();}).then(function(d){ if(!DATA||!DATA._live) paint(d); }).catch(function(){}); }
+  if(!DATA){ fetch(staticUrl(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){ if(!DATA||!DATA._live) paint(d); }).catch(function(){}); }
   // 2) Live upgrade from the Worker, with a hard timeout + graceful fallback.
-  if(!CONFIG.worker){ fetch(staticUrl()).then(function(r){return r.json();}).then(function(d){ paint(d); done(); }).catch(function(e){ el('note').textContent='Could not load data — '+e; done(); }); return; }
+  if(!CONFIG.worker){ fetch(staticUrl(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){ paint(d); done(); }).catch(function(e){ el('note').textContent='Could not load data — '+e; done(); }); return; }
   var ctl=new AbortController(); var to=setTimeout(function(){ ctl.abort(); }, 28000);
-  fetch(liveUrl(),{signal:ctl.signal}).then(function(r){return r.json();}).then(function(d){
+  fetch(liveUrl(),{signal:ctl.signal,cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
     clearTimeout(to); done();
     if(d && !d.error){ d._live=true; paint(d); }
-    else if(!DATA){ fetch(staticUrl()).then(function(r){return r.json();}).then(paint); }
+    else if(!DATA){ fetch(staticUrl(),{cache:'no-store'}).then(function(r){return r.json();}).then(paint); }
   }).catch(function(){
     clearTimeout(to); done();
-    if(!DATA){ fetch(staticUrl()).then(function(r){return r.json();}).then(function(d){ paint(d); }).catch(function(e){ el('note').textContent='Could not load data — '+e; }); }
+    if(!DATA){ fetch(staticUrl(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){ paint(d); }).catch(function(e){ el('note').textContent='Could not load data — '+e; }); }
     el('note').innerHTML='⚠ Live pull was slow — showing the latest cached snapshot. Hit 🔄 to retry live.';
   });
 }
