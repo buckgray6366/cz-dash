@@ -70,9 +70,9 @@ async function blitzPull(env, start, end){
     const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
     const cool=clk.filter(isOurs);
     const coolconv=cnv.filter(isOurs);
-    const agg={}; const key=(b,cc)=>b+"||"+cc; // offer × geo
-    cool.forEach(r=>{const a=agg[key(brand(r),geocc(r))]=agg[key(brand(r),geocc(r))]||{clicks:0,conversions:0,revenue:0};a.clicks++;});
-    coolconv.forEach(c=>{const a=agg[key(brand(c),geocc(c))]=agg[key(brand(c),geocc(c))]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
+    const agg={}; const okey=(b,cc)=>b+"||"+cc; // offer × geo
+    cool.forEach(r=>{const a=agg[okey(brand(r),geocc(r))]=agg[okey(brand(r),geocc(r))]||{clicks:0,conversions:0,revenue:0};a.clicks++;});
+    coolconv.forEach(c=>{const a=agg[okey(brand(c),geocc(c))]=agg[okey(brand(c),geocc(c))]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
     const offers={};
     Object.entries(agg).forEach(([k,v])=>{const i=k.indexOf("||"),b=k.slice(0,i),cc=k.slice(i+2);const o=offers[b]=offers[b]||{clicks:0,conversions:0,revenue:0,geos:[]};const g=GEO_BY_CC[cc]||[cc.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;o.geos.push({sub:cc,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0});o.clicks+=c2;o.conversions+=cv;o.revenue+=rev;});
     const by_offer=[];
