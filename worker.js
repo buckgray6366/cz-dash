@@ -64,7 +64,7 @@ async function blitzPull(env, start, end){
     async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
     const oname=r=>(r.offer_name||(r.offer||{}).offer_name||""); // conversions: top-level; clicks: nested
     const s1of=r=>String(r.subid_1||"").toLowerCase();
-    const isOurs=r=>{const s=s1of(r);return s.startsWith("intl-")||s.startsWith("try-")||oname(r).toLowerCase().includes("coolizi");};
+    const isOurs=r=>{const s=s1of(r);const o=oname(r).toLowerCase();return s.startsWith("intl-")||s.startsWith("try-")||o.includes("coolizi")||o.includes("airabreeze");};
     const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"??";};
     const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
     const cool=clk.filter(isOurs);

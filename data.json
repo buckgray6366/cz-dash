@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-06-28 20:00 UTC",
+ "generatedAt": "2026-06-28 20:24 UTC",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 70794,
@@ -3434,9 +3434,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-26T18:21:51Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -3508,11 +3506,11 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 144,
+  "clicks": 147,
   "conversions": 2,
   "revenue": 210.0,
-  "epc": 1.458,
-  "cr": 1.39,
+  "epc": 1.429,
+  "cr": 1.36,
   "currency": "$",
   "goal": 50,
   "by_geo": [
@@ -3543,7 +3541,7 @@
     "name": "DE/AT/CH",
     "flag": "🇩🇪",
     "geo": "de",
-    "clicks": 24,
+    "clicks": 25,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,
@@ -3554,11 +3552,11 @@
     "name": "NL",
     "flag": "🇳🇱",
     "geo": "nl",
-    "clicks": 21,
+    "clicks": 22,
     "conversions": 1,
     "revenue": 105.0,
-    "epc": 5.0,
-    "cr": 4.76
+    "epc": 4.773,
+    "cr": 4.55
    },
    {
     "sub": "es",
@@ -3610,6 +3608,17 @@
     "flag": "🇧🇪",
     "geo": "fr",
     "clicks": 2,
+    "conversions": 0,
+    "revenue": 0.0,
+    "epc": 0.0,
+    "cr": 0.0
+   },
+   {
+    "sub": "??",
+    "name": "??",
+    "flag": "🏳️",
+    "geo": "",
+    "clicks": 1,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,

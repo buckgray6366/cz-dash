@@ -107,7 +107,8 @@ def blitz_pull(days=60):
         oname = lambda r: (r.get("offer_name") or (r.get("offer") or {}).get("offer_name") or "")  # conversions: top-level; clicks: nested
         s1of = lambda r: str(r.get("subid_1") or "").lower()  # our s1 (try-de / intl-fr) lands here
         def is_ours(r):
-            s = s1of(r); return s.startswith("intl-") or s.startswith("try-") or "coolizi" in oname(r).lower()
+            s = s1of(r); o = oname(r).lower()
+            return s.startswith("intl-") or s.startswith("try-") or "coolizi" in o or "airabreeze" in o
         def geocc(r):
             s = s1of(r)
             for pre in ("intl-", "try-"):
