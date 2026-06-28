@@ -61,7 +61,7 @@ async function blitzPull(env, start, end){
     const base="https://affiliates.blitzadsgroup.com/affiliates/api";
     const sd=ymd(start), ed=addDays(end,1); // +1: Blitz end_date is exclusive
     async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
-    const oname=r=>((r.offer||{}).offer_name||"");
+    const oname=r=>(r.offer_name||(r.offer||{}).offer_name||""); // conversions: top-level; clicks: nested
     const geokey=n=>n.includes(" - ")?n.split(" - ").pop().trim():n;
     const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
     const cool=clk.filter(r=>oname(r).toLowerCase().includes("coolizi"));

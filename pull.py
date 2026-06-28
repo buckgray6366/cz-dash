@@ -103,7 +103,7 @@ def blitz_pull(days=60):
             p.update(api_key=key, affiliate_id=aid, start_date=str(start), end_date=str(end_excl))
             r = requests.get(f"{base}/{ep}", params=p, headers={"Accept": "application/json"}, timeout=40)
             return r.json().get("data", []) if r.ok else []
-        oname = lambda r: ((r.get("offer") or {}).get("offer_name") or "")
+        oname = lambda r: (r.get("offer_name") or (r.get("offer") or {}).get("offer_name") or "")  # conversions: top-level; clicks: nested
         geokey = lambda n: n.split(" - ")[-1].strip() if " - " in n else n
         cool = [r for r in get("Reports/Clicks", row_limit=10000) if "coolizi" in oname(r).lower()]
         coolconv = [c for c in get("Reports/Conversions", row_limit=500) if "coolizi" in oname(c).lower()]
