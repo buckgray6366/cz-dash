@@ -239,7 +239,7 @@ def main():
     }
 
     data = {
-        "generatedAt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
+        "generatedAt": datetime.datetime.now(NY).strftime("%Y-%m-%d %H:%M ET"),
         "property": PROP, "summary": summary, "summaries": summaries, "daily": daily, "hourly": hourly,
         "geo": geo, "device": by_device, "topQueries": by_query[:40], "topPages": by_page,
         "brand": brand, "opportunities": opp[:25], "cannibal": cannibal[:12],

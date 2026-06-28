@@ -113,8 +113,10 @@ async function buildData(sa, range, env){
   index.forEach(i=>{const c=(i.coverage||"").toLowerCase(); if(c.includes("indexed")&&!c.includes("not")&&!c.includes("discover")&&!c.includes("crawled"))funnel.indexed++; else if(c.includes("crawled"))funnel.crawled_not_indexed++; else if(c.includes("discover"))funnel.discovered++; else funnel.other++;});
   const positions = byQuery.filter(r=>r.position>0).map(r=>r.position); const best = positions.length?Math.min(...positions):99;
   const milestones = {first_impression:timp>0,first_click:tclk>0,top10:best<=10,top3:best<=3,number1:best<=1.5,best_position:best,indexed_pages:funnel.indexed};
-  const now = new Date();
-  return {generatedAt:now.toISOString().slice(0,16).replace("T"," ")+" UTC (live)",property:PROP,range:{start:ymd(start),end:ymd(end)},summary,daily,hourly,geo,device:byDevice,topQueries:byQuery.slice(0,40),topPages:byPage,brand,opportunities:opp,cannibal,indexation:index,funnel,milestones,affiliate};
+  const _p = new Intl.DateTimeFormat("en-CA",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
+  const _g = t => (_p.find(x=>x.type===t)||{}).value;
+  const generatedAt = `${_g("year")}-${_g("month")}-${_g("day")} ${_g("hour")}:${_g("minute")} ET (live)`;
+  return {generatedAt,property:PROP,range:{start:ymd(start),end:ymd(end)},summary,daily,hourly,geo,device:byDevice,topQueries:byQuery.slice(0,40),topPages:byPage,brand,opportunities:opp,cannibal,indexation:index,funnel,milestones,affiliate};
 }
 
 const DASH_URL = "https://buckgray6366.github.io/cz-dash/";
