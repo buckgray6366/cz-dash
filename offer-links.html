@@ -40,7 +40,7 @@ th{color:var(--mut);font-weight:600}td code{color:#ffd24a}
 </div></header>
 <div class="wrap">
 
-<div class="tldr"><span style="font-size:20px">⚡</span><div><b>TL;DR:</b> edit the <code>OFFERS</code> list in <code>assets/config.js</code> → change the <code>c</code> number for the geo(s) → commit. That's it.<br>
+<div class="tldr"><span style="font-size:20px">⚡</span><div><b>TL;DR:</b> edit the <code>OFFERS</code> list in <code>assets/config.js</code> → paste the new offer <code>url</code> (the Influx tracking link) for the geo(s) → commit. That's it.<br>
 <a class="cta" href="https://github.com/paulblack6522/trycoolizi/edit/main/assets/config.js" target="_blank">✏️ Open config.js to edit →</a></div></div>
 
 <h2>Steps</h2>
@@ -55,21 +55,21 @@ th{color:var(--mut);font-weight:600}td code{color:#ffd24a}
 <h3>Find the <code>OFFERS</code> block</h3>
 <p>Near the top you'll see a big banner: <code>OFFER LINKS — EDIT HERE…</code>. Right under it is the list of every geo:</p>
 <pre><button class="copy">copy</button>var OFFERS = {
-  //  geo :  { c: "&lt;creative / offer id&gt;",  s1: "&lt;tracking sub-id&gt;" }
-  "en": { c: "9538", s1: "intl-uk" },   // UK / English
-  "de": { c: "9540", s1: "try-de"  },   // DE / AT / CH
-  "fr": { c: "9538", s1: "intl-fr" },   // FR / BE
-  "it": { c: "9538", s1: "intl-it" },   // Italy
-  "es": { c: "9538", s1: "intl-es" },   // Spain
-  "nl": { c: "9538", s1: "intl-nl" },   // Netherlands
-  "pt": { c: "9538", s1: "intl-pt" },   // Portugal
-  "el": { c: "9538", s1: "intl-gr" }    // Greece
+  //  geo :  { url: "&lt;Influx tracking link&gt;",            s1: "&lt;tracking tag&gt;" }
+  "en": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D6NGN16/", s1: "try-uk" },  // UK / Ireland
+  "de": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D6JB1RC/", s1: "try-de" },  // DE / AT / CH
+  "fr": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D6M3R8K/", s1: "try-fr" },  // FR / BE
+  "it": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D726T5F/", s1: "try-it" },  // Italy
+  "es": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D73KPW2/", s1: "try-es" },  // Spain
+  "nl": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D6W26XL/", s1: "try-nl" },  // Netherlands
+  "pt": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D6ZRZDS/", s1: "try-pt" },  // Portugal
+  "el": { url: "https://www.abjdoi4kjd.com/27DJQ2C/D6XF3N7/", s1: "try-gr" }   // Greece
 };</pre>
 </div></div>
 
 <div class="step"><div class="num">3</div><div>
-<h3>Change the <code>c</code> for the geo(s) you're switching</h3>
-<p>The network gives you a new <b>creative / offer ID</b> when an offer changes or caps. Put that number in <code>c</code> for the right geo. <b>Example:</b> DE caps → the network says use creative <code>9540</code> → set <code>"de": { c: "9540", s1: "try-de" }</code>.</p>
+<h3>Change the <code>url</code> for the geo(s) you're switching</h3>
+<p>In Influx, open the offer and copy its <b>tracking link</b>. Paste that whole link into <code>url</code> for the right geo. <b>Example:</b> a new DE offer → its Influx link is <code>https://www.abjdoi4kjd.com/27DJQ2C/XXXX/</code> → set <code>"de": { url: "https://www.abjdoi4kjd.com/27DJQ2C/XXXX/", s1: "try-de" }</code>.</p>
 <p class="small">⚠️ Leave <code>s1</code> alone unless the network explicitly tells you to change it — it's our per-geo tracking tag, and the dashboard reads it.</p>
 </div></div>
 
@@ -87,14 +87,13 @@ th{color:var(--mut);font-weight:600}td code{color:#ffd24a}
 <table>
 <thead><tr><th>Geo key</th><th>Covers</th><th>Field</th><th>Meaning</th></tr></thead>
 <tbody>
-<tr><td><code>de</code></td><td>Germany · Austria · Switzerland</td><td rowspan="2"><code>c</code></td><td rowspan="2">The creative / offer ID from the network. <b>This is what you change.</b></td></tr>
+<tr><td><code>de</code></td><td>Germany · Austria · Switzerland</td><td rowspan="2"><code>url</code></td><td rowspan="2">The Influx offer tracking link. <b>This is what you change.</b></td></tr>
 <tr><td><code>fr</code></td><td>France · Belgium (FR)</td></tr>
 <tr><td><code>en/it/es/nl/pt/el</code></td><td>UK · Italy · Spain · Netherlands · Portugal · Greece</td><td><code>s1</code></td><td>Our tracking tag (don't change unless told).</td></tr>
 </tbody>
 </table>
 
-<div class="warn"><b>To switch the whole network / affiliate account</b> (rare): change the line just above OFFERS —
-<code>var AFF_BASE = "https://bikiraibn.com/?a=2397";</code> — to the new network's base + affiliate id. The final link is always <code>AFF_BASE + "&amp;c=&lt;c&gt;&amp;s1=&lt;s1&gt;"</code>.</div>
+<div class="warn"><b>To switch the whole network</b> (rare): paste the new network's tracking link into each geo's <code>url</code>. The final outbound link is always <code>url + "?sub1=&lt;s1&gt;"</code> (plus <code>&amp;sub2=&lt;click-id&gt;</code> for paid traffic) — currently on <b>Influx</b>.</div>
 
 <div class="foot">Coolizi · internal team guide · the only file to touch is <code>assets/config.js</code></div>
 </div>

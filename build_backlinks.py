@@ -56,7 +56,7 @@ h1{{font-size:23px;margin:6px 0 2px;letter-spacing:-.02em}}
 @media(max-width:720px){{.grid{{grid-template-columns:1fr}}}}
 </style></head><body><div class="wrap">
 <div class="topbar"><a href="./">← Back to dashboard</a>
-  <nav class="menu"><a href="./">📊 Dashboard</a><a href="offer-links.html">🔗 Change offer links</a><a href="backlinks.html" class="cur">📰 Backlinks</a></nav>
+  <nav class="menu"><a href="./">📊 Dashboard</a><a href="offer-links.html">🔗 Change offer links</a><a href="backlinks.html" class="cur">📰 Backlinks</a><a href="manual-backlinks.html">📝 Manual backlinks</a></nav>
 </div>
 <h1>📰 Backlinks</h1>
 <div class="sub"><b>{live} live</b> · {summ} · native articles on Telegraph, each posted from a residential IP in-geo &amp; links once deep with a native anchor · click a card to open the live article</div>
