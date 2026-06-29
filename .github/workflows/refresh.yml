@@ -22,6 +22,7 @@ jobs:
           GSC_SA_JSON: ${{ secrets.GSC_SA_JSON }}
           BLITZ_KEY: ${{ secrets.BLITZ_KEY }}
           BLITZ_AID: ${{ secrets.BLITZ_AID }}
+          INFLUX_KEY: ${{ secrets.INFLUX_KEY }}
         run: python pull.py
       - name: Commit refreshed data
         run: |

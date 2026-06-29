@@ -56,36 +56,32 @@ async function getIndex(tok){
 // ---- Affiliate (Blitz / CAKE). Coolizi isolated BY OFFER NAME; end_date is EXCLUSIVE so we add +1 day. ----
 const GEO_BY_CC={"de":["DE/AT/CH","🇩🇪","de"],"uk":["UK","🇬🇧","en"],"fr":["FR/BE","🇫🇷","fr"],"it":["Italy","🇮🇹","it"],"es":["Spain","🇪🇸","es"],"nl":["NL","🇳🇱","nl"],"pt":["Portugal","🇵🇹","pt"],"gr":["Greece","🇬🇷","el"],"be":["Belgium","🇧🇪","fr"],"intl":["International","🌍",""]};
 const SUF_CC={"UK":"uk","DE/AT/CH":"de","FR/BE":"fr","IT":"it","ES":"es","NL":"nl","PT":"pt","GR":"gr","BE":"be"};
-async function blitzPull(env, start, end){
+async function everflowPull(env, start, end){
+  // Influx (Everflow) — entity report grouped by sub1 (our geo tag)
   try{
-    const key=env.BLITZ_KEY, aid=env.BLITZ_AID; if(!key) return {connected:false,error:"no key"};
-    const base="https://affiliates.blitzadsgroup.com/affiliates/api";
-    const sd=ymd(start), ed=addDays(end,1); // +1: Blitz end_date is exclusive
-    async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
-    const oname=r=>(r.offer_name||(r.offer||{}).offer_name||""); // conversions: top-level; clicks: nested
-    const s1of=r=>String(r.subid_1||"").toLowerCase();
-    const isOurs=r=>{const s=s1of(r);const o=oname(r).toLowerCase();return s.startsWith("intl-")||s.startsWith("try-")||o.includes("coolizi")||o.includes("airabreeze");};
-    const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"intl";};
-    const brand=r=>{const o=oname(r).toLowerCase();return o.includes("airabreeze")?"AiraBreeze":(o.includes("coolizi")?"Coolizi":"Other");};
-    const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
-    const cool=clk.filter(isOurs);
-    const coolconv=cnv.filter(isOurs);
-    const agg={}; const okey=(b,cc)=>b+"||"+cc; // offer × geo
-    cool.forEach(r=>{const a=agg[okey(brand(r),geocc(r))]=agg[okey(brand(r),geocc(r))]||{clicks:0,conversions:0,revenue:0};a.clicks++;});
-    coolconv.forEach(c=>{const a=agg[okey(brand(c),geocc(c))]=agg[okey(brand(c),geocc(c))]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
-    const offers={};
-    Object.entries(agg).forEach(([k,v])=>{const i=k.indexOf("||"),b=k.slice(0,i),cc=k.slice(i+2);const o=offers[b]=offers[b]||{clicks:0,conversions:0,revenue:0,geos:[]};const g=GEO_BY_CC[cc]||[cc.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;o.geos.push({sub:cc,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0});o.clicks+=c2;o.conversions+=cv;o.revenue+=rev;});
-    const by_offer=[];
-    ["AiraBreeze","Coolizi","Other"].forEach(bn=>{if(offers[bn]){const o=offers[bn];o.geos.sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);const c2=o.clicks,cv=o.conversions,rev=Math.round(o.revenue*100)/100;by_offer.push({offer:bn,clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0,by_geo:o.geos});}});
-    const tclk=by_offer.reduce((a,x)=>a+x.clicks,0),tcv=by_offer.reduce((a,x)=>a+x.conversions,0),trev=by_offer.reduce((a,x)=>a+x.revenue,0);
-    const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geocc(c),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
-    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_offer,recent};
+    const key=env.INFLUX_KEY; if(!key) return {connected:false,error:"no influx key"};
+    const body={from:ymd(start),to:ymd(end),timezone_id:80,currency_id:"USD",columns:[{column:"sub1"}],query:{filters:[]}};
+    const r=await fetch("https://api.eflow.team/v1/affiliates/reporting/entity",{method:"POST",headers:{"X-Eflow-API-Key":key,"Content-Type":"application/json"},body:JSON.stringify(body)});
+    const rows=r.ok?((await r.json()).table||[]):[];
+    const geos=[];
+    rows.forEach(row=>{
+      const sub1=String((row.columns&&row.columns[0]&&row.columns[0].id)||"").toLowerCase();
+      const cc=sub1.startsWith("try-")?sub1.slice(4):(sub1.startsWith("intl-")?sub1.slice(5):"intl");
+      const rep=row.reporting||{}; const clk=+rep.total_click||0, cv=+rep.cv||0, rev=Math.round((+rep.revenue||0)*100)/100;
+      if(!clk&&!cv&&!rev) return;
+      const g=GEO_BY_CC[cc]||[cc.toUpperCase(),"🏳️",""];
+      geos.push({sub:cc,name:g[0],flag:g[1],geo:g[2],clicks:clk,conversions:cv,revenue:rev,epc:clk?Math.round(rev/clk*1000)/1000:0,cr:clk?Math.round(cv/clk*10000)/100:0});
+    });
+    geos.sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);
+    const tclk=geos.reduce((a,x)=>a+x.clicks,0),tcv=geos.reduce((a,x)=>a+x.conversions,0),trev=Math.round(geos.reduce((a,x)=>a+x.revenue,0)*100)/100;
+    const by_offer=geos.length?[{offer:"Coolizi · Influx",clicks:tclk,conversions:tcv,revenue:trev,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,by_geo:geos}]:[];
+    return {connected:true,clicks:tclk,conversions:tcv,revenue:trev,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_offer,recent:[],network:"Influx"};
   }catch(e){return {connected:false,error:String(e).slice(0,120)};}
 }
 
 async function buildData(sa, range, env){
   const start = range.start, end = range.end;
-  const [affiliate, tok] = await Promise.all([blitzPull(env||{}, start, end), getToken(sa)]);
+  const [affiliate, tok] = await Promise.all([everflowPull(env||{}, start, end), getToken(sa)]);
   const totalsR = async (s,e) => { const r=await saQ(tok,[],{start:s,end:e}); if(!r.length) return {impressions:0,clicks:0,ctr:0,position:0}; const x=r[0]; return {impressions:Math.round(x.impressions||0),clicks:Math.round(x.clicks||0),ctr:Math.round((x.ctr||0)*10000)/100,position:Math.round((x.position||0)*10)/10}; };
   const dailyStart = addDays(end, -27); // 28-day trend ending at the range end
   const [dailyR, hourlyR, byCountryR, byDeviceR, byQueryR, byPageR, byQPR, baseT, index] = await Promise.all([

@@ -96,57 +96,37 @@ GEO_BY_CC = {"de":("DE/AT/CH","🇩🇪","de"),"uk":("UK","🇬🇧","en"),"fr":
              "intl":("International","🌍","")}
 SUF_CC = {"UK":"uk","DE/AT/CH":"de","FR/BE":"fr","IT":"it","ES":"es","NL":"nl","PT":"pt","GR":"gr","BE":"be"}
 
-def blitz_pull(days=60):
+def everflow_pull(days=30):
+    """Influx (Everflow) affiliate reporting — entity report grouped by sub1 (our geo tag)."""
     try:
-        key = os.environ.get("BLITZ_KEY"); aid = os.environ.get("BLITZ_AID")
+        key = os.environ.get("INFLUX_KEY")
+        base = "https://api.eflow.team/v1/affiliates"
         if not key:
-            c = json.load(open("/root/.config/blitz/creds.json")); key = c["api_key"]; aid = c["affiliate_id"]
-        base = "https://affiliates.blitzadsgroup.com/affiliates/api"
+            c = json.load(open("/root/.config/influx/creds.json")); key = c["api_key"]; base = c.get("base", base)
         end = ny_today(); start = end - datetime.timedelta(days=days)
-        end_excl = end + datetime.timedelta(days=1)  # Blitz end_date is EXCLUSIVE — +1 to include today's clicks
-        def get(ep, **p):
-            p.update(api_key=key, affiliate_id=aid, start_date=str(start), end_date=str(end_excl))
-            r = requests.get(f"{base}/{ep}", params=p, headers={"Accept": "application/json"}, timeout=40)
-            return r.json().get("data", []) if r.ok else []
-        oname = lambda r: (r.get("offer_name") or (r.get("offer") or {}).get("offer_name") or "")  # conversions: top-level; clicks: nested
-        s1of = lambda r: str(r.get("subid_1") or "").lower()  # our s1 (try-de / intl-fr) lands here
-        def is_ours(r):
-            s = s1of(r); o = oname(r).lower()
-            return s.startswith("intl-") or s.startswith("try-") or "coolizi" in o or "airabreeze" in o
-        def geocc(r):
-            s = s1of(r)
-            for pre in ("intl-", "try-"):
-                if s.startswith(pre): return s[len(pre):]
-            return SUF_CC.get(oname(r).split(" - ")[-1].strip(), "intl")
-        def brand(r):
-            o = oname(r).lower(); return "AiraBreeze" if "airabreeze" in o else ("Coolizi" if "coolizi" in o else "Other")
-        cool = [r for r in get("Reports/Clicks", row_limit=10000) if is_ours(r)]
-        coolconv = [c for c in get("Reports/Conversions", row_limit=500) if is_ours(c)]
-        agg = {}  # (offer-brand, geo-cc) -> tallies
-        for r in cool:
-            k = (brand(r), geocc(r)); a = agg.setdefault(k, {"clicks": 0, "conversions": 0, "revenue": 0.0}); a["clicks"] += 1
-        for c in coolconv:
-            k = (brand(c), geocc(c)); a = agg.setdefault(k, {"clicks": 0, "conversions": 0, "revenue": 0.0})
-            a["conversions"] += 1; a["revenue"] += float(c.get("price") or c.get("revenue") or 0)
-        offers = {}
-        for (b, cc), v in agg.items():
-            o = offers.setdefault(b, {"clicks": 0, "conversions": 0, "revenue": 0.0, "geos": []})
-            name, flag, geo = GEO_BY_CC.get(cc, (cc.upper(), "🏳️", "")); clk = v["clicks"]; cv = v["conversions"]; rev = round(v["revenue"], 2)
-            o["geos"].append({"sub": cc, "name": name, "flag": flag, "geo": geo, "clicks": clk, "conversions": cv,
-                              "revenue": rev, "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0})
-            o["clicks"] += clk; o["conversions"] += cv; o["revenue"] += rev
-        by_offer = []
-        for bname in ["AiraBreeze", "Coolizi", "Other"]:
-            if bname in offers:
-                o = offers[bname]; o["geos"].sort(key=lambda x: (-x["clicks"], -x["revenue"])); clk = o["clicks"]; cv = o["conversions"]; rev = round(o["revenue"], 2)
-                by_offer.append({"offer": bname, "clicks": clk, "conversions": cv, "revenue": rev,
-                                 "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0, "by_geo": o["geos"]})
-        tclk = sum(x["clicks"] for x in by_offer); tcv = sum(x["conversions"] for x in by_offer); trev = round(sum(x["revenue"] for x in by_offer), 2)
-        recent = [{"date": c.get("conversion_date", ""), "sub": geocc(c), "offer": oname(c),
-                   "revenue": round(float(c.get("price") or c.get("revenue") or 0), 2)} for c in coolconv][:15]
-        return {"connected": True, "clicks": tclk, "conversions": tcv, "revenue": round(trev, 2),
+        body = {"from": str(start), "to": str(end), "timezone_id": 80, "currency_id": "USD",
+                "columns": [{"column": "sub1"}], "query": {"filters": []}}
+        r = requests.post(f"{base}/reporting/entity",
+                          headers={"X-Eflow-API-Key": key, "Content-Type": "application/json"},
+                          json=body, timeout=45)
+        rows = r.json().get("table", []) if r.ok else []
+        geos = []
+        for row in rows:
+            sub1 = str((row.get("columns") or [{}])[0].get("id") or "").lower()
+            cc = sub1[4:] if sub1.startswith("try-") else (sub1[5:] if sub1.startswith("intl-") else "intl")
+            rep = row.get("reporting", {})
+            clk = int(rep.get("total_click", 0)); cv = int(rep.get("cv", 0)); rev = round(float(rep.get("revenue", 0) or 0), 2)
+            if clk == 0 and cv == 0 and rev == 0: continue
+            name, flag, geo = GEO_BY_CC.get(cc, (cc.upper(), "🏳️", ""))
+            geos.append({"sub": cc, "name": name, "flag": flag, "geo": geo, "clicks": clk, "conversions": cv,
+                         "revenue": rev, "epc": round(rev / clk, 3) if clk else 0, "cr": round(cv / clk * 100, 2) if clk else 0})
+        geos.sort(key=lambda x: (-x["clicks"], -x["revenue"]))
+        tclk = sum(g["clicks"] for g in geos); tcv = sum(g["conversions"] for g in geos); trev = round(sum(g["revenue"] for g in geos), 2)
+        by_offer = [{"offer": "Coolizi · Influx", "clicks": tclk, "conversions": tcv, "revenue": trev,
+                     "epc": round(trev / tclk, 3) if tclk else 0, "cr": round(tcv / tclk * 100, 2) if tclk else 0, "by_geo": geos}] if geos else []
+        return {"connected": True, "clicks": tclk, "conversions": tcv, "revenue": trev,
                 "epc": round(trev / tclk, 3) if tclk else 0, "cr": round(tcv / tclk * 100, 2) if tclk else 0,
-                "currency": "$", "goal": 50, "by_offer": by_offer, "recent": recent, "days": days}
+                "currency": "$", "goal": 50, "by_offer": by_offer, "recent": [], "network": "Influx", "days": days}
     except Exception as e:
         return {"connected": False, "error": str(e)[:120]}
 
@@ -244,7 +224,7 @@ def main():
         "geo": geo, "device": by_device, "topQueries": by_query[:40], "topPages": by_page,
         "brand": brand, "opportunities": opp[:25], "cannibal": cannibal[:12],
         "indexation": index, "funnel": funnel, "milestones": milestones,
-        "affiliate": blitz_pull(),
+        "affiliate": everflow_pull(),
     }
     with open(os.path.join(HERE, "data.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)

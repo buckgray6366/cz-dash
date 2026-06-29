@@ -347,8 +347,8 @@ function render(d){
     {lab:'👁 Impressions',v:s.impressions,cls:'blue'},
     {lab:'🖱 Clicks',v:s.clicks,cls:'good'},
     {lab:'CTR',v:s.ctr,cls:'',suf:'%'},
-    {lab:'⌀ Position',v:s.position,cls:''},
-    {lab:'🥇 Best rank',v:m.best_position,cls:'gold',pre:'#'},
+    {lab:'⌀ Position',v:s.position,cls:'',raw:(s.position?undefined:'—')},
+    {lab:'🥇 Best rank',cls:'gold',raw:(!m.best_position||m.best_position>=99?'—':'#'+m.best_position)},
     {lab:'✅ Indexed',v:m.indexed_pages,cls:'good',raw:`${m.indexed_pages}/${d.indexation.length}`},
   ];
   el('kpis').innerHTML=kpis.map((k,i)=>`<div class="kpi ${k.cls}"><div class="lab">${k.lab}</div>
@@ -443,7 +443,7 @@ function render(d){
     <div class="q" style="max-width:none;color:#e6ecf6;font-weight:600;white-space:normal">${c.q}</div>
     <div style="margin-top:5px;display:flex;gap:8px;flex-wrap:wrap">${c.pages.map(p=>`<span class="pg" style="background:var(--card2);padding:3px 8px;border-radius:6px;border:1px solid var(--line)">${p.page.replace('https://trycoolizi.com','')||'/'} · ${F(p.impressions)} impr · ${posBadge(p.position)}</span>`).join('')}</div></div>`).join(''):'<div class="empty">✓ No cannibalization — each query maps cleanly to one page.</div>';
 
-  el('note').innerHTML=`Live data · auto-refreshes hourly + on-demand 🔄 · times in ET · confidential, noindex`;
+  el('note').innerHTML=(s.impressions?'':'<span style="color:var(--warn)">⚠ No Search Console data for this range yet (GSC lags ~1 day) — switch to <b>Last 7 days</b> for the full picture.</span> · ')+`Live data · auto-refreshes hourly + on-demand 🔄 · times in ET · confidential, noindex`;
 }
 try{ document.getElementById('rangeSel').value=CUR_PRESET; }catch(e){}
 load();
