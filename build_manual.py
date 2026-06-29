@@ -10,15 +10,36 @@ SIGNUP = {"Medium":"https://medium.com/new-story","Blogger":"https://www.blogger
           "Tumblr":"https://www.tumblr.com/register","Substack":"https://substack.com","LiveJournal":"https://www.livejournal.com/create",
           "Write.as":"https://write.as/new","Quora":"https://www.quora.com"}
 FLAG = {"de":"🇩🇪","fr":"🇫🇷","it":"🇮🇹","es":"🇪🇸","nl":"🇳🇱","en":"🇬🇧"}
+# Fresh, geo-matched, neutral personas — UNIQUE to Coolizi (never reuse a Jetterix/other-site account).
+# No brand in any handle/subdomain. Email is a suggestion; any fresh inbox works.
+NAMES = {
+ 1: {"name":"Lena Hoffmann","handle":"lenahoffmann91","blog":"medium.com/@lenahoffmann91","email":"lenahoffmann91@gmail.com"},
+ 2: {"name":"Markus Wagner","handle":"markuswagner85","blog":"markuswagner85.blogspot.com","email":"markuswagner85@gmail.com"},
+ 3: {"name":"Camille Laurent","handle":"camillelaurent","blog":"camillelaurent.wordpress.com","email":"camille.laurent.fr@gmail.com"},
+ 4: {"name":"Julien Moreau","handle":"julienmoreau","blog":"julienmoreau.tumblr.com","email":"julien.moreau.fr@gmail.com"},
+ 5: {"name":"Giulia Conti","handle":"giuliaconti","blog":"giuliaconti.substack.com","email":"giulia.conti.it@gmail.com"},
+ 6: {"name":"Sofía Ramírez","handle":"sofiaramirez26","blog":"sofiaramirez26.livejournal.com","email":"sofia.ramirez.es@gmail.com"},
+ 7: {"name":"Daan Visser","handle":"daanvisser","blog":"daanvisser.write.as","email":"daan.visser.nl@gmail.com"},
+ 8: {"name":"Emma Clarke","handle":"Emma-Clarke","blog":"quora.com/profile/Emma-Clarke","email":"emma.clarke.uk@gmail.com"},
+}
 def E(s): return html.escape(str(s), quote=True)
 cards = []
 for i, (t, a) in enumerate(zip(TASKS, ARTS), 1):
     if not a: continue
-    ip = IPS.get(i, {})
+    ip = IPS.get(i, {}); nm = NAMES.get(i, {})
     n = t["n"]; plat = t["platform"]; geo = t["geo"]; url = t["url"]; su = SIGNUP.get(plat, "#")
     cards.append(f'''<div class="task">
   <div class="th"><h2>{n} · {E(plat)} <span class="fl">{FLAG.get(geo,'')} {geo.upper()}</span></h2>
     <a class="go" href="{E(su)}" target="_blank">sign up ↗</a></div>
+  <div class="acctbox">
+    <div class="al">👤 Create THIS account — fresh &amp; Coolizi-only <b>(never reuse a Jetterix / other-site login)</b></div>
+    <div class="ipgrid">
+      <span>name</span><code id="an{i}">{E(nm.get('name',''))}</code><button class="cp2" data-t="an{i}">copy</button>
+      <span>username</span><code id="ah{i}">{E(nm.get('handle',''))}</code><button class="cp2" data-t="ah{i}">copy</button>
+      <span>blog / url</span><code id="ab{i}">{E(nm.get('blog',''))}</code><button class="cp2" data-t="ab{i}">copy</button>
+      <span>email</span><code id="ae{i}">{E(nm.get('email',''))}</code><button class="cp2" data-t="ae{i}">copy</button>
+    </div>
+  </div>
   <div class="ipbox">
     <div class="ipl">{FLAG.get(geo,'')} Use IP <b>{E(ip.get('ip','(rotates)'))}</b> &nbsp;·&nbsp; {E(ip.get('city',''))}, {E(t['cc'])} &nbsp;·&nbsp; {E(ip.get('org',''))}</div>
     <div class="ipgrid">
@@ -29,7 +50,7 @@ for i, (t, a) in enumerate(zip(TASKS, ARTS), 1):
     </div>
   </div>
   <ol class="steps">
-    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="{E(su)}" target="_blank">{E(su.replace('https://',''))}</a> and create a free account → new post.</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="{E(su)}" target="_blank">{E(su.replace('https://',''))}</a> and create a free account using the <b>name / username / email above</b> (set the blog address to the one shown — <b>no brand names</b>) → new post.</li>
     <li>Paste the <b>Title</b> and <b>Article</b> below into the post.</li>
     <li>Select the words <b>“{E(a['anchor'])}”</b>, click the link button, and paste this URL: <code>{E(url)}</code></li>
     <li>Publish, then send me the live post URL — I add it to the Backlinks tracker.</li>
@@ -63,6 +84,8 @@ h1{{font-size:24px;margin:6px 0 2px;letter-spacing:-.02em}}
 .go{{font-size:12.5px}}
 .ipbox{{background:#0c1320;border:1px solid var(--line);border-left:4px solid var(--coral);border-radius:10px;padding:10px 13px;margin-bottom:12px}}
 .ipl{{font-size:13px;color:#ffd9cf;margin-bottom:8px}}.ipl b{{color:#fff}}
+.acctbox{{background:#0c1626;border:1px solid var(--line);border-left:4px solid var(--acc2);border-radius:10px;padding:10px 13px;margin-bottom:12px}}
+.al{{font-size:13px;color:#cfe0ff;margin-bottom:8px}}.al b{{color:#fff}}
 .ipgrid{{display:grid;grid-template-columns:auto 1fr auto;gap:5px 8px;align-items:center}}
 .ipgrid span{{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:700}}
 .ipgrid code{{background:#080b12;border:1px solid var(--line);padding:3px 8px;border-radius:6px;color:var(--acc2);font-size:11.5px;overflow:auto;white-space:nowrap}}
@@ -81,7 +104,7 @@ label{{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--
   <nav class="menu"><a href="./">📊 Dashboard</a><a href="offer-links.html">🔗 Change offer links</a><a href="backlinks.html">📰 Backlinks</a><a href="manual-backlinks.html" class="cur">📝 Manual backlinks</a></nav>
 </div>
 <h1>📝 Manual backlinks</h1>
-<div class="sub">{len(cards)} high-authority platforms that block automated signup — post these by hand. Articles are written &amp; unique; each has its own geo-matched residential IP so the accounts are never linked. DE/FR-weighted.</div>
+<div class="sub">{len(cards)} high-authority platforms that block automated signup — post these by hand. Each card gives the exact <b>account to create</b> (fresh persona, never reused) + its own geo-matched residential IP + a written unique article. DE/FR-weighted.</div>
 <div class="setup">
   <h3>⚙️ One-time setup — how to use the IPs</h3>
   <ol>
@@ -90,7 +113,7 @@ label{{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--
     <li>Switch to a platform's profile <b>before</b> signing up, and keep it on while you write &amp; publish.</li>
     <li>Use a separate browser profile (or Incognito) per platform so logins don't mix.</li>
   </ol>
-  <div class="warn">These residential IPs are live ~12 hours. If one stops connecting, tell me and I'll refresh it. Drip 1–2/day — don't publish all at once.</div>
+  <div class="warn"><b style="color:var(--coral)">⚠ One account = one site.</b> Create the fresh persona shown in each card — <b>never log into a Jetterix (or any other site's) account to post Coolizi</b>, or you tie the two networks together. Residential IPs are live ~12 hours (tell me to refresh). Drip 1–2/day — don't publish all at once.</div>
 </div>
 {''.join(cards)}
 <div class="foot">Confidential · internal · send each published URL back to add it to the Backlinks tracker · {datetime.date.today().isoformat()}</div>
