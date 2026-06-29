@@ -79,9 +79,37 @@ async function everflowPull(env, start, end){
   }catch(e){return {connected:false,error:String(e).slice(0,120)};}
 }
 
+async function blitzPull(env, start, end){
+  // Blitz Ads (CAKE) — AiraBreeze + Coolizi by offer_name, geo by subid_1
+  try{
+    const key=env.BLITZ_KEY, aid=env.BLITZ_AID; if(!key) return {connected:false,error:"no blitz key"};
+    const base="https://affiliates.blitzadsgroup.com/affiliates/api";
+    const sd=ymd(start), ed=addDays(end,1); // +1: Blitz end_date is exclusive
+    async function get(ep,extra){ const r=await fetch(`${base}/${ep}?api_key=${key}&affiliate_id=${aid}&start_date=${sd}&end_date=${ed}${extra||""}`,{headers:{Accept:"application/json"}}); return r.ok?((await r.json()).data||[]):[]; }
+    const oname=r=>(r.offer_name||(r.offer||{}).offer_name||"");
+    const s1of=r=>String(r.subid_1||"").toLowerCase();
+    const isOurs=r=>{const s=s1of(r);const o=oname(r).toLowerCase();return s.startsWith("intl-")||s.startsWith("try-")||o.includes("coolizi")||o.includes("airabreeze");};
+    const geocc=r=>{const s=s1of(r);for(const pre of ["intl-","try-"])if(s.startsWith(pre))return s.slice(pre.length);return SUF_CC[oname(r).split(" - ").pop().trim()]||"intl";};
+    const brand=r=>{const o=oname(r).toLowerCase();return o.includes("airabreeze")?"AiraBreeze":(o.includes("coolizi")?"Coolizi":"Other");};
+    const [clk, cnv] = await Promise.all([get("Reports/Clicks","&row_limit=50000"), get("Reports/Conversions","&row_limit=500")]);
+    const cool=clk.filter(isOurs);
+    const coolconv=cnv.filter(isOurs);
+    const agg={}; const okey=(b,cc)=>b+"||"+cc;
+    cool.forEach(r=>{const a=agg[okey(brand(r),geocc(r))]=agg[okey(brand(r),geocc(r))]||{clicks:0,conversions:0,revenue:0};a.clicks++;});
+    coolconv.forEach(c=>{const a=agg[okey(brand(c),geocc(c))]=agg[okey(brand(c),geocc(c))]||{clicks:0,conversions:0,revenue:0};a.conversions++;a.revenue+=(+c.price||+c.revenue||0);});
+    const offers={};
+    Object.entries(agg).forEach(([k,v])=>{const i=k.indexOf("||"),b=k.slice(0,i),cc=k.slice(i+2);const o=offers[b]=offers[b]||{clicks:0,conversions:0,revenue:0,geos:[]};const g=GEO_BY_CC[cc]||[cc.toUpperCase(),"🏳️",""];const c2=v.clicks,cv=v.conversions,rev=Math.round(v.revenue*100)/100;o.geos.push({sub:cc,name:g[0],flag:g[1],geo:g[2],clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0});o.clicks+=c2;o.conversions+=cv;o.revenue+=rev;});
+    const by_offer=[];
+    ["AiraBreeze","Coolizi","Other"].forEach(bn=>{if(offers[bn]){const o=offers[bn];o.geos.sort((a,b)=>b.clicks-a.clicks||b.revenue-a.revenue);const c2=o.clicks,cv=o.conversions,rev=Math.round(o.revenue*100)/100;by_offer.push({offer:bn,clicks:c2,conversions:cv,revenue:rev,epc:c2?Math.round(rev/c2*1000)/1000:0,cr:c2?Math.round(cv/c2*10000)/100:0,by_geo:o.geos});}});
+    const tclk=by_offer.reduce((a,x)=>a+x.clicks,0),tcv=by_offer.reduce((a,x)=>a+x.conversions,0),trev=by_offer.reduce((a,x)=>a+x.revenue,0);
+    const recent=coolconv.slice(0,15).map(c=>({date:c.conversion_date||"",sub:geocc(c),offer:oname(c),revenue:Math.round((+c.price||+c.revenue||0)*100)/100}));
+    return {connected:true,clicks:tclk,conversions:tcv,revenue:Math.round(trev*100)/100,epc:tclk?Math.round(trev/tclk*1000)/1000:0,cr:tclk?Math.round(tcv/tclk*10000)/100:0,currency:"$",goal:50,by_offer,recent,network:"Blitz"};
+  }catch(e){return {connected:false,error:String(e).slice(0,120)};}
+}
+
 async function buildData(sa, range, env){
   const start = range.start, end = range.end;
-  const [affiliate, tok] = await Promise.all([everflowPull(env||{}, start, end), getToken(sa)]);
+  const [affiliate, tok] = await Promise.all([blitzPull(env||{}, start, end), getToken(sa)]);
   const totalsR = async (s,e) => { const r=await saQ(tok,[],{start:s,end:e}); if(!r.length) return {impressions:0,clicks:0,ctr:0,position:0}; const x=r[0]; return {impressions:Math.round(x.impressions||0),clicks:Math.round(x.clicks||0),ctr:Math.round((x.ctr||0)*10000)/100,position:Math.round((x.position||0)*10)/10}; };
   const dailyStart = addDays(end, -27); // 28-day trend ending at the range end
   const [dailyR, hourlyR, byCountryR, byDeviceR, byQueryR, byPageR, byQPR, baseT, index] = await Promise.all([
