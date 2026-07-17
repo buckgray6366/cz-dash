@@ -1,36 +1,36 @@
 {
- "generatedAt": "2026-07-17 12:04 ET",
+ "generatedAt": "2026-07-17 16:14 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 2746,
-  "clicks": 97,
-  "ctr": 3.53,
+  "impressions": 2795,
+  "clicks": 98,
+  "ctr": 3.51,
   "position": 8.2,
-  "queries": 131,
+  "queries": 132,
   "pages_seen": 17
  },
  "summaries": {
   "1": {
-   "impressions": 377,
-   "clicks": 21,
-   "ctr": 5.57,
-   "position": 8.5
+   "impressions": 426,
+   "clicks": 22,
+   "ctr": 5.16,
+   "position": 8.8
   },
   "7": {
-   "impressions": 2746,
-   "clicks": 97,
-   "ctr": 3.53,
+   "impressions": 2795,
+   "clicks": 98,
+   "ctr": 3.51,
    "position": 8.2
   },
   "28": {
-   "impressions": 91758,
-   "clicks": 823,
+   "impressions": 91807,
+   "clicks": 824,
    "ctr": 0.9,
    "position": 9.7
   },
   "90": {
-   "impressions": 91758,
-   "clicks": 823,
+   "impressions": 91807,
+   "clicks": 824,
    "ctr": 0.9,
    "position": 9.7
   }
@@ -185,17 +185,17 @@
   },
   {
    "date": "2026-07-16",
-   "impressions": 355,
+   "impressions": 362,
    "clicks": 21,
-   "ctr": 5.92,
-   "position": 8.5
+   "ctr": 5.8,
+   "position": 8.6
   },
   {
    "date": "2026-07-17",
-   "impressions": 22,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 8.9
+   "impressions": 64,
+   "clicks": 1,
+   "ctr": 1.56,
+   "position": 9.8
   }
  ],
  "hourly": [
@@ -306,7 +306,7 @@
   },
   {
    "hour": "2026-07-16T23:00:00-07:00",
-   "impressions": 2,
+   "impressions": 9,
    "clicks": 0
   },
   {
@@ -321,12 +321,32 @@
   },
   {
    "hour": "2026-07-17T02:00:00-07:00",
-   "impressions": 5,
+   "impressions": 16,
    "clicks": 0
   },
   {
    "hour": "2026-07-17T03:00:00-07:00",
-   "impressions": 3,
+   "impressions": 10,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T04:00:00-07:00",
+   "impressions": 16,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T05:00:00-07:00",
+   "impressions": 5,
+   "clicks": 1
+  },
+  {
+   "hour": "2026-07-17T06:00:00-07:00",
+   "impressions": 2,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T07:00:00-07:00",
+   "impressions": 1,
    "clicks": 0
   }
  ],
@@ -336,7 +356,7 @@
    "name": "Belgium",
    "flag": "🇧🇪",
    "geo": "fr",
-   "impressions": 698,
+   "impressions": 703,
    "clicks": 4,
    "ctr": 0.57,
    "position": 8.2
@@ -346,19 +366,19 @@
    "name": "Italy",
    "flag": "🇮🇹",
    "geo": "it",
-   "impressions": 470,
+   "impressions": 481,
    "clicks": 12,
-   "ctr": 2.55,
-   "position": 8.7
+   "ctr": 2.49,
+   "position": 8.8
   },
   {
    "cc": "fra",
    "name": "France",
    "flag": "🇫🇷",
    "geo": "fr",
-   "impressions": 418,
+   "impressions": 424,
    "clicks": 17,
-   "ctr": 4.07,
+   "ctr": 4.01,
    "position": 8.3
   },
   {
@@ -366,9 +386,9 @@
    "name": "Netherlands",
    "flag": "🇳🇱",
    "geo": "nl",
-   "impressions": 410,
+   "impressions": 417,
    "clicks": 14,
-   "ctr": 3.41,
+   "ctr": 3.36,
    "position": 6.9
   },
   {
@@ -376,9 +396,9 @@
    "name": "Germany",
    "flag": "🇩🇪",
    "geo": "de",
-   "impressions": 234,
-   "clicks": 13,
-   "ctr": 5.56,
+   "impressions": 241,
+   "clicks": 14,
+   "ctr": 5.81,
    "position": 8.3
   },
   {
@@ -386,9 +406,9 @@
    "name": "Spain",
    "flag": "🇪🇸",
    "geo": "es",
-   "impressions": 232,
+   "impressions": 234,
    "clicks": 11,
-   "ctr": 4.74,
+   "ctr": 4.7,
    "position": 8.7
   },
   {
@@ -396,9 +416,9 @@
    "name": "Greece",
    "flag": "🇬🇷",
    "geo": "el",
-   "impressions": 72,
+   "impressions": 75,
    "clicks": 13,
-   "ctr": 18.06,
+   "ctr": 17.33,
    "position": 5.8
   },
   {
@@ -416,10 +436,20 @@
    "name": "UK",
    "flag": "🇬🇧",
    "geo": "en",
-   "impressions": 45,
+   "impressions": 46,
    "clicks": 4,
-   "ctr": 8.89,
+   "ctr": 8.7,
    "position": 9.8
+  },
+  {
+   "cc": "isr",
+   "name": "ISR",
+   "flag": "🏳️",
+   "geo": "",
+   "impressions": 19,
+   "clicks": 1,
+   "ctr": 5.26,
+   "position": 8.4
   },
   {
    "cc": "usa",
@@ -432,24 +462,14 @@
    "position": 5.1
   },
   {
-   "cc": "isr",
-   "name": "ISR",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 18,
-   "clicks": 1,
-   "ctr": 5.56,
-   "position": 7.9
-  },
-  {
    "cc": "prt",
    "name": "Portugal",
    "flag": "🇵🇹",
    "geo": "pt",
-   "impressions": 17,
+   "impressions": 18,
    "clicks": 0,
    "ctr": 0,
-   "position": 10.4
+   "position": 10.1
   },
   {
    "cc": "aut",
@@ -460,6 +480,16 @@
    "clicks": 1,
    "ctr": 6.67,
    "position": 6.5
+  },
+  {
+   "cc": "ind",
+   "name": "India",
+   "flag": "🇮🇳",
+   "geo": "en",
+   "impressions": 6,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 29.3
   },
   {
    "cc": "lux",
@@ -502,6 +532,16 @@
    "position": 5
   },
   {
+   "cc": "jpn",
+   "name": "JPN",
+   "flag": "🏳️",
+   "geo": "",
+   "impressions": 4,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 6.8
+  },
+  {
    "cc": "tur",
    "name": "TUR",
    "flag": "🏳️",
@@ -522,16 +562,6 @@
    "position": 21.7
   },
   {
-   "cc": "jpn",
-   "name": "JPN",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 8.7
-  },
-  {
    "cc": "bra",
    "name": "BRA",
    "flag": "🏳️",
@@ -540,16 +570,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 13.5
-  },
-  {
-   "cc": "ind",
-   "name": "India",
-   "flag": "🇮🇳",
-   "geo": "en",
-   "impressions": 2,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 29
   },
   {
    "cc": "pol",
@@ -667,28 +687,28 @@
    "keys": [
     "MOBILE"
    ],
-   "impressions": 1880,
-   "clicks": 54,
-   "ctr": 2.87,
+   "impressions": 1909,
+   "clicks": 55,
+   "ctr": 2.88,
    "position": 8.0
   },
   {
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 688,
+   "impressions": 704,
    "clicks": 36,
-   "ctr": 5.23,
-   "position": 8.8
+   "ctr": 5.11,
+   "position": 8.9
   },
   {
    "keys": [
     "TABLET"
    ],
-   "impressions": 178,
+   "impressions": 182,
    "clicks": 7,
-   "ctr": 3.93,
-   "position": 7.8
+   "ctr": 3.85,
+   "position": 7.7
   }
  ],
  "topQueries": [
@@ -696,9 +716,9 @@
    "keys": [
     "coolizi prijs"
    ],
-   "impressions": 97,
+   "impressions": 99,
    "clicks": 6,
-   "ctr": 6.19,
+   "ctr": 6.06,
    "position": 2.6
   },
   {
@@ -714,10 +734,10 @@
    "keys": [
     "coolizi"
    ],
-   "impressions": 529,
+   "impressions": 534,
    "clicks": 3,
-   "ctr": 0.57,
-   "position": 8.9
+   "ctr": 0.56,
+   "position": 9.1
   },
   {
    "keys": [
@@ -1058,73 +1078,73 @@
    "keys": [
     "https://trycoolizi.com/fr/"
    ],
-   "impressions": 427,
+   "impressions": 433,
    "clicks": 18,
-   "ctr": 4.22,
+   "ctr": 4.16,
    "position": 8.2
   },
   {
    "keys": [
     "https://trycoolizi.com/nl/"
    ],
-   "impressions": 1091,
+   "impressions": 1105,
    "clicks": 18,
-   "ctr": 1.65,
-   "position": 7.7
+   "ctr": 1.63,
+   "position": 7.8
   },
   {
    "keys": [
     "https://trycoolizi.com/it/"
    ],
-   "impressions": 518,
+   "impressions": 530,
    "clicks": 14,
-   "ctr": 2.7,
-   "position": 8.7
+   "ctr": 2.64,
+   "position": 8.8
   },
   {
    "keys": [
     "https://trycoolizi.com/el/"
    ],
-   "impressions": 69,
+   "impressions": 72,
    "clicks": 13,
-   "ctr": 18.84,
-   "position": 5.4
+   "ctr": 18.06,
+   "position": 5.5
   },
   {
    "keys": [
     "https://trycoolizi.com/es/"
    ],
-   "impressions": 227,
+   "impressions": 229,
    "clicks": 11,
-   "ctr": 4.85,
+   "ctr": 4.8,
    "position": 8.9
   },
   {
    "keys": [
     "https://trycoolizi.com/en/"
    ],
-   "impressions": 128,
+   "impressions": 132,
    "clicks": 8,
-   "ctr": 6.25,
+   "ctr": 6.06,
    "position": 8.6
   },
   {
    "keys": [
     "https://trycoolizi.com/de/"
    ],
-   "impressions": 169,
+   "impressions": 171,
    "clicks": 7,
-   "ctr": 4.14,
-   "position": 9.3
+   "ctr": 4.09,
+   "position": 9.2
   },
   {
    "keys": [
     "https://trycoolizi.com/de/contact/"
    ],
-   "impressions": 74,
-   "clicks": 6,
-   "ctr": 8.11,
-   "position": 7.8
+   "impressions": 79,
+   "clicks": 7,
+   "ctr": 8.86,
+   "position": 7.7
   },
   {
    "keys": [
@@ -1139,10 +1159,10 @@
    "keys": [
     "https://trycoolizi.com/pt/"
    ],
-   "impressions": 20,
+   "impressions": 21,
    "clicks": 1,
-   "ctr": 5.0,
-   "position": 7.4
+   "ctr": 4.76,
+   "position": 7.3
   },
   {
    "keys": [
@@ -1211,16 +1231,16 @@
  "brand": [
   {
    "q": "coolizi",
-   "impressions": 529,
+   "impressions": 534,
    "clicks": 3,
-   "ctr": 0.57,
-   "position": 8.9
+   "ctr": 0.56,
+   "position": 9.1
   },
   {
    "q": "coolizi prijs",
-   "impressions": 97,
+   "impressions": 99,
    "clicks": 6,
-   "ctr": 6.19,
+   "ctr": 6.06,
    "position": 2.6
   },
   {
@@ -1253,10 +1273,17 @@
   },
   {
    "q": "coolizi reviews",
+   "impressions": 16,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 11
+  },
+  {
+   "q": "coolizi prezzo",
    "impressions": 13,
    "clicks": 0,
    "ctr": 0,
-   "position": 9.5
+   "position": 9.1
   },
   {
    "q": "coolizi κλιματιστικο",
@@ -1285,13 +1312,6 @@
    "clicks": 1,
    "ctr": 10.0,
    "position": 6.5
-  },
-  {
-   "q": "coolizi prezzo",
-   "impressions": 10,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 8.7
   },
   {
    "q": "coolizi air conditioner",
@@ -1425,6 +1445,13 @@
    "clicks": 0,
    "ctr": 0,
    "position": 15.3
+  },
+  {
+   "q": "coolizi review",
+   "impressions": 3,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 12.3
   },
   {
    "q": "l'coolizi",
@@ -1574,6 +1601,13 @@
    "position": 8
   },
   {
+   "q": "coolizi coolzy",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 13
+  },
+  {
    "q": "coolizi coolzy bewertung",
    "impressions": 1,
    "clicks": 0,
@@ -1663,13 +1697,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 20
-  },
-  {
-   "q": "coolizi review",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 10
   },
   {
    "q": "coolizi rückgabe",
@@ -1787,11 +1814,11 @@
  "opportunities": [
   {
    "q": "coolizi",
-   "impressions": 529,
+   "impressions": 534,
    "clicks": 3,
-   "position": 8.9,
-   "ctr": 0.57,
-   "potential": 293.6,
+   "position": 9.1,
+   "ctr": 0.56,
+   "potential": 291.0,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -1841,11 +1868,11 @@
   },
   {
    "q": "coolozi",
-   "impressions": 17,
+   "impressions": 18,
    "clicks": 0,
    "position": 9.2,
    "ctr": 0,
-   "potential": 9.2,
+   "potential": 9.7,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -1858,20 +1885,38 @@
    "hint": "Improve title/meta CTR"
   },
   {
+   "q": "coolizzi",
+   "impressions": 10,
+   "clicks": 0,
+   "position": 5.4,
+   "ctr": 0,
+   "potential": 7.3,
+   "hint": "Improve title/meta CTR"
+  },
+  {
+   "q": "coolizi reviews",
+   "impressions": 16,
+   "clicks": 0,
+   "position": 11,
+   "ctr": 0,
+   "potential": 7.2,
+   "hint": "Push onto page 1"
+  },
+  {
+   "q": "coolizi prezzo",
+   "impressions": 13,
+   "clicks": 0,
+   "position": 9.1,
+   "ctr": 0,
+   "potential": 7.1,
+   "hint": "Improve title/meta CTR"
+  },
+  {
    "q": "coolizi estafa",
    "impressions": 10,
    "clicks": 1,
    "position": 6.5,
    "ctr": 10.0,
-   "potential": 6.8,
-   "hint": "Improve title/meta CTR"
-  },
-  {
-   "q": "coolizi reviews",
-   "impressions": 13,
-   "clicks": 0,
-   "position": 9.5,
-   "ctr": 0,
    "potential": 6.8,
    "hint": "Improve title/meta CTR"
   },
@@ -1882,15 +1927,6 @@
    "position": 9.4,
    "ctr": 0,
    "potential": 6.4,
-   "hint": "Improve title/meta CTR"
-  },
-  {
-   "q": "coolizzi",
-   "impressions": 8,
-   "clicks": 0,
-   "position": 4.5,
-   "ctr": 0,
-   "potential": 6.2,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -1909,15 +1945,6 @@
    "position": 7.1,
    "ctr": 0,
    "potential": 5.8,
-   "hint": "Improve title/meta CTR"
-  },
-  {
-   "q": "coolizi prezzo",
-   "impressions": 10,
-   "clicks": 0,
-   "position": 8.7,
-   "ctr": 0,
-   "potential": 5.7,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -2017,8 +2044,8 @@
    "pages": [
     {
      "page": "https://trycoolizi.com/nl/",
-     "impressions": 492,
-     "position": 8.7
+     "impressions": 496,
+     "position": 8.8
     },
     {
      "page": "https://trycoolizi.com/el/",
@@ -2027,8 +2054,8 @@
     },
     {
      "page": "https://trycoolizi.com/it/",
-     "impressions": 9,
-     "position": 18.9
+     "impressions": 10,
+     "position": 19.3
     },
     {
      "page": "https://trycoolizi.com/fr/",
@@ -2100,9 +2127,11 @@
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
-   "lastCrawl": "2026-07-04T22:36:29Z",
+   "lastCrawl": "2026-07-17T17:20:53Z",
    "googleCanonical": "https://trycoolizi.com/de/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/fr/",
@@ -2126,9 +2155,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-15T23:27:00Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -2139,9 +2166,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-16T09:24:31Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -2152,9 +2177,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-17T13:01:58Z",
    "googleCanonical": "https://trycoolizi.com/nl/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/pt/",
@@ -2165,9 +2188,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-30T03:26:09Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/el/",
