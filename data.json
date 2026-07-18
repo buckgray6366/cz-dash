@@ -1,35 +1,35 @@
 {
- "generatedAt": "2026-07-18 02:32 ET",
+ "generatedAt": "2026-07-18 07:18 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 2405,
+  "impressions": 2411,
   "clicks": 86,
-  "ctr": 3.58,
+  "ctr": 3.57,
   "position": 8.3,
-  "queries": 117,
+  "queries": 119,
   "pages_seen": 17
  },
  "summaries": {
   "1": {
-   "impressions": 156,
+   "impressions": 162,
    "clicks": 2,
-   "ctr": 1.28,
-   "position": 9.3
+   "ctr": 1.23,
+   "position": 9.4
   },
   "7": {
-   "impressions": 2405,
+   "impressions": 2411,
    "clicks": 86,
-   "ctr": 3.58,
+   "ctr": 3.57,
    "position": 8.3
   },
   "28": {
-   "impressions": 91899,
+   "impressions": 91905,
    "clicks": 825,
    "ctr": 0.9,
    "position": 9.7
   },
   "90": {
-   "impressions": 91899,
+   "impressions": 91905,
    "clicks": 825,
    "ctr": 0.9,
    "position": 9.7
@@ -192,10 +192,17 @@
   },
   {
    "date": "2026-07-17",
-   "impressions": 156,
+   "impressions": 162,
    "clicks": 2,
-   "ctr": 1.28,
-   "position": 9.3
+   "ctr": 1.23,
+   "position": 9.4
+  },
+  {
+   "date": "2026-07-18",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
   }
  ],
  "hourly": [
@@ -283,6 +290,31 @@
    "hour": "2026-07-17T16:00:00-07:00",
    "impressions": 1,
    "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T18:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T19:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T20:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T21:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-17T22:00:00-07:00",
+   "impressions": 2,
+   "clicks": 0
   }
  ],
  "geo": [
@@ -291,7 +323,7 @@
    "name": "Belgium",
    "flag": "🇧🇪",
    "geo": "fr",
-   "impressions": 510,
+   "impressions": 511,
    "clicks": 4,
    "ctr": 0.78,
    "position": 8.2
@@ -301,9 +333,9 @@
    "name": "Italy",
    "flag": "🇮🇹",
    "geo": "it",
-   "impressions": 437,
+   "impressions": 438,
    "clicks": 10,
-   "ctr": 2.29,
+   "ctr": 2.28,
    "position": 9.0
   },
   {
@@ -341,9 +373,9 @@
    "name": "Germany",
    "flag": "🇩🇪",
    "geo": "de",
-   "impressions": 220,
+   "impressions": 222,
    "clicks": 14,
-   "ctr": 6.36,
+   "ctr": 6.31,
    "position": 8.1
   },
   {
@@ -381,10 +413,10 @@
    "name": "Portugal",
    "flag": "🇵🇹",
    "geo": "pt",
-   "impressions": 25,
+   "impressions": 26,
    "clicks": 1,
-   "ctr": 4.0,
-   "position": 9
+   "ctr": 3.85,
+   "position": 9.5
   },
   {
    "cc": "isr",
@@ -401,10 +433,10 @@
    "name": "USA",
    "flag": "🇺🇸",
    "geo": "en",
-   "impressions": 12,
+   "impressions": 13,
    "clicks": 1,
-   "ctr": 8.33,
-   "position": 7
+   "ctr": 7.69,
+   "position": 6.9
   },
   {
    "cc": "aut",
@@ -632,18 +664,18 @@
    "keys": [
     "MOBILE"
    ],
-   "impressions": 1637,
+   "impressions": 1642,
    "clicks": 48,
-   "ctr": 2.93,
+   "ctr": 2.92,
    "position": 8.1
   },
   {
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 619,
+   "impressions": 620,
    "clicks": 32,
-   "ctr": 5.17,
+   "ctr": 5.16,
    "position": 9.0
   },
   {
@@ -884,6 +916,15 @@
   },
   {
    "keys": [
+    "colizzi condizionatore"
+   ],
+   "impressions": 2,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 10.5
+  },
+  {
+   "keys": [
     "colizzi condizionatori"
    ],
    "impressions": 10,
@@ -1007,15 +1048,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 12
-  },
-  {
-   "keys": [
-    "coolizer"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 25
   }
  ],
  "topPages": [
@@ -1032,7 +1064,7 @@
    "keys": [
     "https://trycoolizi.com/nl/"
    ],
-   "impressions": 857,
+   "impressions": 858,
    "clicks": 15,
    "ctr": 1.75,
    "position": 7.8
@@ -1041,9 +1073,9 @@
    "keys": [
     "https://trycoolizi.com/it/"
    ],
-   "impressions": 482,
+   "impressions": 483,
    "clicks": 12,
-   "ctr": 2.49,
+   "ctr": 2.48,
    "position": 9.0
   },
   {
@@ -1068,10 +1100,10 @@
    "keys": [
     "https://trycoolizi.com/de/"
    ],
-   "impressions": 141,
+   "impressions": 143,
    "clicks": 7,
-   "ctr": 4.96,
-   "position": 9.2
+   "ctr": 4.9,
+   "position": 9.3
   },
   {
    "keys": [
@@ -1086,9 +1118,9 @@
    "keys": [
     "https://trycoolizi.com/en/"
    ],
-   "impressions": 115,
+   "impressions": 116,
    "clicks": 7,
-   "ctr": 6.09,
+   "ctr": 6.03,
    "position": 9.1
   },
   {
@@ -1104,10 +1136,10 @@
    "keys": [
     "https://trycoolizi.com/pt/"
    ],
-   "impressions": 25,
+   "impressions": 26,
    "clicks": 1,
-   "ctr": 4.0,
-   "position": 7.4
+   "ctr": 3.85,
+   "position": 8.0
   },
   {
    "keys": [
@@ -1210,18 +1242,18 @@
    "position": 8.3
   },
   {
+   "q": "coolizi reviews",
+   "impressions": 19,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 9.8
+  },
+  {
    "q": "coolizi testaankoop",
    "impressions": 19,
    "clicks": 0,
    "ctr": 0,
    "position": 7.6
-  },
-  {
-   "q": "coolizi reviews",
-   "impressions": 18,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 9.9
   },
   {
    "q": "coolizi prezzo",
@@ -1329,6 +1361,13 @@
    "position": 7.8
   },
   {
+   "q": "coolizi zurückschicken",
+   "impressions": 4,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 11
+  },
+  {
    "q": "l'coolizi",
    "impressions": 4,
    "clicks": 0,
@@ -1390,13 +1429,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 10.3
-  },
-  {
-   "q": "coolizi zurückschicken",
-   "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 11.3
   },
   {
    "q": "coolizie",
@@ -1726,6 +1758,15 @@
    "hint": "Improve title/meta CTR"
   },
   {
+   "q": "coolizi reviews",
+   "impressions": 19,
+   "clicks": 0,
+   "position": 9.8,
+   "ctr": 0,
+   "potential": 9.7,
+   "hint": "Improve title/meta CTR"
+  },
+  {
    "q": "coolizi κλιματιστικο",
    "impressions": 14,
    "clicks": 0,
@@ -1741,15 +1782,6 @@
    "position": 9.1,
    "ctr": 0,
    "potential": 9.3,
-   "hint": "Improve title/meta CTR"
-  },
-  {
-   "q": "coolizi reviews",
-   "impressions": 18,
-   "clicks": 0,
-   "position": 9.9,
-   "ctr": 0,
-   "potential": 9.1,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -1968,6 +2000,21 @@
    ]
   },
   {
+   "q": "coolizi zurückschicken",
+   "pages": [
+    {
+     "page": "https://trycoolizi.com/de/contact/",
+     "impressions": 3,
+     "position": 13.3
+    },
+    {
+     "page": "https://trycoolizi.com/de/terms/",
+     "impressions": 1,
+     "position": 4
+    }
+   ]
+  },
+  {
    "q": "l'coolizi",
    "pages": [
     {
@@ -1981,21 +2028,6 @@
      "position": 29
     }
    ]
-  },
-  {
-   "q": "coolizi zurückschicken",
-   "pages": [
-    {
-     "page": "https://trycoolizi.com/de/contact/",
-     "impressions": 2,
-     "position": 15
-    },
-    {
-     "page": "https://trycoolizi.com/de/terms/",
-     "impressions": 1,
-     "position": 4
-    }
-   ]
   }
  ],
  "indexation": [
@@ -2006,7 +2038,7 @@
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
-   "lastCrawl": "2026-07-14T04:04:22Z",
+   "lastCrawl": "2026-07-18T09:13:25Z",
    "googleCanonical": "https://trycoolizi.com/en/",
    "sitemaps": []
   },
@@ -2084,7 +2116,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-17T13:01:58Z",
    "googleCanonical": "https://trycoolizi.com/nl/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/pt/",
