@@ -1,36 +1,36 @@
 {
- "generatedAt": "2026-07-19 03:57 ET",
+ "generatedAt": "2026-07-19 07:45 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 2005,
-  "clicks": 79,
-  "ctr": 3.94,
+  "impressions": 2009,
+  "clicks": 80,
+  "ctr": 3.98,
   "position": 8.5,
-  "queries": 110,
+  "queries": 111,
   "pages_seen": 17
  },
  "summaries": {
   "1": {
-   "impressions": 80,
-   "clicks": 1,
-   "ctr": 1.25,
-   "position": 9.4
+   "impressions": 84,
+   "clicks": 2,
+   "ctr": 2.38,
+   "position": 9.3
   },
   "7": {
-   "impressions": 2005,
-   "clicks": 79,
-   "ctr": 3.94,
+   "impressions": 2009,
+   "clicks": 80,
+   "ctr": 3.98,
    "position": 8.5
   },
   "28": {
-   "impressions": 91991,
-   "clicks": 826,
+   "impressions": 91995,
+   "clicks": 827,
    "ctr": 0.9,
    "position": 9.7
   },
   "90": {
-   "impressions": 91991,
-   "clicks": 826,
+   "impressions": 91995,
+   "clicks": 827,
    "ctr": 0.9,
    "position": 9.7
   }
@@ -199,10 +199,17 @@
   },
   {
    "date": "2026-07-18",
-   "impressions": 80,
+   "impressions": 83,
    "clicks": 1,
-   "ctr": 1.25,
+   "ctr": 1.2,
    "position": 9.4
+  },
+  {
+   "date": "2026-07-19",
+   "impressions": 1,
+   "clicks": 1,
+   "ctr": 100,
+   "position": 7
   }
  ],
  "hourly": [
@@ -280,6 +287,21 @@
    "hour": "2026-07-18T16:00:00-07:00",
    "impressions": 1,
    "clicks": 0
+  },
+  {
+   "hour": "2026-07-18T20:00:00-07:00",
+   "impressions": 2,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-18T23:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-19T00:00:00-07:00",
+   "impressions": 1,
+   "clicks": 1
   }
  ],
  "geo": [
@@ -288,9 +310,9 @@
    "name": "Italy",
    "flag": "🇮🇹",
    "geo": "it",
-   "impressions": 386,
+   "impressions": 388,
    "clicks": 9,
-   "ctr": 2.33,
+   "ctr": 2.32,
    "position": 9.1
   },
   {
@@ -338,9 +360,9 @@
    "name": "Spain",
    "flag": "🇪🇸",
    "geo": "es",
-   "impressions": 192,
-   "clicks": 8,
-   "ctr": 4.17,
+   "impressions": 193,
+   "clicks": 9,
+   "ctr": 4.66,
    "position": 9.1
   },
   {
@@ -358,9 +380,9 @@
    "name": "Switzerland",
    "flag": "🇨🇭",
    "geo": "de",
-   "impressions": 39,
+   "impressions": 40,
    "clicks": 2,
-   "ctr": 5.13,
+   "ctr": 5.0,
    "position": 8.0
   },
   {
@@ -629,18 +651,18 @@
    "keys": [
     "MOBILE"
    ],
-   "impressions": 1342,
-   "clicks": 44,
-   "ctr": 3.28,
+   "impressions": 1344,
+   "clicks": 45,
+   "ctr": 3.35,
    "position": 8.3
   },
   {
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 545,
+   "impressions": 547,
    "clicks": 30,
-   "ctr": 5.5,
+   "ctr": 5.48,
    "position": 9.1
   },
   {
@@ -676,10 +698,19 @@
    "keys": [
     "coolizi"
    ],
-   "impressions": 215,
+   "impressions": 216,
    "clicks": 2,
    "ctr": 0.93,
    "position": 9.7
+  },
+  {
+   "keys": [
+    "coolizi estafa"
+   ],
+   "impressions": 11,
+   "clicks": 2,
+   "ctr": 18.18,
+   "position": 6.5
   },
   {
    "keys": [
@@ -707,15 +738,6 @@
    "clicks": 1,
    "ctr": 100,
    "position": 11
-  },
-  {
-   "keys": [
-    "coolizi estafa"
-   ],
-   "impressions": 10,
-   "clicks": 1,
-   "ctr": 10.0,
-   "position": 6.5
   },
   {
    "keys": [
@@ -761,6 +783,15 @@
    "clicks": 1,
    "ctr": 25.0,
    "position": 6.5
+  },
+  {
+   "keys": [
+    "ar condicionado coolizi"
+   ],
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 22
   },
   {
    "keys": [
@@ -1004,15 +1035,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 11.5
-  },
-  {
-   "keys": [
-    "coolizi arnaque"
-   ],
-   "impressions": 4,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 24.8
   }
  ],
  "topPages": [
@@ -1047,18 +1069,18 @@
    "keys": [
     "https://trycoolizi.com/it/"
    ],
-   "impressions": 418,
+   "impressions": 421,
    "clicks": 11,
-   "ctr": 2.63,
+   "ctr": 2.61,
    "position": 9.2
   },
   {
    "keys": [
     "https://trycoolizi.com/es/"
    ],
-   "impressions": 186,
-   "clicks": 8,
-   "ctr": 4.3,
+   "impressions": 187,
+   "clicks": 9,
+   "ctr": 4.81,
    "position": 9.3
   },
   {
@@ -1173,7 +1195,7 @@
  "brand": [
   {
    "q": "coolizi",
-   "impressions": 215,
+   "impressions": 216,
    "clicks": 2,
    "ctr": 0.93,
    "position": 9.7
@@ -1229,9 +1251,9 @@
   },
   {
    "q": "coolizi estafa",
-   "impressions": 10,
-   "clicks": 1,
-   "ctr": 10.0,
+   "impressions": 11,
+   "clicks": 2,
+   "ctr": 18.18,
    "position": 6.5
   },
   {
@@ -1459,6 +1481,13 @@
    "position": 23
   },
   {
+   "q": "ar condicionado coolizi",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 22
+  },
+  {
    "q": "arnaque coolizi",
    "impressions": 1,
    "clicks": 0,
@@ -1658,11 +1687,11 @@
  "opportunities": [
   {
    "q": "coolizi",
-   "impressions": 215,
+   "impressions": 216,
    "clicks": 2,
    "position": 9.7,
    "ctr": 0.93,
-   "potential": 110.7,
+   "potential": 111.2,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -1720,21 +1749,21 @@
    "hint": "Improve title/meta CTR"
   },
   {
+   "q": "coolizi estafa",
+   "impressions": 11,
+   "clicks": 2,
+   "position": 6.5,
+   "ctr": 18.18,
+   "potential": 7.4,
+   "hint": "Improve title/meta CTR"
+  },
+  {
    "q": "coolozi",
    "impressions": 14,
    "clicks": 0,
    "position": 9.4,
    "ctr": 0,
    "potential": 7.4,
-   "hint": "Improve title/meta CTR"
-  },
-  {
-   "q": "coolizi estafa",
-   "impressions": 10,
-   "clicks": 1,
-   "position": 6.5,
-   "ctr": 10.0,
-   "potential": 6.8,
    "hint": "Improve title/meta CTR"
   },
   {
@@ -1898,8 +1927,8 @@
     },
     {
      "page": "https://trycoolizi.com/it/",
-     "impressions": 8,
-     "position": 20.2
+     "impressions": 9,
+     "position": 19.2
     },
     {
      "page": "https://trycoolizi.com/fr/",
@@ -2086,9 +2115,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-26T18:23:03Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   }
  ],
  "funnel": {
