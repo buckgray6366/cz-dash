@@ -1,35 +1,35 @@
 {
- "generatedAt": "2026-07-22 09:12 ET",
+ "generatedAt": "2026-07-22 13:52 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 1110,
+  "impressions": 1124,
   "clicks": 35,
-  "ctr": 3.15,
+  "ctr": 3.11,
   "position": 9.4,
-  "queries": 72,
+  "queries": 75,
   "pages_seen": 18
  },
  "summaries": {
   "1": {
-   "impressions": 69,
+   "impressions": 83,
    "clicks": 3,
-   "ctr": 4.35,
-   "position": 10.1
+   "ctr": 3.61,
+   "position": 10.9
   },
   "7": {
-   "impressions": 1110,
+   "impressions": 1124,
    "clicks": 35,
-   "ctr": 3.15,
+   "ctr": 3.11,
    "position": 9.4
   },
   "28": {
-   "impressions": 92225,
+   "impressions": 92239,
    "clicks": 832,
    "ctr": 0.9,
    "position": 9.7
   },
   "90": {
-   "impressions": 92225,
+   "impressions": 92239,
    "clicks": 832,
    "ctr": 0.9,
    "position": 9.7
@@ -227,10 +227,10 @@
   },
   {
    "date": "2026-07-22",
-   "impressions": 2,
+   "impressions": 16,
    "clicks": 0,
    "ctr": 0,
-   "position": 8
+   "position": 13.9
   }
  ],
  "hourly": [
@@ -331,7 +331,22 @@
   },
   {
    "hour": "2026-07-22T00:00:00-07:00",
+   "impressions": 7,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-22T01:00:00-07:00",
    "impressions": 2,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-22T02:00:00-07:00",
+   "impressions": 6,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-07-22T03:00:00-07:00",
+   "impressions": 1,
    "clicks": 0
   }
  ],
@@ -361,19 +376,19 @@
    "name": "Spain",
    "flag": "🇪🇸",
    "geo": "es",
-   "impressions": 137,
+   "impressions": 144,
    "clicks": 3,
-   "ctr": 2.19,
-   "position": 10.5
+   "ctr": 2.08,
+   "position": 10.6
   },
   {
    "cc": "deu",
    "name": "Germany",
    "flag": "🇩🇪",
    "geo": "de",
-   "impressions": 135,
+   "impressions": 136,
    "clicks": 7,
-   "ctr": 5.19,
+   "ctr": 5.15,
    "position": 8.9
   },
   {
@@ -391,9 +406,9 @@
    "name": "France",
    "flag": "🇫🇷",
    "geo": "fr",
-   "impressions": 116,
+   "impressions": 117,
    "clicks": 2,
-   "ctr": 1.72,
+   "ctr": 1.71,
    "position": 10.0
   },
   {
@@ -401,9 +416,9 @@
    "name": "Greece",
    "flag": "🇬🇷",
    "geo": "el",
-   "impressions": 82,
+   "impressions": 85,
    "clicks": 11,
-   "ctr": 13.41,
+   "ctr": 12.94,
    "position": 5.8
   },
   {
@@ -411,9 +426,9 @@
    "name": "Portugal",
    "flag": "🇵🇹",
    "geo": "pt",
-   "impressions": 23,
+   "impressions": 24,
    "clicks": 1,
-   "ctr": 4.35,
+   "ctr": 4.17,
    "position": 9.5
   },
   {
@@ -557,6 +572,16 @@
    "position": 11
   },
   {
+   "cc": "phl",
+   "name": "PHL",
+   "flag": "🏳️",
+   "geo": "",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 88
+  },
+  {
    "cc": "smr",
    "name": "SMR",
    "flag": "🏳️",
@@ -582,19 +607,19 @@
    "keys": [
     "MOBILE"
    ],
-   "impressions": 754,
+   "impressions": 763,
    "clicks": 19,
-   "ctr": 2.52,
-   "position": 8.9
+   "ctr": 2.49,
+   "position": 9.0
   },
   {
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 299,
+   "impressions": 304,
    "clicks": 13,
-   "ctr": 4.35,
-   "position": 10.9
+   "ctr": 4.28,
+   "position": 10.8
   },
   {
    "keys": [
@@ -696,6 +721,15 @@
    "clicks": 0,
    "ctr": 0,
    "position": 6
+  },
+  {
+   "keys": [
+    "climatizzatore coolix"
+   ],
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 88
   },
   {
    "keys": [
@@ -951,21 +985,12 @@
   },
   {
    "keys": [
-    "coolizi opinie"
+    "coolizi leroy merlin"
    ],
    "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 1
-  },
-  {
-   "keys": [
-    "coolizi opiniones"
-   ],
-   "impressions": 4,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 21.8
+   "position": 10
   }
  ],
  "topPages": [
@@ -973,18 +998,18 @@
    "keys": [
     "https://trycoolizi.com/el/"
    ],
-   "impressions": 83,
+   "impressions": 86,
    "clicks": 11,
-   "ctr": 13.25,
-   "position": 5.9
+   "ctr": 12.79,
+   "position": 5.8
   },
   {
    "keys": [
     "https://trycoolizi.com/de/contact/"
    ],
-   "impressions": 68,
+   "impressions": 69,
    "clicks": 6,
-   "ctr": 8.82,
+   "ctr": 8.7,
    "position": 7.6
   },
   {
@@ -1000,27 +1025,27 @@
    "keys": [
     "https://trycoolizi.com/it/"
    ],
-   "impressions": 276,
+   "impressions": 277,
    "clicks": 5,
    "ctr": 1.81,
-   "position": 11.1
+   "position": 11.4
   },
   {
    "keys": [
     "https://trycoolizi.com/es/"
    ],
-   "impressions": 130,
+   "impressions": 136,
    "clicks": 3,
-   "ctr": 2.31,
-   "position": 10.7
+   "ctr": 2.21,
+   "position": 10.8
   },
   {
    "keys": [
     "https://trycoolizi.com/fr/"
    ],
-   "impressions": 114,
+   "impressions": 115,
    "clicks": 2,
-   "ctr": 1.75,
+   "ctr": 1.74,
    "position": 10.0
   },
   {
@@ -1036,10 +1061,10 @@
    "keys": [
     "https://trycoolizi.com/pt/"
    ],
-   "impressions": 20,
+   "impressions": 21,
    "clicks": 1,
-   "ctr": 5.0,
-   "position": 7.5
+   "ctr": 4.76,
+   "position": 7.6
   },
   {
    "keys": [
@@ -1063,10 +1088,10 @@
    "keys": [
     "https://trycoolizi.com/en/"
    ],
-   "impressions": 58,
+   "impressions": 59,
    "clicks": 0,
    "ctr": 0,
-   "position": 8.7
+   "position": 8.8
   },
   {
    "keys": [
@@ -1204,18 +1229,18 @@
    "position": 10
   },
   {
+   "q": "coolizi opiniones",
+   "impressions": 5,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 22.8
+  },
+  {
    "q": "coolizi fraude",
    "impressions": 4,
    "clicks": 1,
    "ctr": 25.0,
    "position": 11
-  },
-  {
-   "q": "coolizi opiniones",
-   "impressions": 4,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 21.8
   },
   {
    "q": "coolizi oplichting",
@@ -1377,6 +1402,13 @@
    "clicks": 0,
    "ctr": 0,
    "position": 11
+  },
+  {
+   "q": "coolizi leroy merlin",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 10
   },
   {
    "q": "coolizi opinie",
@@ -1801,7 +1833,7 @@
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
-   "lastCrawl": "2026-07-16T09:24:31Z",
+   "lastCrawl": "2026-07-22T14:09:13Z",
    "googleCanonical": "https://trycoolizi.com/es/",
    "sitemaps": [
     "https://trycoolizi.com/sitemap.xml"
@@ -1829,9 +1861,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-06-30T03:26:09Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/el/",
