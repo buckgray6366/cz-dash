@@ -1,35 +1,35 @@
 {
- "generatedAt": "2026-07-25 07:48 ET",
+ "generatedAt": "2026-07-25 11:53 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 475,
+  "impressions": 476,
   "clicks": 14,
-  "ctr": 2.95,
+  "ctr": 2.94,
   "position": 10.6,
   "queries": 46,
   "pages_seen": 16
  },
  "summaries": {
   "1": {
-   "impressions": 65,
+   "impressions": 66,
    "clicks": 4,
-   "ctr": 6.15,
+   "ctr": 6.06,
    "position": 9.0
   },
   "7": {
-   "impressions": 475,
+   "impressions": 476,
    "clicks": 14,
-   "ctr": 2.95,
+   "ctr": 2.94,
    "position": 10.6
   },
   "28": {
-   "impressions": 88566,
+   "impressions": 88567,
    "clicks": 807,
    "ctr": 0.91,
    "position": 9.7
   },
   "90": {
-   "impressions": 92386,
+   "impressions": 92387,
    "clicks": 839,
    "ctr": 0.91,
    "position": 9.7
@@ -234,10 +234,10 @@
   },
   {
    "date": "2026-07-25",
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 10
   }
  ],
  "hourly": [
@@ -345,6 +345,11 @@
    "hour": "2026-07-24T21:00:00-07:00",
    "impressions": 2,
    "clicks": 0
+  },
+  {
+   "hour": "2026-07-25T00:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
   }
  ],
  "geo": [
@@ -353,9 +358,9 @@
    "name": "Spain",
    "flag": "🇪🇸",
    "geo": "es",
-   "impressions": 135,
+   "impressions": 136,
    "clicks": 7,
-   "ctr": 5.19,
+   "ctr": 5.15,
    "position": 10.3
   },
   {
@@ -564,9 +569,9 @@
    "keys": [
     "MOBILE"
    ],
-   "impressions": 299,
+   "impressions": 300,
    "clicks": 8,
-   "ctr": 2.68,
+   "ctr": 2.67,
    "position": 10.0
   },
   {
@@ -955,9 +960,9 @@
    "keys": [
     "https://trycoolizi.com/es/"
    ],
-   "impressions": 131,
+   "impressions": 132,
    "clicks": 7,
-   "ctr": 5.34,
+   "ctr": 5.3,
    "position": 10.7
   },
   {
