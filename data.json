@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-07-27 03:56 ET",
+ "generatedAt": "2026-07-27 07:44 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 348,
@@ -231,6 +231,13 @@
    "clicks": 0,
    "ctr": 0,
    "position": 1
+  },
+  {
+   "date": "2026-07-27",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
   }
  ],
  "hourly": [
@@ -1195,7 +1202,7 @@
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
-   "lastCrawl": "2026-07-18T09:13:25Z",
+   "lastCrawl": "2026-07-27T05:37:18Z",
    "googleCanonical": "https://trycoolizi.com/en/",
    "sitemaps": []
   },
@@ -1208,9 +1215,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-19T18:53:42Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -1247,7 +1252,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-27T02:26:41Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -1258,9 +1265,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-22T14:09:13Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -1282,7 +1287,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-26T08:16:58Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -1293,9 +1300,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-20T17:21:02Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   }
  ],
  "funnel": {
