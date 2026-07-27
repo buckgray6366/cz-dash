@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-07-27 07:44 ET",
+ "generatedAt": "2026-07-27 11:18 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 348,
@@ -1215,7 +1215,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-19T18:53:42Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -1265,7 +1267,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-22T14:09:13Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -1276,7 +1280,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-21T20:38:31Z",
    "googleCanonical": "https://trycoolizi.com/nl/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/pt/",
@@ -1300,7 +1306,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-20T17:21:02Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   }
  ],
  "funnel": {
