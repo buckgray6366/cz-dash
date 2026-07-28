@@ -1,35 +1,35 @@
 {
- "generatedAt": "2026-07-28 08:17 ET",
+ "generatedAt": "2026-07-28 10:44 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 269,
+  "impressions": 270,
   "clicks": 11,
-  "ctr": 4.09,
-  "position": 10.2,
+  "ctr": 4.07,
+  "position": 10.3,
   "queries": 32,
   "pages_seen": 14
  },
  "summaries": {
   "1": {
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 33
   },
   "7": {
-   "impressions": 269,
+   "impressions": 270,
    "clicks": 11,
-   "ctr": 4.09,
-   "position": 10.2
+   "ctr": 4.07,
+   "position": 10.3
   },
   "28": {
-   "impressions": 10667,
+   "impressions": 10668,
    "clicks": 338,
    "ctr": 3.17,
    "position": 8.7
   },
   "90": {
-   "impressions": 92425,
+   "impressions": 92426,
    "clicks": 840,
    "ctr": 0.91,
    "position": 9.7
@@ -227,10 +227,10 @@
   },
   {
    "date": "2026-07-27",
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 33
   },
   {
    "date": "2026-07-28",
@@ -240,7 +240,13 @@
    "position": 0
   }
  ],
- "hourly": [],
+ "hourly": [
+  {
+   "hour": "2026-07-27T23:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  }
+ ],
  "geo": [
   {
    "cc": "esp",
@@ -343,6 +349,16 @@
    "position": 10.2
   },
   {
+   "cc": "vnm",
+   "name": "VNM",
+   "flag": "🏳️",
+   "geo": "",
+   "impressions": 4,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 20.8
+  },
+  {
    "cc": "che",
    "name": "Switzerland",
    "flag": "🇨🇭",
@@ -351,16 +367,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 8
-  },
-  {
-   "cc": "vnm",
-   "name": "VNM",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 16.7
   },
   {
    "cc": "bra",
@@ -437,10 +443,10 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 98,
+   "impressions": 99,
    "clicks": 4,
-   "ctr": 4.08,
-   "position": 10.3
+   "ctr": 4.04,
+   "position": 10.6
   },
   {
    "keys": [
@@ -756,10 +762,10 @@
    "keys": [
     "https://trycoolizi.com/el/"
    ],
-   "impressions": 20,
+   "impressions": 21,
    "clicks": 2,
-   "ctr": 10.0,
-   "position": 5.2
+   "ctr": 9.52,
+   "position": 6.6
   },
   {
    "keys": [
@@ -1119,7 +1125,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-19T18:53:42Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -1130,7 +1138,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-17T17:20:53Z",
    "googleCanonical": "https://trycoolizi.com/de/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/fr/",
