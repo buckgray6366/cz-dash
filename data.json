@@ -1,13 +1,13 @@
 {
- "generatedAt": "2026-08-01 23:58 ET",
+ "generatedAt": "2026-08-02 02:48 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 42,
-  "clicks": 2,
-  "ctr": 4.76,
-  "position": 12.0,
-  "queries": 5,
-  "pages_seen": 9
+  "impressions": 6,
+  "clicks": 1,
+  "ctr": 16.67,
+  "position": 17.8,
+  "queries": 1,
+  "pages_seen": 3
  },
  "summaries": {
   "1": {
@@ -17,16 +17,16 @@
    "position": 8
   },
   "7": {
-   "impressions": 42,
-   "clicks": 2,
-   "ctr": 4.76,
-   "position": 12.0
+   "impressions": 6,
+   "clicks": 1,
+   "ctr": 16.67,
+   "position": 17.8
   },
   "28": {
-   "impressions": 6847,
-   "clicks": 185,
-   "ctr": 2.7,
-   "position": 8.5
+   "impressions": 6348,
+   "clicks": 172,
+   "ctr": 2.71,
+   "position": 8.6
   },
   "90": {
    "impressions": 92430,
@@ -36,13 +36,6 @@
   }
  },
  "daily": [
-  {
-   "date": "2026-07-04",
-   "impressions": 499,
-   "clicks": 13,
-   "ctr": 2.61,
-   "position": 8.0
-  },
   {
    "date": "2026-07-05",
    "impressions": 637,
@@ -253,50 +246,10 @@
    "name": "Spain",
    "flag": "🇪🇸",
    "geo": "es",
-   "impressions": 27,
-   "clicks": 2,
-   "ctr": 7.41,
-   "position": 12.4
-  },
-  {
-   "cc": "deu",
-   "name": "Germany",
-   "flag": "🇩🇪",
-   "geo": "de",
-   "impressions": 4,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 8.8
-  },
-  {
-   "cc": "fra",
-   "name": "France",
-   "flag": "🇫🇷",
-   "geo": "fr",
    "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 19
-  },
-  {
-   "cc": "ita",
-   "name": "Italy",
-   "flag": "🇮🇹",
-   "geo": "it",
-   "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 9
-  },
-  {
-   "cc": "bra",
-   "name": "BRA",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 5
+   "clicks": 1,
+   "ctr": 33.33,
+   "position": 23.3
   },
   {
    "cc": "grc",
@@ -307,16 +260,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 3
-  },
-  {
-   "cc": "prt",
-   "name": "Portugal",
-   "flag": "🇵🇹",
-   "geo": "pt",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 6
   },
   {
    "cc": "usa",
@@ -342,30 +285,21 @@
  "device": [
   {
    "keys": [
-    "DESKTOP"
-   ],
-   "impressions": 16,
-   "clicks": 1,
-   "ctr": 6.25,
-   "position": 13.1
-  },
-  {
-   "keys": [
     "MOBILE"
    ],
-   "impressions": 22,
+   "impressions": 3,
    "clicks": 1,
-   "ctr": 4.55,
-   "position": 11.7
+   "ctr": 33.33,
+   "position": 23.3
   },
   {
    "keys": [
-    "TABLET"
+    "DESKTOP"
    ],
-   "impressions": 4,
+   "impressions": 3,
    "clicks": 0,
    "ctr": 0,
-   "position": 9
+   "position": 12.3
   }
  ],
  "topQueries": [
@@ -373,46 +307,10 @@
    "keys": [
     "coolizi opiniones"
    ],
-   "impressions": 2,
+   "impressions": 1,
    "clicks": 1,
-   "ctr": 50.0,
-   "position": 41.5
-  },
-  {
-   "keys": [
-    "coolizi"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 36
-  },
-  {
-   "keys": [
-    "coolizi aire acondicionado portatil"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 25
-  },
-  {
-   "keys": [
-    "coolizi estafa"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 9
-  },
-  {
-   "keys": [
-    "coolizzi"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 10
+   "ctr": 100,
+   "position": 45
   }
  ],
  "topPages": [
@@ -420,37 +318,10 @@
    "keys": [
     "https://trycoolizi.com/es/"
    ],
-   "impressions": 26,
-   "clicks": 1,
-   "ctr": 3.85,
-   "position": 13
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/nl/"
-   ],
-   "impressions": 1,
-   "clicks": 1,
-   "ctr": 100,
-   "position": 3
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/de/contact/"
-   ],
    "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 9.7
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/de/terms/"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 6
+   "clicks": 1,
+   "ctr": 33.33,
+   "position": 23.3
   },
   {
    "keys": [
@@ -465,67 +336,19 @@
    "keys": [
     "https://trycoolizi.com/en/"
    ],
-   "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 3.7
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/fr/"
-   ],
-   "impressions": 2,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 23
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/it/"
-   ],
-   "impressions": 3,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 9
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/pt/"
-   ],
    "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 6
+   "position": 1
   }
  ],
  "brand": [
   {
    "q": "coolizi opiniones",
-   "impressions": 2,
+   "impressions": 1,
    "clicks": 1,
-   "ctr": 50.0,
-   "position": 41.5
-  },
-  {
-   "q": "coolizi",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 36
-  },
-  {
-   "q": "coolizi aire acondicionado portatil",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 25
-  },
-  {
-   "q": "coolizi estafa",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 9
+   "ctr": 100,
+   "position": 45
   }
  ],
  "opportunities": [],
@@ -603,7 +426,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-30T01:19:31Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -654,10 +479,10 @@
  "milestones": {
   "first_impression": true,
   "first_click": true,
-  "top10": true,
+  "top10": false,
   "top3": false,
   "number1": false,
-  "best_position": 9,
+  "best_position": 45,
   "indexed_pages": 8
  },
  "affiliate": {
