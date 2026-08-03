@@ -1,32 +1,32 @@
 {
- "generatedAt": "2026-08-03 00:00 ET",
+ "generatedAt": "2026-08-03 03:51 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 6,
+  "impressions": 5,
   "clicks": 1,
-  "ctr": 16.67,
-  "position": 17.8,
+  "ctr": 20.0,
+  "position": 21.2,
   "queries": 1,
-  "pages_seen": 3
+  "pages_seen": 2
  },
  "summaries": {
   "1": {
-   "impressions": 1,
+   "impressions": 0,
    "clicks": 0,
    "ctr": 0,
-   "position": 8
+   "position": 0
   },
   "7": {
-   "impressions": 6,
+   "impressions": 5,
    "clicks": 1,
-   "ctr": 16.67,
-   "position": 17.8
+   "ctr": 20.0,
+   "position": 21.2
   },
   "28": {
-   "impressions": 6348,
-   "clicks": 172,
-   "ctr": 2.71,
-   "position": 8.6
+   "impressions": 5711,
+   "clicks": 158,
+   "ctr": 2.77,
+   "position": 8.7
   },
   "90": {
    "impressions": 92430,
@@ -36,13 +36,6 @@
   }
  },
  "daily": [
-  {
-   "date": "2026-07-05",
-   "impressions": 637,
-   "clicks": 14,
-   "ctr": 2.2,
-   "position": 7.9
-  },
   {
    "date": "2026-07-06",
    "impressions": 579,
@@ -240,13 +233,7 @@
    "position": 0
   }
  ],
- "hourly": [
-  {
-   "hour": "2026-08-01T06:00:00-07:00",
-   "impressions": 1,
-   "clicks": 0
-  }
- ],
+ "hourly": [],
  "geo": [
   {
    "cc": "esp",
@@ -267,16 +254,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 3
-  },
-  {
-   "cc": "usa",
-   "name": "USA",
-   "flag": "🇺🇸",
-   "geo": "en",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
   },
   {
    "cc": "vnm",
@@ -303,10 +280,10 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 3,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 12.3
+   "position": 18
   }
  ],
  "topQueries": [
@@ -338,15 +315,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 18
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/en/"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
   }
  ],
  "brand": [
@@ -433,7 +401,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-30T01:19:31Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/nl/",
