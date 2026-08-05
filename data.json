@@ -1,13 +1,13 @@
 {
- "generatedAt": "2026-08-04 23:39 ET",
+ "generatedAt": "2026-08-05 02:46 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 4,
-  "clicks": 1,
-  "ctr": 25.0,
-  "position": 18.2,
-  "queries": 1,
-  "pages_seen": 2
+  "impressions": 2,
+  "clicks": 0,
+  "ctr": 0,
+  "position": 12.5,
+  "queries": 0,
+  "pages_seen": 1
  },
  "summaries": {
   "1": {
@@ -17,15 +17,15 @@
    "position": 0
   },
   "7": {
-   "impressions": 4,
-   "clicks": 1,
-   "ctr": 25.0,
-   "position": 18.2
+   "impressions": 2,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 12.5
   },
   "28": {
-   "impressions": 5132,
-   "clicks": 146,
-   "ctr": 2.84,
+   "impressions": 4585,
+   "clicks": 141,
+   "ctr": 3.08,
    "position": 8.7
   },
   "90": {
@@ -36,13 +36,6 @@
   }
  },
  "daily": [
-  {
-   "date": "2026-07-07",
-   "impressions": 547,
-   "clicks": 5,
-   "ctr": 0.91,
-   "position": 8.4
-  },
   {
    "date": "2026-07-08",
    "impressions": 577,
@@ -247,20 +240,10 @@
    "name": "Spain",
    "flag": "🇪🇸",
    "geo": "es",
-   "impressions": 3,
-   "clicks": 1,
-   "ctr": 33.33,
-   "position": 23.3
-  },
-  {
-   "cc": "grc",
-   "name": "Greece",
-   "flag": "🇬🇷",
-   "geo": "el",
-   "impressions": 1,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 3
+   "position": 12.5
   }
  ],
  "device": [
@@ -268,61 +251,25 @@
    "keys": [
     "MOBILE"
    ],
-   "impressions": 3,
-   "clicks": 1,
-   "ctr": 33.33,
-   "position": 23.3
-  },
-  {
-   "keys": [
-    "DESKTOP"
-   ],
-   "impressions": 1,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 3
+   "position": 12.5
   }
  ],
- "topQueries": [
-  {
-   "keys": [
-    "coolizi opiniones"
-   ],
-   "impressions": 1,
-   "clicks": 1,
-   "ctr": 100,
-   "position": 45
-  }
- ],
+ "topQueries": [],
  "topPages": [
   {
    "keys": [
     "https://trycoolizi.com/es/"
    ],
-   "impressions": 3,
-   "clicks": 1,
-   "ctr": 33.33,
-   "position": 23.3
-  },
-  {
-   "keys": [
-    "https://trycoolizi.com/el/"
-   ],
-   "impressions": 1,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 3
+   "position": 12.5
   }
  ],
- "brand": [
-  {
-   "q": "coolizi opiniones",
-   "impressions": 1,
-   "clicks": 1,
-   "ctr": 100,
-   "position": 45
-  }
- ],
+ "brand": [],
  "opportunities": [],
  "cannibal": [],
  "indexation": [
@@ -385,9 +332,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-27T02:26:41Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -398,7 +343,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-30T01:19:31Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -448,11 +395,11 @@
  },
  "milestones": {
   "first_impression": true,
-  "first_click": true,
+  "first_click": false,
   "top10": false,
   "top3": false,
   "number1": false,
-  "best_position": 45,
+  "best_position": 99,
   "indexed_pages": 8
  },
  "affiliate": {
