@@ -1,35 +1,35 @@
 {
- "generatedAt": "2026-08-07 09:43 ET",
+ "generatedAt": "2026-08-07 11:14 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 2,
+  "impressions": 5,
   "clicks": 0,
   "ctr": 0,
-  "position": 4.5,
+  "position": 3.6,
   "queries": 0,
   "pages_seen": 10
  },
  "summaries": {
   "1": {
-   "impressions": 0,
+   "impressions": 3,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 3
   },
   "7": {
-   "impressions": 2,
+   "impressions": 5,
    "clicks": 0,
    "ctr": 0,
-   "position": 4.5
+   "position": 3.6
   },
   "28": {
-   "impressions": 3419,
+   "impressions": 3422,
    "clicks": 115,
    "ctr": 3.36,
    "position": 8.6
   },
   "90": {
-   "impressions": 92431,
+   "impressions": 92434,
    "clicks": 841,
    "ctr": 0.91,
    "position": 9.7
@@ -234,14 +234,30 @@
   },
   {
    "date": "2026-08-07",
-   "impressions": 0,
+   "impressions": 3,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 3
   }
  ],
- "hourly": [],
+ "hourly": [
+  {
+   "hour": "2026-08-07T02:00:00-07:00",
+   "impressions": 3,
+   "clicks": 0
+  }
+ ],
  "geo": [
+  {
+   "cc": "usa",
+   "name": "USA",
+   "flag": "🇺🇸",
+   "geo": "en",
+   "impressions": 4,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 2.5
+  },
   {
    "cc": "esp",
    "name": "Spain",
@@ -251,16 +267,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 8
-  },
-  {
-   "cc": "usa",
-   "name": "USA",
-   "flag": "🇺🇸",
-   "geo": "en",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
   }
  ],
  "device": [
@@ -268,10 +274,10 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 1,
+   "impressions": 4,
    "clicks": 0,
    "ctr": 0,
-   "position": 1
+   "position": 2.5
   },
   {
    "keys": [
@@ -334,10 +340,10 @@
    "keys": [
     "https://trycoolizi.com/fr/"
    ],
-   "impressions": 1,
+   "impressions": 4,
    "clicks": 0,
    "ctr": 0,
-   "position": 4
+   "position": 3.2
   },
   {
    "keys": [
@@ -491,7 +497,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-20T17:21:02Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   }
  ],
  "funnel": {
