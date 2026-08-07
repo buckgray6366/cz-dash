@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-07 06:14 ET",
+ "generatedAt": "2026-08-07 07:11 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 2,
@@ -231,6 +231,13 @@
    "clicks": 0,
    "ctr": 0,
    "position": 0
+  },
+  {
+   "date": "2026-08-07",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
   }
  ],
  "hourly": [],
@@ -393,7 +400,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-30T09:01:55Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -404,7 +413,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-29T23:47:53Z",
    "googleCanonical": "https://trycoolizi.com/de/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/fr/",
@@ -415,7 +426,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-08-05T08:27:16Z",
    "googleCanonical": "https://trycoolizi.com/fr/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/it/",
@@ -439,9 +452,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-30T01:19:31Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -463,9 +474,11 @@
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
-   "lastCrawl": "2026-07-26T08:16:58Z",
+   "lastCrawl": "2026-07-26T08:17:13Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -476,9 +489,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-20T17:21:02Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   }
  ],
  "funnel": {
