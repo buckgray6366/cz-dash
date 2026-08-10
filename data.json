@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-08-10 08:03 ET",
+ "generatedAt": "2026-08-10 09:49 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 7,
+  "impressions": 8,
   "clicks": 0,
   "ctr": 0,
   "position": 8.6,
@@ -11,25 +11,25 @@
  },
  "summaries": {
   "1": {
-   "impressions": 1,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 32
+   "position": 20.5
   },
   "7": {
-   "impressions": 7,
+   "impressions": 8,
    "clicks": 0,
    "ctr": 0,
    "position": 8.6
   },
   "28": {
-   "impressions": 2057,
+   "impressions": 2058,
    "clicks": 74,
    "ctr": 3.6,
    "position": 9.0
   },
   "90": {
-   "impressions": 92437,
+   "impressions": 92438,
    "clicks": 841,
    "ctr": 0.91,
    "position": 9.7
@@ -234,15 +234,20 @@
   },
   {
    "date": "2026-08-10",
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 9
   }
  ],
  "hourly": [
   {
    "hour": "2026-08-09T06:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  },
+  {
+   "hour": "2026-08-10T00:00:00-07:00",
    "impressions": 1,
    "clicks": 0
   }
@@ -253,10 +258,10 @@
    "name": "USA",
    "flag": "🇺🇸",
    "geo": "en",
-   "impressions": 5,
+   "impressions": 6,
    "clicks": 0,
    "ctr": 0,
-   "position": 2.4
+   "position": 3.5
   },
   {
    "cc": "esp",
@@ -284,10 +289,10 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 6,
+   "impressions": 7,
    "clicks": 0,
    "ctr": 0,
-   "position": 7.3
+   "position": 7.6
   },
   {
    "keys": [
@@ -360,10 +365,10 @@
    "keys": [
     "https://trycoolizi.com/fr/"
    ],
-   "impressions": 5,
+   "impressions": 6,
    "clicks": 0,
    "ctr": 0,
-   "position": 3.2
+   "position": 4.2
   },
   {
    "keys": [
@@ -521,9 +526,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-08-10T09:26:50Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -534,9 +537,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-07-20T17:21:02Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   }
  ],
  "funnel": {
