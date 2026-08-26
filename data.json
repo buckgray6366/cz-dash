@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-08-25 23:28 ET",
+ "generatedAt": "2026-08-26 00:59 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 2,
+  "impressions": 1,
   "clicks": 0,
   "ctr": 0,
-  "position": 27.5,
+  "position": 2,
   "queries": 0,
   "pages_seen": 1
  },
@@ -17,16 +17,16 @@
    "position": 0
   },
   "7": {
-   "impressions": 2,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 27.5
+   "position": 2
   },
   "28": {
-   "impressions": 18,
-   "clicks": 3,
-   "ctr": 16.67,
-   "position": 18.2
+   "impressions": 16,
+   "clicks": 2,
+   "ctr": 12.5,
+   "position": 17.5
   },
   "90": {
    "impressions": 92444,
@@ -36,13 +36,6 @@
   }
  },
  "daily": [
-  {
-   "date": "2026-07-28",
-   "impressions": 2,
-   "clicks": 1,
-   "ctr": 50.0,
-   "position": 24
-  },
   {
    "date": "2026-07-29",
    "impressions": 0,
@@ -251,16 +244,6 @@
    "clicks": 0,
    "ctr": 0,
    "position": 2
-  },
-  {
-   "cc": "mex",
-   "name": "MEX",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 53
   }
  ],
  "device": [
@@ -268,10 +251,10 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 2,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 27.5
+   "position": 2
   }
  ],
  "topQueries": [],
@@ -280,10 +263,10 @@
    "keys": [
     "https://trycoolizi.com/fr/"
    ],
-   "impressions": 2,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 27.5
+   "position": 2
   }
  ],
  "brand": [],
@@ -423,11 +406,11 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 430,
+  "clicks": 410,
   "conversions": 2,
   "revenue": 210.0,
-  "epc": 0.488,
-  "cr": 0.47,
+  "epc": 0.512,
+  "cr": 0.49,
   "currency": "$",
   "goal": 50,
   "by_offer": [
@@ -542,29 +525,29 @@
    },
    {
     "offer": "Coolizi",
-    "clicks": 143,
+    "clicks": 123,
     "conversions": 2,
     "revenue": 210.0,
-    "epc": 1.469,
-    "cr": 1.4,
+    "epc": 1.707,
+    "cr": 1.63,
     "by_geo": [
      {
       "sub": "fr",
       "name": "FR/BE",
       "flag": "🇫🇷",
       "geo": "fr",
-      "clicks": 37,
+      "clicks": 34,
       "conversions": 1,
       "revenue": 105.0,
-      "epc": 2.838,
-      "cr": 2.7
+      "epc": 3.088,
+      "cr": 2.94
      },
      {
       "sub": "it",
       "name": "Italy",
       "flag": "🇮🇹",
       "geo": "it",
-      "clicks": 31,
+      "clicks": 29,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -575,11 +558,11 @@
       "name": "NL",
       "flag": "🇳🇱",
       "geo": "nl",
-      "clicks": 21,
+      "clicks": 19,
       "conversions": 1,
       "revenue": 105.0,
-      "epc": 5.0,
-      "cr": 4.76
+      "epc": 5.526,
+      "cr": 5.26
      },
      {
       "sub": "de",
@@ -597,7 +580,7 @@
       "name": "Spain",
       "flag": "🇪🇸",
       "geo": "es",
-      "clicks": 15,
+      "clicks": 12,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -608,7 +591,7 @@
       "name": "UK",
       "flag": "🇬🇧",
       "geo": "en",
-      "clicks": 7,
+      "clicks": 5,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -619,7 +602,7 @@
       "name": "Greece",
       "flag": "🇬🇷",
       "geo": "el",
-      "clicks": 5,
+      "clicks": 3,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -630,7 +613,7 @@
       "name": "Portugal",
       "flag": "🇵🇹",
       "geo": "pt",
-      "clicks": 4,
+      "clicks": 2,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -641,18 +624,7 @@
       "name": "International",
       "flag": "🌍",
       "geo": "",
-      "clicks": 3,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "be",
-      "name": "Belgium",
-      "flag": "🇧🇪",
-      "geo": "fr",
-      "clicks": 2,
+      "clicks": 1,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
