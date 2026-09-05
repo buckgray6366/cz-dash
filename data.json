@@ -1,32 +1,32 @@
 {
- "generatedAt": "2026-09-04 20:10 ET",
+ "generatedAt": "2026-09-05 00:38 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 3,
+  "impressions": 2,
   "clicks": 0,
   "ctr": 0,
-  "position": 25.7,
+  "position": 4,
   "queries": 0,
   "pages_seen": 10
  },
  "summaries": {
   "1": {
-   "impressions": 1,
+   "impressions": 0,
    "clicks": 0,
    "ctr": 0,
-   "position": 7
+   "position": 0
   },
   "7": {
-   "impressions": 3,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 25.7
+   "position": 4
   },
   "28": {
-   "impressions": 16,
+   "impressions": 11,
    "clicks": 2,
-   "ctr": 12.5,
-   "position": 20.7
+   "ctr": 18.18,
+   "position": 27.6
   },
   "90": {
    "impressions": 92447,
@@ -36,13 +36,6 @@
   }
  },
  "daily": [
-  {
-   "date": "2026-08-07",
-   "impressions": 5,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 5.4
-  },
   {
    "date": "2026-08-08",
    "impressions": 0,
@@ -240,24 +233,8 @@
    "position": 0
   }
  ],
- "hourly": [
-  {
-   "hour": "2026-09-03T22:00:00-07:00",
-   "impressions": 1,
-   "clicks": 0
-  }
- ],
+ "hourly": [],
  "geo": [
-  {
-   "cc": "dza",
-   "name": "DZA",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 69
-  },
   {
    "cc": "grc",
    "name": "Greece",
@@ -284,10 +261,10 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 3,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 25.7
+   "position": 4
   }
  ],
  "topQueries": [],
@@ -341,10 +318,10 @@
    "keys": [
     "https://trycoolizi.com/fr/"
    ],
-   "impressions": 2,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 36.5
+   "position": 4
   },
   {
    "keys": [
@@ -407,7 +384,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-08-23T16:35:36Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -483,7 +462,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-08-22T10:47:52Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -516,7 +497,7 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 103,
+  "clicks": 95,
   "conversions": 0,
   "revenue": 0.0,
   "epc": 0.0,
@@ -526,7 +507,7 @@
   "by_offer": [
    {
     "offer": "AiraBreeze",
-    "clicks": 97,
+    "clicks": 89,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,
@@ -537,7 +518,7 @@
       "name": "NL",
       "flag": "🇳🇱",
       "geo": "nl",
-      "clicks": 48,
+      "clicks": 44,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -548,7 +529,7 @@
       "name": "DE/AT/CH",
       "flag": "🇩🇪",
       "geo": "de",
-      "clicks": 10,
+      "clicks": 8,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -559,7 +540,7 @@
       "name": "Spain",
       "flag": "🇪🇸",
       "geo": "es",
-      "clicks": 8,
+      "clicks": 7,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -570,7 +551,7 @@
       "name": "FR/BE",
       "flag": "🇫🇷",
       "geo": "fr",
-      "clicks": 8,
+      "clicks": 7,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
