@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-08 10:38 ET",
+ "generatedAt": "2026-09-08 14:47 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 1,
@@ -293,8 +293,8 @@
   },
   {
    "url": "https://trycoolizi.com/en/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -306,8 +306,8 @@
   },
   {
    "url": "https://trycoolizi.com/de/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -319,8 +319,8 @@
   },
   {
    "url": "https://trycoolizi.com/fr/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -332,8 +332,8 @@
   },
   {
    "url": "https://trycoolizi.com/it/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -345,8 +345,8 @@
   },
   {
    "url": "https://trycoolizi.com/es/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -356,8 +356,8 @@
   },
   {
    "url": "https://trycoolizi.com/nl/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -369,19 +369,21 @@
   },
   {
    "url": "https://trycoolizi.com/pt/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-08-22T10:47:52Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/el/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
+   "verdict": "NEUTRAL",
+   "coverage": "Crawled - currently not indexed",
    "robots": "ALLOWED",
    "fetch": "SUCCESSFUL",
    "indexing": "INDEXING_ALLOWED",
@@ -393,8 +395,8 @@
   }
  ],
  "funnel": {
-  "indexed": 8,
-  "crawled_not_indexed": 0,
+  "indexed": 0,
+  "crawled_not_indexed": 8,
   "discovered": 0,
   "other": 1
  },
@@ -405,7 +407,7 @@
   "top3": false,
   "number1": false,
   "best_position": 99,
-  "indexed_pages": 8
+  "indexed_pages": 0
  },
  "affiliate": {
   "connected": true,
