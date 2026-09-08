@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-08 00:48 ET",
+ "generatedAt": "2026-09-08 05:49 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 1,
@@ -227,6 +227,13 @@
   },
   {
    "date": "2026-09-07",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
+  },
+  {
+   "date": "2026-09-08",
    "impressions": 0,
    "clicks": 0,
    "ctr": 0,
