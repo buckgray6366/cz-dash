@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-11 20:22 ET",
+ "generatedAt": "2026-09-12 00:45 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 1,
@@ -36,13 +36,6 @@
   }
  },
  "daily": [
-  {
-   "date": "2026-08-14",
-   "impressions": 0,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 0
-  },
   {
    "date": "2026-08-15",
    "impressions": 1,
@@ -300,7 +293,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-08-23T16:35:36Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -337,7 +332,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-10T10:14:25Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -348,7 +345,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-04T23:35:37Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -407,7 +406,7 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 25,
+  "clicks": 12,
   "conversions": 0,
   "revenue": 0.0,
   "epc": 0.0,
@@ -417,7 +416,7 @@
   "by_offer": [
    {
     "offer": "AiraBreeze",
-    "clicks": 19,
+    "clicks": 6,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,
@@ -428,51 +427,7 @@
       "name": "Greece",
       "flag": "🇬🇷",
       "geo": "el",
-      "clicks": 5,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "nl",
-      "name": "NL",
-      "flag": "🇳🇱",
-      "geo": "nl",
-      "clicks": 3,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "fr",
-      "name": "FR/BE",
-      "flag": "🇫🇷",
-      "geo": "fr",
-      "clicks": 3,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "uk",
-      "name": "UK",
-      "flag": "🇬🇧",
-      "geo": "en",
-      "clicks": 2,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "de",
-      "name": "DE/AT/CH",
-      "flag": "🇩🇪",
-      "geo": "de",
-      "clicks": 2,
+      "clicks": 4,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
@@ -484,28 +439,6 @@
       "flag": "🇵🇹",
       "geo": "pt",
       "clicks": 2,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "it",
-      "name": "Italy",
-      "flag": "🇮🇹",
-      "geo": "it",
-      "clicks": 1,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "es",
-      "name": "Spain",
-      "flag": "🇪🇸",
-      "geo": "es",
-      "clicks": 1,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
