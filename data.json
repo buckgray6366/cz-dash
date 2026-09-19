@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-19 01:59 ET",
+ "generatedAt": "2026-09-19 07:10 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 9,
@@ -227,6 +227,13 @@
   },
   {
    "date": "2026-09-18",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
+  },
+  {
+   "date": "2026-09-19",
    "impressions": 0,
    "clicks": 0,
    "ctr": 0,
@@ -478,7 +485,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-10T10:14:25Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -515,9 +524,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-15T11:29:56Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/el/",
