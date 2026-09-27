@@ -1,35 +1,35 @@
 {
- "generatedAt": "2026-09-27 10:05 ET",
+ "generatedAt": "2026-09-27 14:30 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 3,
+  "impressions": 4,
   "clicks": 0,
   "ctr": 0,
-  "position": 6.7,
-  "queries": 0,
+  "position": 9.5,
+  "queries": 1,
   "pages_seen": 2
  },
  "summaries": {
   "1": {
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 18
   },
   "7": {
-   "impressions": 3,
+   "impressions": 4,
    "clicks": 0,
    "ctr": 0,
-   "position": 6.7
+   "position": 9.5
   },
   "28": {
-   "impressions": 15,
+   "impressions": 16,
    "clicks": 0,
    "ctr": 0,
-   "position": 5
+   "position": 5.8
   },
   "90": {
-   "impressions": 13061,
+   "impressions": 13062,
    "clicks": 454,
    "ctr": 3.48,
    "position": 8.8
@@ -234,23 +234,29 @@
   },
   {
    "date": "2026-09-27",
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 18
   }
  ],
- "hourly": [],
+ "hourly": [
+  {
+   "hour": "2026-09-27T01:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  }
+ ],
  "geo": [
   {
    "cc": "grc",
    "name": "Greece",
    "flag": "🇬🇷",
    "geo": "el",
-   "impressions": 2,
+   "impressions": 3,
    "clicks": 0,
    "ctr": 0,
-   "position": 8
+   "position": 11.3
   },
   {
    "cc": "deu",
@@ -268,13 +274,23 @@
    "keys": [
     "DESKTOP"
    ],
-   "impressions": 3,
+   "impressions": 4,
    "clicks": 0,
    "ctr": 0,
-   "position": 6.7
+   "position": 9.5
   }
  ],
- "topQueries": [],
+ "topQueries": [
+  {
+   "keys": [
+    "coolizi"
+   ],
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 18
+  }
+ ],
  "topPages": [
   {
    "keys": [
@@ -289,13 +305,21 @@
    "keys": [
     "https://trycoolizi.com/el/"
    ],
-   "impressions": 2,
+   "impressions": 3,
    "clicks": 0,
    "ctr": 0,
-   "position": 8
+   "position": 11.3
   }
  ],
- "brand": [],
+ "brand": [
+  {
+   "q": "coolizi",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 18
+  }
+ ],
  "opportunities": [],
  "cannibal": [],
  "indexation": [
@@ -345,9 +369,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-22T11:36:17Z",
    "googleCanonical": "https://trycoolizi.com/fr/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/it/",
@@ -358,9 +380,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-10T10:14:25Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -371,9 +391,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-22T11:50:07Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -427,7 +445,7 @@
   "top10": false,
   "top3": false,
   "number1": false,
-  "best_position": 99,
+  "best_position": 18,
   "indexed_pages": 8
  },
  "affiliate": {
