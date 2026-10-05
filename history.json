@@ -798,5 +798,13 @@
   "position": 7,
   "indexed": 8,
   "best_position": 7
+ },
+ {
+  "date": "2026-10-05",
+  "impressions": 3,
+  "clicks": 1,
+  "position": 3.3,
+  "indexed": 8,
+  "best_position": 7
  }
 ]
