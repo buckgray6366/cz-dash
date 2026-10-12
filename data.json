@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12 02:09 ET",
+ "generatedAt": "2026-10-12 11:42 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 3,
@@ -231,6 +231,13 @@
    "clicks": 0,
    "ctr": 0,
    "position": 0
+  },
+  {
+   "date": "2026-10-12",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
   }
  ],
  "hourly": [],
@@ -385,12 +392,14 @@
  "indexation": [
   {
    "url": "https://trycoolizi.com/",
-   "verdict": "ERR",
-   "coverage": "HTTP 500",
-   "robots": "",
-   "fetch": "",
-   "indexing": "",
-   "lastCrawl": null
+   "verdict": "NEUTRAL",
+   "coverage": "Page with redirect",
+   "robots": "ALLOWED",
+   "fetch": "SUCCESSFUL",
+   "indexing": "INDEXING_ALLOWED",
+   "lastCrawl": "2026-08-24T07:42:03Z",
+   "googleCanonical": "https://trycoolizi.com/en/",
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/en/",
@@ -420,12 +429,16 @@
   },
   {
    "url": "https://trycoolizi.com/fr/",
-   "verdict": "ERR",
-   "coverage": "HTTP 500",
-   "robots": "",
-   "fetch": "",
-   "indexing": "",
-   "lastCrawl": null
+   "verdict": "PASS",
+   "coverage": "Submitted and indexed",
+   "robots": "ALLOWED",
+   "fetch": "SUCCESSFUL",
+   "indexing": "INDEXING_ALLOWED",
+   "lastCrawl": "2026-09-22T11:36:17Z",
+   "googleCanonical": "https://trycoolizi.com/fr/",
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/it/",
@@ -488,14 +501,16 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-28T23:04:15Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   }
  ],
  "funnel": {
-  "indexed": 7,
+  "indexed": 8,
   "crawled_not_indexed": 0,
   "discovered": 0,
-  "other": 2
+  "other": 1
  },
  "milestones": {
   "first_impression": true,
@@ -504,7 +519,7 @@
   "top3": false,
   "number1": false,
   "best_position": 99,
-  "indexed_pages": 7
+  "indexed_pages": 8
  },
  "affiliate": {
   "connected": true,
