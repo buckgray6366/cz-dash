@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17 21:11 ET",
+ "generatedAt": "2026-10-18 02:02 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 1,
@@ -29,20 +29,13 @@
    "position": 7.5
   },
   "90": {
-   "impressions": 471,
-   "clicks": 18,
-   "ctr": 3.82,
-   "position": 11.1
+   "impressions": 391,
+   "clicks": 16,
+   "ctr": 4.09,
+   "position": 10.8
   }
  },
  "daily": [
-  {
-   "date": "2026-09-19",
-   "impressions": 0,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 0
-  },
   {
    "date": "2026-09-20",
    "impressions": 0,
@@ -313,7 +306,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-03T16:34:05Z",
    "googleCanonical": "https://trycoolizi.com/de/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/fr/",
@@ -350,9 +345,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-30T21:51:06Z",
    "googleCanonical": "https://trycoolizi.com/es/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/nl/",
@@ -389,9 +382,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-28T23:04:15Z",
    "googleCanonical": "https://trycoolizi.com/el/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   }
  ],
  "funnel": {
@@ -411,7 +402,7 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 3,
+  "clicks": 2,
   "conversions": 0,
   "revenue": 0.0,
   "epc": 0.0,
@@ -421,7 +412,7 @@
   "by_offer": [
    {
     "offer": "AiraBreeze",
-    "clicks": 3,
+    "clicks": 2,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,
@@ -433,17 +424,6 @@
       "flag": "🇬🇷",
       "geo": "el",
       "clicks": 2,
-      "conversions": 0,
-      "revenue": 0.0,
-      "epc": 0.0,
-      "cr": 0.0
-     },
-     {
-      "sub": "pt",
-      "name": "Portugal",
-      "flag": "🇵🇹",
-      "geo": "pt",
-      "clicks": 1,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
