@@ -1,13 +1,13 @@
 {
- "generatedAt": "2026-10-21 21:36 ET",
+ "generatedAt": "2026-10-22 03:43 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 1,
+  "impressions": 0,
   "clicks": 0,
   "ctr": 0,
-  "position": 14,
+  "position": 0,
   "queries": 0,
-  "pages_seen": 1
+  "pages_seen": 0
  },
  "summaries": {
   "1": {
@@ -17,10 +17,10 @@
    "position": 0
   },
   "7": {
-   "impressions": 1,
+   "impressions": 0,
    "clicks": 0,
    "ctr": 0,
-   "position": 14
+   "position": 0
   },
   "28": {
    "impressions": 11,
@@ -29,20 +29,13 @@
    "position": 7.5
   },
   "90": {
-   "impressions": 198,
+   "impressions": 145,
    "clicks": 9,
-   "ctr": 4.55,
-   "position": 10.4
+   "ctr": 6.21,
+   "position": 10.7
   }
  },
  "daily": [
-  {
-   "date": "2026-09-23",
-   "impressions": 0,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 0
-  },
   {
    "date": "2026-09-24",
    "impressions": 1,
@@ -241,41 +234,10 @@
   }
  ],
  "hourly": [],
- "geo": [
-  {
-   "cc": "bra",
-   "name": "BRA",
-   "flag": "🏳️",
-   "geo": "",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 14
-  }
- ],
- "device": [
-  {
-   "keys": [
-    "MOBILE"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 14
-  }
- ],
+ "geo": [],
+ "device": [],
  "topQueries": [],
- "topPages": [
-  {
-   "keys": [
-    "https://trycoolizi.com/it/"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 14
-  }
- ],
+ "topPages": [],
  "brand": [],
  "opportunities": [],
  "cannibal": [],
@@ -326,7 +288,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-21T14:39:17Z",
    "googleCanonical": "https://trycoolizi.com/fr/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/it/",
@@ -337,7 +301,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-06T05:53:17Z",
    "googleCanonical": "https://trycoolizi.com/it/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/es/",
@@ -374,7 +340,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-15T11:29:56Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -397,7 +365,7 @@
   "other": 1
  },
  "milestones": {
-  "first_impression": true,
+  "first_impression": false,
   "first_click": false,
   "top10": false,
   "top3": false,
