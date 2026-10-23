@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-23 09:34 ET",
+ "generatedAt": "2026-10-23 14:28 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 0,
@@ -295,7 +295,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-21T14:39:17Z",
    "googleCanonical": "https://trycoolizi.com/fr/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/it/",
