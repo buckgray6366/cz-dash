@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-27 01:15 ET",
+ "generatedAt": "2026-10-27 06:41 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 0,
@@ -231,6 +231,13 @@
    "clicks": 0,
    "ctr": 0,
    "position": 0
+  },
+  {
+   "date": "2026-10-27",
+   "impressions": 0,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 0
   }
  ],
  "hourly": [],
@@ -255,12 +262,16 @@
   },
   {
    "url": "https://trycoolizi.com/en/",
-   "verdict": "ERR",
-   "coverage": "HTTP 500",
-   "robots": "",
-   "fetch": "",
-   "indexing": "",
-   "lastCrawl": null
+   "verdict": "PASS",
+   "coverage": "Submitted and indexed",
+   "robots": "ALLOWED",
+   "fetch": "SUCCESSFUL",
+   "indexing": "INDEXING_ALLOWED",
+   "lastCrawl": "2026-09-28T09:36:50Z",
+   "googleCanonical": "https://trycoolizi.com/en/",
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -323,7 +334,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-21T18:35:39Z",
    "googleCanonical": "https://trycoolizi.com/nl/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/pt/",
@@ -351,10 +364,10 @@
   }
  ],
  "funnel": {
-  "indexed": 7,
+  "indexed": 8,
   "crawled_not_indexed": 0,
   "discovered": 0,
-  "other": 2
+  "other": 1
  },
  "milestones": {
   "first_impression": false,
@@ -363,7 +376,7 @@
   "top3": false,
   "number1": false,
   "best_position": 99,
-  "indexed_pages": 7
+  "indexed_pages": 8
  },
  "affiliate": {
   "connected": true,
