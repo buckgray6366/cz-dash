@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-26 19:56 ET",
+ "generatedAt": "2026-10-27 01:15 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 0,
@@ -23,26 +23,19 @@
    "position": 0
   },
   "28": {
-   "impressions": 7,
+   "impressions": 6,
    "clicks": 1,
-   "ctr": 14.29,
-   "position": 6.4
+   "ctr": 16.67,
+   "position": 7.3
   },
   "90": {
-   "impressions": 42,
-   "clicks": 4,
-   "ctr": 9.52,
-   "position": 12.7
+   "impressions": 40,
+   "clicks": 3,
+   "ctr": 7.5,
+   "position": 12.2
   }
  },
  "daily": [
-  {
-   "date": "2026-09-28",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
-  },
   {
    "date": "2026-09-29",
    "impressions": 0,
@@ -262,16 +255,12 @@
   },
   {
    "url": "https://trycoolizi.com/en/",
-   "verdict": "PASS",
-   "coverage": "Submitted and indexed",
-   "robots": "ALLOWED",
-   "fetch": "SUCCESSFUL",
-   "indexing": "INDEXING_ALLOWED",
-   "lastCrawl": "2026-09-28T09:36:50Z",
-   "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "verdict": "ERR",
+   "coverage": "HTTP 500",
+   "robots": "",
+   "fetch": "",
+   "indexing": "",
+   "lastCrawl": null
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -334,9 +323,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-21T18:35:39Z",
    "googleCanonical": "https://trycoolizi.com/nl/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/pt/",
@@ -347,9 +334,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-09-15T11:29:56Z",
    "googleCanonical": "https://trycoolizi.com/pt/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/el/",
@@ -366,10 +351,10 @@
   }
  ],
  "funnel": {
-  "indexed": 8,
+  "indexed": 7,
   "crawled_not_indexed": 0,
   "discovered": 0,
-  "other": 1
+  "other": 2
  },
  "milestones": {
   "first_impression": false,
@@ -378,7 +363,7 @@
   "top3": false,
   "number1": false,
   "best_position": 99,
-  "indexed_pages": 8
+  "indexed_pages": 7
  },
  "affiliate": {
   "connected": true,
