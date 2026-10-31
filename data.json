@@ -1,38 +1,38 @@
 {
- "generatedAt": "2026-10-31 11:24 ET",
+ "generatedAt": "2026-10-31 15:24 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 1,
+  "impressions": 2,
   "clicks": 0,
   "ctr": 0,
   "position": 1,
-  "queries": 0,
+  "queries": 1,
   "pages_seen": 10
  },
  "summaries": {
   "1": {
-   "impressions": 0,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 0
-  },
-  "7": {
    "impressions": 1,
    "clicks": 0,
    "ctr": 0,
    "position": 1
   },
+  "7": {
+   "impressions": 2,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 1
+  },
   "28": {
-   "impressions": 6,
+   "impressions": 7,
    "clicks": 1,
-   "ctr": 16.67,
-   "position": 7.2
+   "ctr": 14.29,
+   "position": 6.3
   },
   "90": {
-   "impressions": 39,
+   "impressions": 40,
    "clicks": 3,
-   "ctr": 7.69,
-   "position": 11.9
+   "ctr": 7.5,
+   "position": 11.6
   }
  },
  "daily": [
@@ -234,14 +234,30 @@
   },
   {
    "date": "2026-10-31",
-   "impressions": 0,
+   "impressions": 1,
    "clicks": 0,
    "ctr": 0,
-   "position": 0
+   "position": 1
   }
  ],
- "hourly": [],
+ "hourly": [
+  {
+   "hour": "2026-10-31T04:00:00-07:00",
+   "impressions": 1,
+   "clicks": 0
+  }
+ ],
  "geo": [
+  {
+   "cc": "bel",
+   "name": "Belgium",
+   "flag": "🇧🇪",
+   "geo": "fr",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 1
+  },
   {
    "cc": "usa",
    "name": "USA",
@@ -258,13 +274,23 @@
    "keys": [
     "DESKTOP"
    ],
+   "impressions": 2,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 1
+  }
+ ],
+ "topQueries": [
+  {
+   "keys": [
+    "coolizi"
+   ],
    "impressions": 1,
    "clicks": 0,
    "ctr": 0,
    "position": 1
   }
  ],
- "topQueries": [],
  "topPages": [
   {
    "keys": [
@@ -342,10 +368,10 @@
    "keys": [
     "https://trycoolizi.com/nl/"
    ],
-   "impressions": 1,
+   "impressions": 2,
    "clicks": 0,
    "ctr": 0,
-   "position": 6
+   "position": 3.5
   },
   {
    "keys": [
@@ -357,7 +383,15 @@
    "position": 7
   }
  ],
- "brand": [],
+ "brand": [
+  {
+   "q": "coolizi",
+   "impressions": 1,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 1
+  }
+ ],
  "opportunities": [],
  "cannibal": [],
  "indexation": [
@@ -486,10 +520,10 @@
  "milestones": {
   "first_impression": true,
   "first_click": false,
-  "top10": false,
-  "top3": false,
-  "number1": false,
-  "best_position": 99,
+  "top10": true,
+  "top3": true,
+  "number1": true,
+  "best_position": 1,
   "indexed_pages": 8
  },
  "affiliate": {
