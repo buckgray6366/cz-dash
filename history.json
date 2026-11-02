@@ -1022,5 +1022,13 @@
   "position": 1,
   "indexed": 8,
   "best_position": 1
+ },
+ {
+  "date": "2026-11-02",
+  "impressions": 2,
+  "clicks": 0,
+  "position": 1,
+  "indexed": 8,
+  "best_position": 1
  }
 ]
