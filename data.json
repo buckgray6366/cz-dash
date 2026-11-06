@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-06 12:33 ET",
+ "generatedAt": "2026-11-06 18:16 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
   "impressions": 1,
@@ -318,7 +318,9 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-11-02T17:59:59Z",
    "googleCanonical": "https://trycoolizi.com/en/",
-   "sitemaps": []
+   "sitemaps": [
+    "https://trycoolizi.com/sitemap.xml"
+   ]
   },
   {
    "url": "https://trycoolizi.com/de/",
@@ -381,9 +383,7 @@
    "indexing": "INDEXING_ALLOWED",
    "lastCrawl": "2026-10-21T18:35:39Z",
    "googleCanonical": "https://trycoolizi.com/nl/",
-   "sitemaps": [
-    "https://trycoolizi.com/sitemap.xml"
-   ]
+   "sitemaps": []
   },
   {
    "url": "https://trycoolizi.com/pt/",
@@ -429,7 +429,7 @@
  },
  "affiliate": {
   "connected": true,
-  "clicks": 2,
+  "clicks": 3,
   "conversions": 0,
   "revenue": 0.0,
   "epc": 0.0,
@@ -439,7 +439,7 @@
   "by_offer": [
    {
     "offer": "AiraBreeze",
-    "clicks": 2,
+    "clicks": 3,
     "conversions": 0,
     "revenue": 0.0,
     "epc": 0.0,
@@ -450,7 +450,7 @@
       "name": "Greece",
       "flag": "🇬🇷",
       "geo": "el",
-      "clicks": 2,
+      "clicks": 3,
       "conversions": 0,
       "revenue": 0.0,
       "epc": 0.0,
