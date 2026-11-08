@@ -1,13 +1,13 @@
 {
- "generatedAt": "2026-11-07 19:45 ET",
+ "generatedAt": "2026-11-08 02:29 ET",
  "property": "sc-domain:trycoolizi.com",
  "summary": {
-  "impressions": 1,
+  "impressions": 0,
   "clicks": 0,
   "ctr": 0,
-  "position": 1,
-  "queries": 1,
-  "pages_seen": 1
+  "position": 0,
+  "queries": 0,
+  "pages_seen": 0
  },
  "summaries": {
   "1": {
@@ -17,10 +17,10 @@
    "position": 0
   },
   "7": {
-   "impressions": 1,
+   "impressions": 0,
    "clicks": 0,
    "ctr": 0,
-   "position": 1
+   "position": 0
   },
   "28": {
    "impressions": 3,
@@ -29,20 +29,13 @@
    "position": 5.3
   },
   "90": {
-   "impressions": 34,
+   "impressions": 33,
    "clicks": 3,
-   "ctr": 8.82,
-   "position": 12.8
+   "ctr": 9.09,
+   "position": 12.2
   }
  },
  "daily": [
-  {
-   "date": "2026-10-10",
-   "impressions": 0,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 0
-  },
   {
    "date": "2026-10-11",
    "impressions": 0,
@@ -241,60 +234,11 @@
   }
  ],
  "hourly": [],
- "geo": [
-  {
-   "cc": "bel",
-   "name": "Belgium",
-   "flag": "🇧🇪",
-   "geo": "fr",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
-  }
- ],
- "device": [
-  {
-   "keys": [
-    "DESKTOP"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
-  }
- ],
- "topQueries": [
-  {
-   "keys": [
-    "coolizi"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
-  }
- ],
- "topPages": [
-  {
-   "keys": [
-    "https://trycoolizi.com/nl/"
-   ],
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
-  }
- ],
- "brand": [
-  {
-   "q": "coolizi",
-   "impressions": 1,
-   "clicks": 0,
-   "ctr": 0,
-   "position": 1
-  }
- ],
+ "geo": [],
+ "device": [],
+ "topQueries": [],
+ "topPages": [],
+ "brand": [],
  "opportunities": [],
  "cannibal": [],
  "indexation": [
@@ -421,12 +365,12 @@
   "other": 1
  },
  "milestones": {
-  "first_impression": true,
+  "first_impression": false,
   "first_click": false,
-  "top10": true,
-  "top3": true,
-  "number1": true,
-  "best_position": 1,
+  "top10": false,
+  "top3": false,
+  "number1": false,
+  "best_position": 99,
   "indexed_pages": 8
  },
  "affiliate": {
